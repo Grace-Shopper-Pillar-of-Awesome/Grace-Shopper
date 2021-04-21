@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import ReactDOM, { Link } from 'react-router-dom';
 
 class Cart extends Component {
   render() {
@@ -8,7 +8,7 @@ class Cart extends Component {
         <div id="cart_list">
           <h1>My Cart</h1>
         </div>
-        <div className="total">
+        <div className="cart_total">
           <p>Cart Total: $3,000</p>
           <Link to="/ADD_ROUTE_HERE">
             <button>Go To Checkout</button>
