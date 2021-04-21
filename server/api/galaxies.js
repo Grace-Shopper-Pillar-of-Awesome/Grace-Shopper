@@ -1,8 +1,9 @@
-const Router = require("express").Router();
+const router = require("express").Router();
 const { Galaxy } = require("../db");
+module.exports = router;
 
 //GET /api/galaxies
-Router.get("/", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const galaxies = await Galaxy.findAll();
     res.json(galaxies);
@@ -12,7 +13,7 @@ Router.get("/", async (req, res, next) => {
 });
 
 //GET /api/galaxies/:galaxyId
-Router.get("/:galaxyId", async (req, res, next) => {
+router.get("/:galaxyId", async (req, res, next) => {
   try {
     const galaxy = await Galaxy.findByPk(req.params.galaxyId);
     if (galaxy) {
@@ -26,7 +27,7 @@ Router.get("/:galaxyId", async (req, res, next) => {
 });
 
 //POST /api/galaxies
-Router.post("/", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const newGalaxy = await Galaxy.create(req.body);
     res.json(newGalaxy);
@@ -36,7 +37,7 @@ Router.post("/", async (req, res, next) => {
 });
 
 //DELETE /api/galaxies/:galaxyId
-Router.delete("/:galaxyId", async (req, res, next) => {
+router.delete("/:galaxyId", async (req, res, next) => {
   try {
     const galaxyToDelete = await Galaxy.findByPk(req.params.galaxyId);
     await galaxyToDelete.destroy();
@@ -47,7 +48,7 @@ Router.delete("/:galaxyId", async (req, res, next) => {
 });
 
 //PUT /api/galaxies/:galaxyId
-Router.put("/:galaxyId", async (req, res, next) => {
+router.put("/:galaxyId", async (req, res, next) => {
   try {
     const galaxy = await Galaxy.findByPk(req.params.galaxyId);
     const updatedGalaxy = await galaxy.update(req.body);
