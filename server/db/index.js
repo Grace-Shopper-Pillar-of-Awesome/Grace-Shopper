@@ -1,4 +1,5 @@
 //this is the access point for all things database related!
+
 const db = require('./db')
 const User = require('./models/user')
 const ShoppingCart = require('./models/shoppingCart')
@@ -6,6 +7,7 @@ const CartItems = require('./models/cartItems')
 const Order = require('./models/order')
 const OrderItems = require('./models/orderItems')
 const Galaxy = require('./models/galaxy')
+
 //associations could go here!
 User.hasMany(Order)
 Order.belongsTo(User)
@@ -28,3 +30,4 @@ module.exports = {
   OrderItems,
   Galaxy
 }
+
