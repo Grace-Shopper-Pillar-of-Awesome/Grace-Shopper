@@ -9,7 +9,11 @@ const Order = db.define('order', {
         type: Sequelize.ENUM('paypal', 'card')
     },
     total: {
-        type: Sequelize.FLOAT
+        type: Sequelize.INTEGER
+    },
+    orderStatus: {
+        type: Sequelize.ENUM('pending', 'complete'),
+        defaultValue: 'pending'
     }
 })
 
