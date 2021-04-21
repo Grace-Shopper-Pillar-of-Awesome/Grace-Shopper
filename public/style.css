@@ -19,3 +19,19 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#cart_container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#cart_list {
+  flex-basis: 67%;
+  display: flex;
+  flex-direction: column;
+}
+
+#cart_total {
+  flex-basis: 33%;
+}

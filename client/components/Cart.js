@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Cart extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Cart extends Component {
 
   render() {
     return (
-      <div>
+      <div id="cart_container">
         <div id="cart_list">
           <h3>My Cart</h3>
           <div className="cart_item">
@@ -43,9 +44,11 @@ class Cart extends Component {
             </button>
           </div>
         </div>
-        <hr />
         <div id="cart_total">
           <p>Cart Total: $3,000</p>
+          <Link to="/CHECKOUT_ROUTE_HERE">
+            <button>Go To Checkout</button>
+          </Link>
         </div>
       </div>
     );
