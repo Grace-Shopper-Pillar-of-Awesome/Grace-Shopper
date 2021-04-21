@@ -1,10 +1,7 @@
 'use strict'
 
 const {db, User,
-  ShoppingCart,
-  CartItems,
   Order,
-  OrderItems,
   Galaxy } = require('../server/db')
 
 /**
@@ -21,20 +18,11 @@ async function seed() {
     email: '123@gmail.com'
   });
 
-  const shoppingCart1 = await ShoppingCart.create({
-    total: 1200
-  });
-
   const order1 = await Order.create({
       date: new Date(),
       paymentType: 'card',
       total: 1200
   })
-
-  // const orderItems1 = await OrderItems.create({
-  //     quantity: 1,
-  //     price: 1200,
-  // })
 
   const galaxy1 = await Galaxy.create({
       name: 'milkyway',
@@ -42,15 +30,8 @@ async function seed() {
       category: 'elliptical'
   })
 
-//   const cartItems1 = await CartItems.create({
-//     quantity: 1,
-//     price: 1200,
-// })
-
 
 await order1.setUser(user1)
-await shoppingCart1.setUser(user1)
-await shoppingCart1.addGalaxy(galaxy1, { through: { quantity: 1, price: 1200 } })
 await order1.addGalaxy(galaxy1, { through: { quantity: 1, price: 1200 }  })
 
 }
