@@ -1,6 +1,11 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
+const {db, User,
+  ShoppingCart,
+  CartItems,
+  Order,
+  OrderItems,
+  Galaxy } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -10,20 +15,44 @@ async function seed() {
   await db.sync({ force: true }) // clears db and matches models to tables
   console.log('db synced!')
 
-  // Creating Users
-  const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
-  ])
+  const user1 = await User.create({
+    username: 'R2-D2',
+    password: '1234',
+    email: '123@gmail.com'
+  });
 
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1]
-    }
-  }
+  const shoppingCart1 = await ShoppingCart.create({
+    total: 1200
+  });
+
+  const order1 = await Order.create({
+      date: new Date(),
+      paymentType: 'card',
+      total: 1200
+  })
+
+  // const orderItems1 = await OrderItems.create({
+  //     quantity: 1,
+  //     price: 1200,
+  // })
+
+  const galaxy1 = await Galaxy.create({
+      name: 'milkyway',
+      SKU: 'MW123456',
+      category: 'elliptical'
+  })
+
+//   const cartItems1 = await CartItems.create({
+//     quantity: 1,
+//     price: 1200,
+// })
+
+
+await order1.setUser(user1)
+await shoppingCart1.setUser(user1)
+await shoppingCart1.addGalaxy(galaxy1, { through: { quantity: 1, price: 1200 } })
+await order1.addGalaxy(galaxy1, { through: { quantity: 1, price: 1200 }  })
+
 }
 
 /*
