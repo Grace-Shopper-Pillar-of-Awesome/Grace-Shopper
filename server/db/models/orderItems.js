@@ -6,7 +6,7 @@ const OrderItems = db.define('orderItems', {
         type: Sequelize.INTEGER
     },
     price: {
-        type: Sequelize.FLOAT
+        type: Sequelize.INTEGER
     }
 })
 
