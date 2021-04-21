@@ -23,11 +23,11 @@ class Cart extends Component {
     return (
       <div id="cart_container">
         <div id="cart_list">
-          <h3>My Cart</h3>
+          <h2>My Cart</h2>
           <div className="cart_item">
             <img src="IMAGE_URL_HERE" />
             <div>
-              <p>Galaxy Name</p>
+              <p className="cart_name">Galaxy Name</p>
               <p>Galaxy Cost</p>
               <label htmlFor="quantity">Quantity:</label>
               <input
@@ -39,7 +39,34 @@ class Cart extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <button id="ORDER_ITEM_ID" onClick={this.handleDelete}>
+            <button
+              className="delete"
+              id="ORDER_ITEM_ID"
+              onClick={this.handleDelete}
+            >
+              X
+            </button>
+          </div>
+          <div className="cart_item">
+            <img src="IMAGE_URL_HERE" />
+            <div>
+              <p className="cart_name">Galaxy Name</p>
+              <p>Galaxy Cost</p>
+              <label htmlFor="quantity">Quantity: </label>
+              <input
+                type="number"
+                min={1}
+                max={100}
+                name="quantity"
+                value={this.state.quantity}
+                onChange={this.handleChange}
+              />
+            </div>
+            <button
+              className="delete"
+              id="ORDER_ITEM_ID"
+              onClick={this.handleDelete}
+            >
               X
             </button>
           </div>
@@ -47,7 +74,7 @@ class Cart extends Component {
         <div id="cart_total">
           <p>Cart Total: $3,000</p>
           <Link to="/CHECKOUT_ROUTE_HERE">
-            <button>Go To Checkout</button>
+            <button id="go_checkout">Go To Checkout</button>
           </Link>
         </div>
       </div>
