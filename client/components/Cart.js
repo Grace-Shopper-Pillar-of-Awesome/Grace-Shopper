@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { fetchCart } from "../store/singleOrder";
+import { connect } from "react-redux";
 
 class Cart extends Component {
   constructor(props) {
@@ -11,6 +13,10 @@ class Cart extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchCart(this.props.id);
+  }
+
   handleChange(evt) {
     this.setState({
       quantity: evt.target.value,
@@ -20,6 +26,8 @@ class Cart extends Component {
   handleDelete(evt) {}
 
   render() {
+    const { total, galaxies } = this.props.cart;
+
     return (
       <div id="cart_container">
         <div id="cart_list">
@@ -82,4 +90,15 @@ class Cart extends Component {
   }
 }
 
-export default Cart;
+const mapStateToProps = (state) => ({
+  cart: state.singleOrder,
+  id: state.auth.id,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchCart: (id) => dispatch(fetchCart(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
