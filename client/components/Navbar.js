@@ -1,26 +1,26 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
 
 const Navbar = ({ handleClick, isLoggedIn, username }) => (
   <div>
     <nav>
       <h3>
-        Welcome,{" "}
+        Welcome,{' '}
         {/* this is a placeholder, we'll need to create a route to go to the user profile */}
         {isLoggedIn ? (
           <Link id="user-profile-line" to="/userprofile">
             {username}
           </Link>
         ) : (
-          "Guest"
+          'Guest'
         )}
       </h3>
       <Link to="/home">Home</Link>
       <Link to="/galaxies">Products</Link>
       <Link to="/aboutUs">About Us</Link>
-      <Link to="/:userId/myCart">
+      <Link to="/cart">
         <img
           id="shopping-cart"
           src="https://static.thenounproject.com/png/65006-200.png"
