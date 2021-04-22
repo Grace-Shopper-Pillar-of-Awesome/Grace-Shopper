@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Signup } from './components/AuthForm';
-import Home from './components/Home';
-import {me} from './store'
-import SingleGalaxy from './components/SingleGalaxy'
-
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Login, Signup } from "./components/AuthForm";
+import Home from "./components/Home";
+import { me } from "./store";
+import SingleGalaxy from "./components/SingleGalaxy";
+import AllGalaxies from "./components/AllGalaxies";
 
 /**
  * COMPONENT
@@ -22,6 +22,7 @@ class Routes extends Component {
       <div>
         <Switch>
           <Route path="/home" component={Home} />
+          <Route path="/galaxies" component={AllGalaxies} />
 
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
@@ -46,7 +47,6 @@ class Routes extends Component {
         )} */}
         )}
         <Route exact path="/galaxies/:galaxyId" component={SingleGalaxy} />
-
       </div>
     );
   }
