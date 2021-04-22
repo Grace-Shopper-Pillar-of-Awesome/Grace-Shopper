@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import { me } from './store';
+import {me} from './store'
+import SingleGalaxy from './components/SingleGalaxy'
 
 /**
  * COMPONENT
@@ -18,7 +19,11 @@ class Routes extends Component {
 
     return (
       <div>
-        {isLoggedIn ? (
+        <Switch>
+          <Route path="/home" component={Home} />
+          <Redirect to="/home" />
+        </Switch>
+        {/*isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
             <Redirect to="/home" />
@@ -30,6 +35,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
           </Switch>
         )}
+        <Route exact path="/galaxies/:galaxyId" component={SingleGalaxy} />
       </div>
     );
   }
