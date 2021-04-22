@@ -1,32 +1,49 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchSingleGalaxy } from "../store/singleGalaxy";
 
 class SingleGalaxy extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.getSingleGalaxy(this.props.match.params.galaxyId);
+  }
+
   render() {
+    const {
+      name,
+      price,
+      distance,
+      description,
+      SKU,
+      imageUrl,
+      category,
+    } = this.props.galaxy;
 
     return (
       <div className="single-galaxy-view">
-          <img src="https://www.innovationnewsnetwork.com/wp-content/uploads/2021/02/Primordial-galaxy-696x392.jpg"/>
-          <h1>Galaxy name</h1>
-          <h2>$1000</h2>
-          <h3>1 billion light years away</h3>
-          <h3>Spiral galaxy</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <img src={imageUrl} />
+        <h1>{name}</h1>
+        <h2>${price / 100}</h2>
+        <h3>{distance} billion light years away</h3>
+        <h3>Type: {category} galaxy</h3>
+        <p>{description}</p>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
+  galaxy: state.singleGalaxy,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getSingleGalaxy: (id) => dispatch(fetchSingleGalaxy(id)),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleGalaxy);

@@ -46,7 +46,7 @@ class Routes extends Component {
           </Switch>
         )} */}
         )}
-        <Route exact path="/galaxies/:galaxyId" component={SingleGalaxy} />
+        <Route path="/galaxies/:galaxyId" component={SingleGalaxy} />
       </div>
     );
   }

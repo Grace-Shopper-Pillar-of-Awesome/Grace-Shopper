@@ -4,8 +4,9 @@ import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 import allGalaxies from "./allGalaxies";
+import singleGalaxy from "./singleGalaxy";
 
-const reducer = combineReducers({ auth, allGalaxies });
+const reducer = combineReducers({ auth, allGalaxies, singleGalaxy });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
