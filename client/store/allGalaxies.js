@@ -1,31 +1,31 @@
-import axios from 'axios'
+import axios from "axios";
 
+const SET_GALAXIES = "SET_GALAXIES";
 
-const SET_GALAXY = 'SET_GALAXY'
+export const setGalaxies = (galaxies) => {
+  return {
+    type: SET_GALAXIES,
+    galaxies,
+  };
+};
 
-export const setGalaxy = (galaxy) => {
-    return {
-        type: SET_GALAXY,
-        galaxy
+export const fetchGalaxies = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("/api/galaxies");
+      console.log("this is data in thunk creator:", data);
+      dispatch(setGalaxies(data));
+    } catch (err) {
+      console.log(err);
     }
-}
+  };
+};
 
-export const fetchGalaxy = () => {
-    return async (dispatch) => {
-        try {
-            const { data } = axios.get('/api/galaxies')
-            dispatch(setGalaxy(data))
-        } catch (err) {
-            console.log(err)
-        }
-    }
-}
-
-export default function galaxyReducer(state = [], action) {
-    switch (action.type) {
-        case SET_GALAXY:
-            return action.galaxy
-        default:
-            return state
-    }
+export default function galaxiesReducer(state = [], action) {
+  switch (action.type) {
+    case SET_GALAXIES:
+      return action.galaxies;
+    default:
+      return state;
+  }
 }
