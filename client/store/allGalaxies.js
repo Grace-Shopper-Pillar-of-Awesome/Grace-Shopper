@@ -19,7 +19,7 @@ export const fetchGalaxies = () => {
       console.log(err);
     }
   };
-};
+}; 
 
 export default function galaxiesReducer(state = [], action) {
   switch (action.type) {

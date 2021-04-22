@@ -1,12 +1,12 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Login, Signup } from "./components/AuthForm";
-import Home from "./components/Home";
-import { me } from "./store";
-import SingleGalaxy from "./components/SingleGalaxy";
-import AllGalaxies from "./components/AllGalaxies";
-import Cart from "./components/Cart";
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Login, Signup } from './components/AuthForm';
+import Home from './components/Home';
+import { me } from './store';
+import SingleGalaxy from './components/SingleGalaxy';
+import AllGalaxies from './components/AllGalaxies';
+import Cart from './components/Cart';
 
 /**
  * COMPONENT
@@ -24,7 +24,16 @@ class Routes extends Component {
         <Switch>
           <Route path="/home" component={Home} />
           <Route exact path="/galaxies" component={AllGalaxies} />
-          <Route path="/cart" component={Cart} />
+          <Route
+            path="/cart"
+            render={(props) => (
+              <Cart
+                {...props}
+                id={this.props.id}
+                isLoggedIn={this.props.isLoggedIn}
+              />
+            )}
+          />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
         </Switch>
@@ -59,6 +68,7 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
+    id: state.auth.id,
   };
 };
 

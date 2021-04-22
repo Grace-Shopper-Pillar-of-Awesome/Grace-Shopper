@@ -10,20 +10,23 @@ class AllGalaxies extends React.Component {
   render() {
     const galaxies = this.props.galaxies;
     return (
-      <div>
+      <div id = "outer-galaxies-container">
         {galaxies.map((galaxy) => {
           return (
-            <div key={galaxy.id}>
+            <div className = 'galaxy-info' key={galaxy.id}>
               <Link to={`/galaxies/${galaxy.id}`}>
-                <h1>{galaxy.name}</h1>
+                <h1 className = 'galaxy-name'>{galaxy.name}</h1>
               </Link>
+              <img className='galaxy-img' src={galaxy.imageUrl} />
+              <h3 className = 'galaxy-price'>Price: {galaxy.price}</h3>
+              <p className = 'galaxy-category'>Category: {galaxy.category}</p>
             </div>
           );
-        })}
+        } ) }
       </div>
     );
   }
-}
+} 
 
 const mapStateToProps = (state) => {
   return {
@@ -38,3 +41,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllGalaxies);
+ 
