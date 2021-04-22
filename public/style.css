@@ -12,6 +12,12 @@ label {
   display: block;
 }
 
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 nav a {
   display: inline-block;
   margin: 1em;
@@ -20,6 +26,11 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+
+#shopping-cart {
+  height: 2em;
 }
 
 #cart_container {
@@ -139,4 +150,5 @@ h3.home {
     top: -6000px;
     transform: rotateX(15deg) translateZ(-2500px);
   }
+
 }
