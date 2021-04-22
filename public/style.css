@@ -3,8 +3,15 @@ body {
 }
 
 a {
+  color: rgb(82, 73, 163);
   text-decoration: none;
 }
+
+a:hover {
+  color: #6c12a8;
+  text-decoration: underline;
+}
+
 
 label {
   display: block;
@@ -151,4 +158,29 @@ h3.home {
     top: -6000px;
     transform: rotateX(15deg) translateZ(-2500px);
   }
+}
+
+
+/* AllGalaxies component */
+
+#outer-galaxies-container {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: gray;
+}
+
+.galaxy-name {
+  font-size: 1.5em;
+}
+
+.galaxy-img {
+  height: 200px;
+  width: 200px;
+}
+
+.galaxy-info {
+  border-style: solid;
+  border-color: #000;
+  text-align: center;
+  width: 250px;
 }
