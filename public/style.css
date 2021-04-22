@@ -1,5 +1,3 @@
-
-
 body {
   font-family: sans-serif;
 }
@@ -35,7 +33,6 @@ form div {
   display: inline-block;
 }
 
-
 #shopping-cart {
   height: 2em;
 }
@@ -68,6 +65,10 @@ input {
   margin: 5px;
 }
 
+.cart_item img {
+  height: 100px;
+}
+
 .cart_name {
   font-size: 20px;
   padding-bottom: 10px;
@@ -98,12 +99,12 @@ div.content {
   width: 100%;
   height: 100%;
   background: #000;
-  overflow: hidden
+  overflow: hidden;
 }
 
 h3.home {
- color: lightgrey;
- margin-left: 10px;
+  color: lightgrey;
+  margin-left: 10px;
 }
 
 .fade {
@@ -135,7 +136,7 @@ h3.home {
   top: 9999px;
   transform-origin: 50% 100%;
   animation: crawl 30s linear;
-  animation-iteration-count: infinite
+  animation-iteration-count: infinite;
 }
 
 .crawl > .title {
@@ -151,13 +152,12 @@ h3.home {
 @keyframes crawl {
   0% {
     top: 0;
-    transform: rotateX(20deg)  translateZ(0);
+    transform: rotateX(20deg) translateZ(0);
   }
-  100% { 
+  100% {
     top: -6000px;
     transform: rotateX(15deg) translateZ(-2500px);
   }
-
 }
 
 
