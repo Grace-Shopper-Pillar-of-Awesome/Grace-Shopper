@@ -1,17 +1,35 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { logout } from '../store';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { logout } from "../store";
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, username }) => (
   <div>
-    <h1>FS-App-Template</h1>
     <nav>
+      <h3>
+        Welcome,{" "}
+        {/* this is a placeholder, we'll need to create a route to go to the user profile */}
+        {isLoggedIn ? (
+          <Link id="user-profile-line" to="/userprofile">
+            {username}
+          </Link>
+        ) : (
+          "Guest"
+        )}
+      </h3>
+      <Link to="/home">Home</Link>
+      <Link to="/galaxies">Products</Link>
+      <Link to="/aboutUs">About Us</Link>
+      <Link to="/:userId/myCart">
+        <img
+          id="shopping-cart"
+          src="https://static.thenounproject.com/png/65006-200.png"
+        ></img>
+      </Link>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
+          <a id="logout" href="#" onClick={handleClick}>
             Logout
           </a>
         </div>
@@ -33,6 +51,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
+    username: state.auth.username,
   };
 };
 
