@@ -22,6 +22,10 @@ form div {
   display: inline-block;
 }
 
+.single-galaxy-view {
+  display: grid;
+}
+
 div.content {
   width: 100%;
   height: 100%;
