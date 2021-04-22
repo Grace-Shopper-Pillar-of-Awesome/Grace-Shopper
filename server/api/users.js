@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Order, Galaxy } = require("../db");
+const { User, Order, Galaxy, OrderItems } = require("../db");
 module.exports = router;
 
 router.get("/", async (req, res, next) => {
@@ -27,6 +27,22 @@ router.get("/:userId/cart", async (req, res, next) => {
       include: [{ model: Galaxy }],
     });
     res.json(cart);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//DELETE /api/users/:userId/cart/:galaxyId
+router.delete("/:userId/cart/:galaxyId", async (req, res, next) => {
+  try {
+    const orderItemToDelete = await OrderItems.findOne({
+      where: {
+        galaxyId: req.params.galaxyId,
+        orderId: req.body.orderId,
+      },
+    });
+    await orderItemToDelete.destroy();
+    res.json(orderItemToDelete);
   } catch (error) {
     next(error);
   }
