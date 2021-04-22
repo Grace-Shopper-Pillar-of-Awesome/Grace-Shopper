@@ -1,3 +1,4 @@
+
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -6,6 +7,7 @@ import Home from "./components/Home";
 import { me } from "./store";
 import SingleGalaxy from "./components/SingleGalaxy";
 import AllGalaxies from "./components/AllGalaxies";
+
 
 /**
  * COMPONENT
@@ -46,7 +48,9 @@ class Routes extends Component {
           </Switch>
         )} */}
         )}
+
         <Route path="/galaxies/:galaxyId" component={SingleGalaxy} />
+
       </div>
     );
   }
