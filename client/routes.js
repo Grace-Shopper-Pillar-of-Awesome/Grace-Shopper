@@ -1,4 +1,3 @@
-
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -7,7 +6,7 @@ import Home from "./components/Home";
 import { me } from "./store";
 import SingleGalaxy from "./components/SingleGalaxy";
 import AllGalaxies from "./components/AllGalaxies";
-
+import Cart from "./components/Cart";
 
 /**
  * COMPONENT
@@ -24,11 +23,10 @@ class Routes extends Component {
       <div>
         <Switch>
           <Route path="/home" component={Home} />
-          <Route path="/galaxies" component={AllGalaxies} />
-
+          <Route exact path="/galaxies" component={AllGalaxies} />
+          <Route path="/cart" component={Cart} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Redirect to="/home" />
         </Switch>
         {/* {isLoggedIn ? (
 
@@ -47,10 +45,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
           </Switch>
         )} */}
-        )}
-
         <Route path="/galaxies/:galaxyId" component={SingleGalaxy} />
-
       </div>
     );
   }
