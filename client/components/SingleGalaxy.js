@@ -12,6 +12,10 @@ class SingleGalaxy extends React.Component {
     this.props.getSingleGalaxy(this.props.match.params.galaxyId);
   }
 
+  handleClick() {
+    console.log("button was clicked")
+  }
+
   render() {
     const {
       name,
@@ -25,12 +29,24 @@ class SingleGalaxy extends React.Component {
 
     return (
       <div className="single-galaxy-view">
-        <img src={imageUrl} />
-        <h1>{name}</h1>
-        <h2>${price / 100}</h2>
-        <h3>{distance} billion light years away</h3>
-        <h3>Type: {category} galaxy</h3>
-        <p>{description}</p>
+        <div className="single-galaxy-image">
+          <img src={imageUrl} />
+        </div>
+        <div className="single-galaxy-info">
+          <h1 id="single-galaxy-name">{name}</h1>
+          <h2>${price / 100}</h2>
+          <h3>{distance} billion light years away</h3>
+          <h3>Type: {category} galaxy</h3>
+          <p>{description}</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <br/>
+          <div className="single-galaxy-buy">
+          <h4>Quantity:</h4>
+          <input type="number" min="0"></input> 
+          <br/>
+          <button type="button" onClick={this.handleClick}>Add to cart</button>
+          </div>
+        </div>
       </div>
     );
   }
