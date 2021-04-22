@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../db");
+const { User, Order, Galaxy } = require("../db");
 module.exports = router;
 
 router.get("/", async (req, res, next) => {
@@ -13,5 +13,21 @@ router.get("/", async (req, res, next) => {
     res.json(users);
   } catch (err) {
     next(err);
+  }
+});
+
+//GET /api/users/:userId/cart
+router.get("/:userId/cart", async (req, res, next) => {
+  try {
+    const [cart, wasCreated] = await Order.findOrCreate({
+      where: {
+        userId: req.params.userId,
+        orderStatus: "pending",
+      },
+      include: [{ model: Galaxy }],
+    });
+    res.json(cart);
+  } catch (error) {
+    next(error);
   }
 });
