@@ -30,13 +30,12 @@ class Checkout extends Component {
   render() {
     const { total } = this.props.cart;
     const galaxies = this.props.cart.galaxies || [];
-    console.log(galaxies);
     return (
-      <div>
-        <div id="checkout_container">
+      <div id="cart_container">
+        <div id="cart_list">
           <h2>Checkout</h2>
           <p>Total: ${total}</p>
-          <form>
+          <form id="pay_form" onSubmit={this.handleSubmit}>
             <label>Form of Payment: </label>
             <select onChange={this.handleChange} value={this.state.payment}>
               <option value="card">Card</option>
@@ -45,11 +44,13 @@ class Checkout extends Component {
             <button type="submit">Place Order</button>
           </form>
         </div>
-        <div id="checkout_cart_container">
+        <div id="cart_total">
+          <h3>My Cart:</h3>
           {galaxies.map((galaxy) => (
             <div key={galaxy.id}>
-              <p>{galaxy.name}</p>
-              <p>Quantity: {galaxy.orderItems.quantity}</p>
+              <p>
+                {galaxy.name} - {galaxy.orderItems.quantity}
+              </p>
             </div>
           ))}
           <Link to="/cart">
