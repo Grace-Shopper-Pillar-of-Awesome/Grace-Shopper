@@ -94,8 +94,6 @@ const { db, User, Order, Galaxy } = require('../server/db');
 //   },
 // ];
 
-
-
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log('db synced!');
@@ -105,82 +103,78 @@ async function seed() {
     password: '1234',
     email: 'user1@gmail.com',
     userType: 'admin',
-  })
+  });
   const user2 = await User.create({
     username: 'user2',
     password: '1234',
     email: 'user2@gmail.com',
-  })
+  });
   const user3 = await User.create({
     username: 'user3',
     password: '1234',
     email: 'user3@gmail.com',
-  })
+  });
   const user4 = await User.create({
     username: 'user4',
     password: '1234',
     email: 'user4@gmail.com',
-  })
+  });
   const user5 = await User.create({
     username: 'user5',
     password: '1234',
     email: 'user5@gmail.com',
-  })
-  
+  });
+
   const order1 = await Order.create({
     date: new Date(),
     paymentType: 'card',
     total: 1200,
     orderStatus: 'complete',
-  })
-  const order2 = await Order.create( {
-    date: new Date(),
-    paymentType: 'paypal',
+  });
+  const order2 = await Order.create({
     total: 1500,
-  })
+  });
   const order3 = await Order.create({
     date: new Date(),
     paymentType: 'card',
     total: 2500,
     orderStatus: 'complete',
-  })
+  });
   const order4 = await Order.create({
-    date: new Date(),
-    paymentType: 'paypal',
     total: 5000,
-  })
+  });
   const order5 = await Order.create({
     date: new Date(),
     paymentType: 'card',
     total: 5000,
     orderStatus: 'complete',
-  })
-  
+  });
+
   const galaxy1 = await Galaxy.create({
     name: 'milkyway',
     SKU: 'MW123456',
     category: 'elliptical',
-  })
+  });
   const galaxy2 = await Galaxy.create({
     name: 'fireworks',
     SKU: 'FW123456',
     category: 'spiral',
-  })
+  });
   const galaxy3 = await Galaxy.create({
     name: 'tadpole',
     SKU: 'TP123456',
     category: 'irregular',
-  })
+  });
   const galaxy4 = await Galaxy.create({
     name: 'sunflower',
     SKU: 'SF123456',
     category: 'elliptical',
-  })
+  });
   const galaxy5 = await Galaxy.create({
     name: 'butterfly',
     SKU: 'BF123456',
     category: 'irregular',
-  })
+  });
 
   await order1.setUser(user1);
   await order2.setUser(user2);

@@ -7,7 +7,7 @@ class Checkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      payment: this.props.cart.paymentType,
+      payment: 'card',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,24 +15,27 @@ class Checkout extends Component {
 
   componentDidMount() {
     this.props.fetchCart(this.props.id);
-    this.setState({
-      payment: this.props.cart.paymentType,
-    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.id && this.props.id) {
+      this.props.fetchCart(this.props.id);
+    }
   }
 
   handleChange(evt) {
     this.setState({
       payment: evt.target.value,
     });
-    console.log(this.state);
   }
 
-  handleSubmit() {
+  handleSubmit(evt) {
+    evt.preventDefault();
     this.props.submitOrder(this.props.id, this.state, this.props.history);
   }
 
   render() {
-    const { total, paymentType } = this.props.cart;
+    const { total } = this.props.cart;
     const galaxies = this.props.cart.galaxies || [];
     return (
       <div id="cart_container">
@@ -44,11 +47,11 @@ class Checkout extends Component {
               <label htmlFor="payment">Pay with: </label>
               <select
                 name="payment"
-                value={this.state.payment ? this.state.payment : ''}
+                value={this.state.payment}
                 onChange={this.handleChange}
               >
-                <option value="card">Card</option>
-                <option value="paypal">Paypal</option>
+                <option value="card">card</option>
+                <option value="paypal">paypal</option>
               </select>
               <button type="button" onClick={this.handleSubmit}>
                 Place Order
