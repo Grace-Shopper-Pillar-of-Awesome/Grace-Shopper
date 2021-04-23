@@ -56,17 +56,19 @@ router.delete('/:userId/cart/:galaxyId', async (req, res, next) => {
 //CHECKOUT /api/users/:userID/checkout
 router.put('/:userId/checkout', requireToken, async (req, res, next) => {
   try {
-    const cart = await Order.findOne({
-      where: {
-        userId: req.user.id,
-        orderStatus: 'pending',
-      },
-    });
-    const order = await cart.update({
-      date: new Date(),
-      orderStatus: 'complete',
-    });
-    res.json(order);
+    if (req.user.id === Number(req.params.userId)) {
+      const cart = await Order.findOne({
+        where: {
+          userId: req.user.id,
+          orderStatus: 'pending',
+        },
+      });
+      const order = await cart.update({
+        date: new Date(),
+        orderStatus: 'complete',
+      });
+      res.json(order);
+    }
   } catch (error) {
     next(error);
   }

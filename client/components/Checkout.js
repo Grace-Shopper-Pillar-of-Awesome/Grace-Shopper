@@ -28,11 +28,14 @@ class Checkout extends Component {
   handleSubmit() {}
 
   render() {
-    //const { total } = this.props.cart;
+    const { total } = this.props.cart;
+    const galaxies = this.props.cart.galaxies || [];
+    console.log(galaxies);
     return (
       <div>
         <div id="checkout_container">
           <h2>Checkout</h2>
+          <p>Total: ${total}</p>
           <form>
             <label>Form of Payment: </label>
             <select onChange={this.handleChange} value={this.state.payment}>
@@ -42,8 +45,13 @@ class Checkout extends Component {
             <button type="submit">Place Order</button>
           </form>
         </div>
-        <div id="checkout_total_container">
-          <p>Total: $3,000</p>
+        <div id="checkout_cart_container">
+          {galaxies.map((galaxy) => (
+            <div key={galaxy.id}>
+              <p>{galaxy.name}</p>
+              <p>Quantity: {galaxy.orderItems.quantity}</p>
+            </div>
+          ))}
           <Link to="/cart">
             <button>Edit Cart</button>
           </Link>
@@ -55,7 +63,6 @@ class Checkout extends Component {
 
 const mapState = (state) => ({
   cart: state.singleOrder,
-  id: state.auth.id,
 });
 
 const mapDispatch = (dispatch) => ({
