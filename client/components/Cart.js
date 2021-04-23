@@ -9,6 +9,10 @@ class Cart extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.fetchCart(this.props.id);
+  }
+
   componentDidUpdate(prevProps) {
     if (!prevProps.isLoggedIn) {
       this.props.fetchCart(this.props.id);
