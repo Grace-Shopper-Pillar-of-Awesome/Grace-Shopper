@@ -32,7 +32,7 @@ export const fetchCart = (id) => {
   };
 };
 
-export const submitOrder = (id, payment) => {
+export const submitOrder = (id, payment, history) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem('token');
@@ -45,6 +45,7 @@ export const submitOrder = (id, payment) => {
         },
       });
       dispatch(clearCart());
+      history.push('/home');
     } catch (error) {
       console.log(error);
     }

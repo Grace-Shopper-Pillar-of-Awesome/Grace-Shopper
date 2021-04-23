@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCart } from '../store/singleOrder';
+import { fetchCart, submitOrder } from '../store/singleOrder';
 
 class Checkout extends Component {
   constructor(props) {
@@ -26,7 +26,9 @@ class Checkout extends Component {
     console.log(this.state);
   }
 
-  handleSubmit() {}
+  handleSubmit() {
+    this.props.submitOrder(this.props.id, this.state.payment);
+  }
 
   render() {
     const { total, paymentType } = this.props.cart;
@@ -45,7 +47,9 @@ class Checkout extends Component {
             <option value="card">Card</option>
             <option value="paypal">Paypal</option>
           </select>
-          <button type="button">Place Order</button>
+          <button type="button" onClick={this.handleSubmit}>
+            Place Order
+          </button>
         </div>
         <div id="cart_total">
           <h3>My Cart:</h3>
@@ -71,6 +75,7 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   fetchCart: (id) => dispatch(fetchCart(id)),
+  submitOrder: (id, payment) => dispatch(submitOrder(id, payment, history)),
 });
 
 export default connect(mapState, mapDispatch)(Checkout);
