@@ -1,9 +1,9 @@
-const router = require("express").Router();
-const { User, Order, Galaxy, OrderItems } = require("../db");
+const router = require('express').Router();
+const { User, Order, Galaxy, OrderItems } = require('../db');
 module.exports = router;
-const { requireToken, isAdmin } = require("./gatekeepingMiddleware");
+const { requireToken, isAdmin } = require('./gatekeepingMiddleware');
 
-router.get("/", requireToken, async (req, res, next) => {
+router.get('/', requireToken, async (req, res, next) => {
   try {
     //WILL NEED TO WRITE AN AXIOS CALL THAT PASSES A TOKEN WHEN WE CREATE THE ADMIN VIEW
 
@@ -11,7 +11,7 @@ router.get("/", requireToken, async (req, res, next) => {
       // explicitly select only the id and username fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ["id", "username"],
+      attributes: ['id', 'username'],
     });
     res.json(users);
   } catch (err) {
@@ -20,13 +20,13 @@ router.get("/", requireToken, async (req, res, next) => {
 });
 
 //GET /api/users/:userId/cart
-router.get("/:userId/cart", requireToken, isAdmin, async (req, res, next) => {
+router.get('/:userId/cart', requireToken, async (req, res, next) => {
   try {
     if (req.user.id === Number(req.params.userId)) {
       const [cart, wasCreated] = await Order.findOrCreate({
         where: {
           userId: req.user.id,
-          orderStatus: "pending",
+          orderStatus: 'pending',
         },
         include: [{ model: Galaxy }],
       });
@@ -38,7 +38,7 @@ router.get("/:userId/cart", requireToken, isAdmin, async (req, res, next) => {
 });
 
 //DELETE /api/users/:userId/cart/:galaxyId
-router.delete("/:userId/cart/:galaxyId", async (req, res, next) => {
+router.delete('/:userId/cart/:galaxyId', async (req, res, next) => {
   try {
     const orderItemToDelete = await OrderItems.findOne({
       where: {

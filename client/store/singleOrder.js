@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const SET_CART = "SET_CART";
+const SET_CART = 'SET_CART';
 
 export const setCart = (cart) => {
   return {
@@ -12,7 +12,7 @@ export const setCart = (cart) => {
 export const fetchCart = (id) => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem("token");
+      const token = window.localStorage.getItem('token');
       const { data } = await axios.get(`/api/users/${id}/cart`, {
         headers: {
           authorization: token,
