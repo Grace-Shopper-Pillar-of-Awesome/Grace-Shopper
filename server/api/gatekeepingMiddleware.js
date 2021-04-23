@@ -5,16 +5,22 @@ const { User } = require("../db");
 const requireToken = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
-    console.log("this is our token in gatekeepingmiddleware:", token);
     const user = await User.findByToken(token); //the findByToken instance methodis exists in our db model
     req.user = user;
-    console.log("this is user in gatekeepingmiddleware:", user);
     next();
   } catch (error) {
     next(error);
   }
 };
 
+const isAdmin = (req, res, next) => {
+  if (req.user.userType !== "admin") {
+    return res.status(403).send("You shall not pass!");
+  } else {
+    next();
+  }
+};
 module.exports = {
   requireToken,
+  isAdmin,
 };
