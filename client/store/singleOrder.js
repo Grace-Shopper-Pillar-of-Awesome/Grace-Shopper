@@ -42,7 +42,7 @@ export const submitOrder = (id, payment, history) => {
         },
       });
       dispatch(clearCart());
-      history.push('/home');
+      history.push('/orderConfirmation');
     } catch (error) {
       console.log(error);
     }

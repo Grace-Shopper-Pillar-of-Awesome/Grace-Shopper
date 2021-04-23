@@ -8,6 +8,7 @@ import SingleGalaxy from './components/SingleGalaxy';
 import AllGalaxies from './components/AllGalaxies';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
+import OrderConfirmation from './components/OrderConfirmation';
 
 /**
  * COMPONENT
@@ -47,6 +48,7 @@ class Routes extends Component {
             )}
           />
           <Route path="/login" component={Login} />
+          <Route path="/orderConfirmation" component={OrderConfirmation} />
           <Route path="/signup" component={Signup} />
         </Switch>
         {/* {isLoggedIn ? (
