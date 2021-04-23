@@ -7,16 +7,17 @@ class Checkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      payment: 'card',
+      payment: this.props.cart.paymentType,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    if (!prevProps.isLoggedIn) {
-      this.props.fetchCart(this.props.id);
-    }
+  componentDidMount() {
+    this.props.fetchCart(this.props.id);
+    this.setState({
+      payment: this.props.cart.paymentType,
+    });
   }
 
   handleChange(evt) {
@@ -27,7 +28,7 @@ class Checkout extends Component {
   }
 
   handleSubmit() {
-    this.props.submitOrder(this.props.id, this.state.payment);
+    this.props.submitOrder(this.props.id, this.state, this.props.history);
   }
 
   render() {
@@ -37,19 +38,25 @@ class Checkout extends Component {
       <div id="cart_container">
         <div id="cart_list">
           <h2>Checkout</h2>
-          <p>Total: ${total}</p>
-          <label htmlFor="payment">Pay with: </label>
-          <select
-            name="payment"
-            value={this.state.payment}
-            onChange={this.handleChange}
-          >
-            <option value="card">Card</option>
-            <option value="paypal">Paypal</option>
-          </select>
-          <button type="button" onClick={this.handleSubmit}>
-            Place Order
-          </button>
+          {total > 0 ? (
+            <div>
+              <p>Total: ${total}</p>
+              <label htmlFor="payment">Pay with: </label>
+              <select
+                name="payment"
+                value={this.state.payment ? this.state.payment : ''}
+                onChange={this.handleChange}
+              >
+                <option value="card">Card</option>
+                <option value="paypal">Paypal</option>
+              </select>
+              <button type="button" onClick={this.handleSubmit}>
+                Place Order
+              </button>
+            </div>
+          ) : (
+            <p>There aren't any items in your cart!</p>
+          )}
         </div>
         <div id="cart_total">
           <h3>My Cart:</h3>
@@ -75,7 +82,8 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   fetchCart: (id) => dispatch(fetchCart(id)),
-  submitOrder: (id, payment) => dispatch(submitOrder(id, payment, history)),
+  submitOrder: (id, payment, history) =>
+    dispatch(submitOrder(id, payment, history)),
 });
 
 export default connect(mapState, mapDispatch)(Checkout);

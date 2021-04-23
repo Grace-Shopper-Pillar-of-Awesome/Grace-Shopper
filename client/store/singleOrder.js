@@ -36,12 +36,9 @@ export const submitOrder = (id, payment, history) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem('token');
-      await axios.put(`/api/users/${id}/checkout`, {
+      await axios.put(`/api/users/${id}/checkout`, payment, {
         headers: {
           authorization: token,
-        },
-        body: {
-          paymentType: payment,
         },
       });
       dispatch(clearCart());
