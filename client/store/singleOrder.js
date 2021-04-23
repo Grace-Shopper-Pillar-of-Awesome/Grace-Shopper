@@ -12,7 +12,12 @@ export const setCart = (cart) => {
 export const fetchCart = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/users/${id}/cart`);
+      const token = window.localStorage.getItem("token");
+      const { data } = await axios.get(`/api/users/${id}/cart`, {
+        headers: {
+          authorization: token,
+        },
+      });
       dispatch(setCart(data));
     } catch (error) {
       console.log(error);
