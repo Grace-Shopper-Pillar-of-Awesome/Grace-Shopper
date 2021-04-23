@@ -66,6 +66,7 @@ router.put('/:userId/checkout', requireToken, async (req, res, next) => {
       const order = await cart.update({
         date: new Date(),
         orderStatus: 'complete',
+        paymentType: req.body.paymentType,
       });
       res.json(order);
     }

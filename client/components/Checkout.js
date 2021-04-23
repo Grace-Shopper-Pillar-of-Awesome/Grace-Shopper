@@ -23,26 +23,29 @@ class Checkout extends Component {
     this.setState({
       payment: evt.target.value,
     });
+    console.log(this.state);
   }
 
   handleSubmit() {}
 
   render() {
-    const { total } = this.props.cart;
+    const { total, paymentType } = this.props.cart;
     const galaxies = this.props.cart.galaxies || [];
     return (
       <div id="cart_container">
         <div id="cart_list">
           <h2>Checkout</h2>
           <p>Total: ${total}</p>
-          <form id="pay_form" onSubmit={this.handleSubmit}>
-            <label>Form of Payment: </label>
-            <select onChange={this.handleChange} value={this.state.payment}>
-              <option value="card">Card</option>
-              <option value="card">Paypal</option>
-            </select>
-            <button type="submit">Place Order</button>
-          </form>
+          <label htmlFor="payment">Pay with: </label>
+          <select
+            name="payment"
+            value={this.state.payment}
+            onChange={this.handleChange}
+          >
+            <option value="card">Card</option>
+            <option value="paypal">Paypal</option>
+          </select>
+          <button type="button">Place Order</button>
         </div>
         <div id="cart_total">
           <h3>My Cart:</h3>
