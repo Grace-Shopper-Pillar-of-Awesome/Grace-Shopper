@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { destroyItem } from '../store/singleOrder'
 
 class CartItem extends Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class CartItem extends Component {
     this.state = {
       quantity: 1,
     };
+    this.handleDelete = this.handleDelete.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -20,6 +22,10 @@ class CartItem extends Component {
     this.setState({
       quantity: evt.target.value,
     });
+  }
+
+  handleDelete() {
+    this.props.destroyItem(this.props.order, this.props.userId, this.props.galaxy.id)
   }
 
   render() {
@@ -55,4 +61,15 @@ class CartItem extends Component {
   }
 }
 
-export default connect(null, null)(CartItem);
+const mapStateToProps = (state) => ({
+  userId: state.auth.id,
+  order: state.singleOrder
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    destroyItem: (order, userId, galaxyId) => dispatch(destroyItem(order, userId, galaxyId)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
