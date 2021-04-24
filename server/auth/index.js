@@ -18,7 +18,9 @@ router.post('/signup', async (req, res, next) => {
     if (err.name === 'SequelizeUniqueConstraintError') {
       res
         .status(401)
-        .send('User with email address already exists. Please go to login.');
+        .send(
+          'User with username or email address already exists. Please go to login.'
+        );
     } else if (err.name === 'SequelizeValidationError') {
       res.status(401).send('All fields are required.');
     } else {

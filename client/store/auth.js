@@ -40,6 +40,7 @@ export const authenticate = (username, password, method, email) => async (
     }
     window.localStorage.setItem(TOKEN, res.data.token);
     dispatch(me());
+    history.push('/home');
   } catch (authError) {
     return dispatch(setAuth({ error: authError }));
   }
