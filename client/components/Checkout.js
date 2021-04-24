@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCart, submitOrder } from '../store/singleOrder';
+import { fetchCart, submitOrder } from '../store/cart';
 
 class Checkout extends Component {
   constructor(props) {
@@ -80,7 +80,7 @@ class Checkout extends Component {
 }
 
 const mapState = (state) => ({
-  cart: state.singleOrder,
+  cart: state.cart,
 });
 
 const mapDispatch = (dispatch) => ({
