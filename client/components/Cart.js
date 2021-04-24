@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchCart } from '../store/singleOrder';
+import { fetchCart } from '../store/cart';
 import { connect } from 'react-redux';
 import CartItem from './CartItem';
 
@@ -42,7 +42,7 @@ class Cart extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.singleOrder,
+  cart: state.cart,
 });
 
 const mapDispatchToProps = (dispatch) => {
