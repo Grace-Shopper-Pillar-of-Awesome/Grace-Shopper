@@ -2,19 +2,40 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchSingleGalaxy } from "../store/singleGalaxy";
+import { addToCart } from '../store/cart'
 
 class SingleGalaxy extends React.Component {
   constructor(props) {
     super(props);
+    // this.state = {
+    //   cart: {},
+    //   quantity: 0
+    // }
   }
 
   componentDidMount() {
     this.props.getSingleGalaxy(this.props.match.params.galaxyId);
   }
 
-  handleClick() {
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.orderItems.galaxyId !== this.props.orderItems.galaxyId) {
+  //     this.setState({
+  //       //how
+  //     })
+  //   }
+  // }
+
+  handleClick(evt) {
     console.log("button was clicked")
+    // this.setState({
+    //   [evt.target.name]: evt.target.value
+    // })
   }
+
+  // handleSubmit(evt) {
+  //   evt.preventDefault();
+  //   this.props.addToCart(this.state.orderItems.galaxyId)
+  // }
 
   render() {
     const {
@@ -59,6 +80,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     getSingleGalaxy: (id) => dispatch(fetchSingleGalaxy(id)),
+//    addToCart: (id) => dispatch(addToCart(id))
   };
 };
 

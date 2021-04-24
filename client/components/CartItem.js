@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { destroyItem, updateQuantity } from "../store/singleOrder";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { destroyItem } from '../store/cart';
 
 class CartItem extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class CartItem extends Component {
 
   handleDelete() {
     this.props.destroyItem(
-      this.props.order,
+      this.props.cart,
       this.props.userId,
       this.props.galaxy.id
     );
@@ -73,7 +73,7 @@ class CartItem extends Component {
 
 const mapStateToProps = (state) => ({
   userId: state.auth.id,
-  order: state.singleOrder,
+  cart: state.cart,
 });
 
 const mapDispatchToProps = (dispatch) => {

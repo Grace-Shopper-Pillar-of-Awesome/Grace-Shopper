@@ -5,13 +5,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 import allGalaxies from "./allGalaxies";
 import singleGalaxy from "./singleGalaxy";
-import singleOrder from "./singleOrder";
+import cart from "./cart";
 
 const reducer = combineReducers({
   auth,
   allGalaxies,
   singleGalaxy,
-  singleOrder,
+  cart,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))

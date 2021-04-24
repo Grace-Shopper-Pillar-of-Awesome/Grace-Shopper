@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
 /*const initialState = {
   date: {},
-  id, 
+  id,
   orderStatus: '',
   paymentType: '',
   total,
@@ -16,10 +16,12 @@ import axios from "axios";
 //}
 
 //action types
-const SET_CART = "SET_CART";
-const DELETE_ITEM = "DELETE_ITEM";
-const CLEAR_CART = "CLEAR_CART";
-const UPDATE_ITEM_QUANTITY = "UPDATE_ITEM_QUANTITY";
+const SET_CART = 'SET_CART';
+const DELETE_ITEM = 'DELETE_ITEM';
+const CLEAR_CART = 'CLEAR_CART';
+const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY';
+const CLEAR_CART = 'CLEAR_CART';
+//const ADD_ITEM = "ADD_ITEM"
 
 //action creators
 export const setCart = (cart) => {
@@ -48,12 +50,18 @@ export const updateItemQuantity = (updatedItem) => {
     updatedItem,
   };
 };
+// export const addItem = (cart) => {
+//   return {
+//     type: ADD_ITEM,
+//     cart,
+//   }
+// }
 
 //thunk creators
 export const fetchCart = (id) => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem("token");
+      const token = window.localStorage.getItem('token');
       const { data } = await axios.get(`/api/users/${id}/cart`, {
         headers: {
           authorization: token,
@@ -70,7 +78,7 @@ export const destroyItem = (order, userId, galaxyId) => {
   return async (dispatch) => {
     try {
       const orderId = order.id;
-      const token = window.localStorage.getItem("token");
+      const token = window.localStorage.getItem('token');
       const { data } = await axios.delete(
         `/api/users/${userId}/${orderId}/${galaxyId}`,
         {
@@ -90,14 +98,14 @@ export const destroyItem = (order, userId, galaxyId) => {
 export const submitOrder = (id, payment, history) => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem("token");
+      const token = window.localStorage.getItem('token');
       const { data } = await axios.put(`/api/users/${id}/checkout`, payment, {
         headers: {
           authorization: token,
         },
       });
       dispatch(clearCart());
-      history.push("/orderConfirmation");
+      history.push('/orderConfirmation');
     } catch (error) {
       console.log(error);
     }
@@ -107,7 +115,7 @@ export const submitOrder = (id, payment, history) => {
 export const updateQuantity = (userId, orderId, galaxyId, quantity) => {
   return async (dispatch) => {
     try {
-      console.log("quantity in updateQuantity", quantity);
+      console.log('quantity in updateQuantity', quantity);
       //const token = window.localStorage.getItem("token");
       const { data } = await axios.put(
         `/api/users/${userId}/${orderId}/${galaxyId}`,
@@ -127,6 +135,24 @@ export const updateQuantity = (userId, orderId, galaxyId, quantity) => {
     }
   };
 };
+// export const addToCart = (galaxyId) => {
+//   return async (dispatch) => {
+//     try {
+//       const token = window.localStorage.getItem('token');
+//       const { data } = await axios.put(`/api/users/${userId}/cart/${galaxyId}`, { quantity: 1 }, {
+//         headers: {
+//           authorization: token,
+//         },
+//       });
+//       const cart = data.cart
+//       const orderItems = data.orderItems
+//       dispatch(addItem(cart))
+//       //const
+//     } catch(error) {
+//       console.log('not adding item to cart in thunk', error)
+//     }
+//   }
+// }
 
 //subreducer
 export default function singleOrderReducer(state = {}, action) {
@@ -153,6 +179,9 @@ export default function singleOrderReducer(state = {}, action) {
         ...state,
         galaxies: updatedGalaxies,
       };
+    // return {...state, galaxies : state.galaxies.filter((galaxy) => galaxy.id !== action.galaxy.galaxyId)}
+    // case ADD_ITEM:
+    //   return {...state, cart: action.cart, orderItems: action.orderItems};
     default:
       return state;
   }

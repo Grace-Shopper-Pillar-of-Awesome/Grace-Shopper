@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { fetchCart } from "../store/singleOrder";
-import { connect } from "react-redux";
-import CartItem from "./CartItem";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { fetchCart } from '../store/cart';
+import { connect } from 'react-redux';
+import CartItem from './CartItem';
 
 class Cart extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class Cart extends Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.isLoggedIn) {
       this.props.fetchCart(this.props.id);
-      console.log("PREV PROPS", prevProps);
+      console.log('PREV PROPS', prevProps);
     }
     if (prevProps.cart.galaxies !== this.props.cart.galaxies) {
       this.calcTotal(this.props.cart.galaxies);
@@ -36,7 +36,7 @@ class Cart extends Component {
       return accumulator + singleItemTotal;
     };
     const total = galaxies.reduce(reducer, 0);
-    console.log("TOTAL:", total);
+    console.log('TOTAL:', total);
     this.setState({ total });
   }
 
@@ -63,7 +63,7 @@ class Cart extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.singleOrder,
+  cart: state.cart,
 });
 
 const mapDispatchToProps = (dispatch) => {
