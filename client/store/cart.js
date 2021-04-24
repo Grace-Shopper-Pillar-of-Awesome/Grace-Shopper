@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 /*const initialState = {
   date: {},
@@ -16,11 +16,10 @@ import axios from 'axios';
 //}
 
 //action types
-const SET_CART = 'SET_CART';
-const DELETE_ITEM = 'DELETE_ITEM';
-const CLEAR_CART = 'CLEAR_CART';
-const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY';
-const CLEAR_CART = 'CLEAR_CART';
+const SET_CART = "SET_CART";
+const DELETE_ITEM = "DELETE_ITEM";
+const CLEAR_CART = "CLEAR_CART";
+const UPDATE_ITEM_QUANTITY = "UPDATE_ITEM_QUANTITY";
 //const ADD_ITEM = "ADD_ITEM"
 
 //action creators
@@ -61,7 +60,7 @@ export const updateItemQuantity = (updatedItem) => {
 export const fetchCart = (id) => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem('token');
+      const token = window.localStorage.getItem("token");
       const { data } = await axios.get(`/api/users/${id}/cart`, {
         headers: {
           authorization: token,
@@ -78,7 +77,7 @@ export const destroyItem = (order, userId, galaxyId) => {
   return async (dispatch) => {
     try {
       const orderId = order.id;
-      const token = window.localStorage.getItem('token');
+      const token = window.localStorage.getItem("token");
       const { data } = await axios.delete(
         `/api/users/${userId}/${orderId}/${galaxyId}`,
         {
@@ -98,14 +97,14 @@ export const destroyItem = (order, userId, galaxyId) => {
 export const submitOrder = (id, payment, history) => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem('token');
+      const token = window.localStorage.getItem("token");
       const { data } = await axios.put(`/api/users/${id}/checkout`, payment, {
         headers: {
           authorization: token,
         },
       });
       dispatch(clearCart());
-      history.push('/orderConfirmation');
+      history.push("/orderConfirmation");
     } catch (error) {
       console.log(error);
     }
@@ -115,7 +114,7 @@ export const submitOrder = (id, payment, history) => {
 export const updateQuantity = (userId, orderId, galaxyId, quantity) => {
   return async (dispatch) => {
     try {
-      console.log('quantity in updateQuantity', quantity);
+      console.log("quantity in updateQuantity", quantity);
       //const token = window.localStorage.getItem("token");
       const { data } = await axios.put(
         `/api/users/${userId}/${orderId}/${galaxyId}`,

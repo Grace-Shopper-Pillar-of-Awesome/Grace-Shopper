@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { destroyItem } from '../store/cart';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { destroyItem, updateQuantity } from "../store/cart";
 
 class CartItem extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class CartItem extends Component {
     });
     this.props.updateItemQuant(
       this.props.userId,
-      this.props.order.id,
+      this.props.cart.id,
       this.props.galaxy.id,
       { quantity: evt.target.value }
     );
