@@ -1,9 +1,9 @@
-const router = require('express').Router();
-const { User, Order, Galaxy, OrderItems } = require('../db');
+const router = require("express").Router();
+const { User, Order, Galaxy, OrderItems } = require("../db");
 module.exports = router;
-const { requireToken, isAdmin } = require('./gatekeepingMiddleware');
+const { requireToken, isAdmin } = require("./gatekeepingMiddleware");
 
-router.get('/', requireToken, isAdmin, async (req, res, next) => {
+router.get("/", requireToken, isAdmin, async (req, res, next) => {
   try {
     //WILL NEED TO WRITE AN AXIOS CALL THAT PASSES A TOKEN WHEN WE CREATE THE ADMIN VIEW
 
@@ -11,7 +11,7 @@ router.get('/', requireToken, isAdmin, async (req, res, next) => {
       // explicitly select only the id and username fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['id', 'username'],
+      attributes: ["id", "username"],
     });
     res.json(users);
   } catch (err) {
@@ -20,13 +20,13 @@ router.get('/', requireToken, isAdmin, async (req, res, next) => {
 });
 
 //GET /api/users/:userId/cart
-router.get('/:userId/cart', requireToken, async (req, res, next) => {
+router.get("/:userId/cart", requireToken, async (req, res, next) => {
   try {
     if (req.user.id === Number(req.params.userId)) {
       const [cart, wasCreated] = await Order.findOrCreate({
         where: {
           userId: req.user.id,
-          orderStatus: 'pending',
+          orderStatus: "pending",
         },
         include: [{ model: Galaxy }],
       });
@@ -39,7 +39,7 @@ router.get('/:userId/cart', requireToken, async (req, res, next) => {
 
 //DELETE /api/users/:userId/:orderId/:galaxyId
 router.delete(
-  '/:userId/:orderId/:galaxyId',
+  "/:userId/:orderId/:galaxyId",
   requireToken,
   async (req, res, next) => {
     try {
@@ -62,19 +62,19 @@ router.delete(
 );
 
 //CHECKOUT /api/users/:userID/checkout
-router.put('/:userId/checkout', requireToken, async (req, res, next) => {
+router.put("/:userId/checkout", requireToken, async (req, res, next) => {
   try {
     //console.log("REQ.BODY IN CHECKOUT", req.body);
     if (req.user.id === Number(req.params.userId)) {
       const cart = await Order.findOne({
         where: {
           userId: req.user.id,
-          orderStatus: 'pending',
+          orderStatus: "pending",
         },
       });
       const order = await cart.update({
         date: new Date(),
-        orderStatus: 'complete',
+        orderStatus: "complete",
         paymentType: req.body.payment,
       });
       res.json(order);
@@ -84,8 +84,29 @@ router.put('/:userId/checkout', requireToken, async (req, res, next) => {
   }
 });
 
+//PUT /api/users/:userId/:orderId
+router.put("/:userId/:orderId", async (req, res, next) => {
+  try {
+    const orderToUpdate = await Order.findOne({
+      where: {
+        galaxyId: req.params.galaxyId,
+        orderId: req.params.orderId,
+      },
+    });
+
+    if (orderToUpdate) {
+      const updatedOrder = await orderToUpdate.update({
+        total: req.body.total,
+      });
+      res.send(updatedOrder);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 //PUT /api/users/:userId/:orderId/:galaxyId
-router.put('/:userId/:orderId/:galaxyId', async (req, res, next) => {
+router.put("/:userId/:orderId/:galaxyId", async (req, res, next) => {
   try {
     //if (req.user.id === Number(req.params.userId)) {
     const [orderItemToUpdate, wasCreated] = await OrderItems.findOrCreate({
