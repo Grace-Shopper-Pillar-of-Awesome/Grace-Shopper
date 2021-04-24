@@ -22,7 +22,6 @@ class Cart extends Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.isLoggedIn) {
       this.props.fetchCart(this.props.id);
-      console.log('PREV PROPS', prevProps);
     }
     if (prevProps.cart.galaxies !== this.props.cart.galaxies) {
       this.calcTotal(this.props.cart.galaxies);
@@ -36,7 +35,6 @@ class Cart extends Component {
       return accumulator + singleItemTotal;
     };
     const total = galaxies.reduce(reducer, 0);
-    console.log('TOTAL:', total);
     this.setState({ total });
   }
 
