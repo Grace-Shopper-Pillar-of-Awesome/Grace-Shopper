@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { destroyItem } from '../store/singleOrder'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { destroyItem, updateQuantity } from "../store/singleOrder";
 
 class CartItem extends Component {
   constructor(props) {
@@ -22,10 +22,20 @@ class CartItem extends Component {
     this.setState({
       quantity: evt.target.value,
     });
+    this.props.updateItemQuant(
+      this.props.userId,
+      this.props.order.id,
+      this.props.galaxy.id,
+      { quantity: evt.target.value }
+    );
   }
 
   handleDelete() {
-    this.props.destroyItem(this.props.order, this.props.userId, this.props.galaxy.id)
+    this.props.destroyItem(
+      this.props.order,
+      this.props.userId,
+      this.props.galaxy.id
+    );
   }
 
   render() {
@@ -37,7 +47,7 @@ class CartItem extends Component {
           <img src={imageUrl} />
           <div>
             <p className="cart_name">{name}</p>
-            <p>${price / 100}</p>
+            <p>${price}</p>
             <label htmlFor="quantity">Quantity:</label>
             <input
               type="number"
@@ -63,12 +73,15 @@ class CartItem extends Component {
 
 const mapStateToProps = (state) => ({
   userId: state.auth.id,
-  order: state.singleOrder
+  order: state.singleOrder,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    destroyItem: (order, userId, galaxyId) => dispatch(destroyItem(order, userId, galaxyId)),
+    destroyItem: (order, userId, galaxyId) =>
+      dispatch(destroyItem(order, userId, galaxyId)),
+    updateItemQuant: (userId, orderId, galaxyId, quantity) =>
+      dispatch(updateQuantity(userId, orderId, galaxyId, quantity)),
   };
 };
 

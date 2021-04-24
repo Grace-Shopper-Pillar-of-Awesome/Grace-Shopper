@@ -1,8 +1,7 @@
-const router = require('express').Router();
-const { User, Order, Galaxy, OrderItems } = require('../db');
+const router = require("express").Router();
+const { User, Order, Galaxy, OrderItems } = require("../db");
 module.exports = router;
-const { requireToken, isAdmin } = require('./gatekeepingMiddleware');
-
+const { requireToken, isAdmin } = require("./gatekeepingMiddleware");
 
 router.get("/", requireToken, isAdmin, async (req, res, next) => {
   try {
@@ -12,7 +11,7 @@ router.get("/", requireToken, isAdmin, async (req, res, next) => {
       // explicitly select only the id and username fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['id', 'username'],
+      attributes: ["id", "username"],
     });
     res.json(users);
   } catch (err) {
@@ -21,16 +20,13 @@ router.get("/", requireToken, isAdmin, async (req, res, next) => {
 });
 
 //GET /api/users/:userId/cart
-
 router.get("/:userId/cart", requireToken, async (req, res, next) => {
   try {
-    console.log("req user is: ", req.user);
-    console.log("req params userId is: ", req.params.userId)
     if (req.user.id === Number(req.params.userId)) {
       const [cart, wasCreated] = await Order.findOrCreate({
         where: {
           userId: req.user.id,
-          orderStatus: 'pending',
+          orderStatus: "pending",
         },
         include: [{ model: Galaxy }],
       });
@@ -41,43 +37,71 @@ router.get("/:userId/cart", requireToken, async (req, res, next) => {
   }
 });
 
-//DELETE /api/users/:userId/cart/:galaxyId
-router.delete("/:userId/:orderId/:galaxyId", requireToken, async (req, res, next) => {
+//DELETE /api/users/:userId/:orderId/:galaxyId
+router.delete(
+  "/:userId/:orderId/:galaxyId",
+  requireToken,
+  async (req, res, next) => {
+    try {
+      if (req.user.id === Number(req.params.userId)) {
+        const orderItemToDelete = await OrderItems.findOne({
+          where: {
+            galaxyId: req.params.galaxyId,
+            orderId: req.params.orderId,
+          },
+        });
+        if (orderItemToDelete) {
+          await orderItemToDelete.destroy();
+          res.json(orderItemToDelete);
+        }
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+//CHECKOUT /api/users/:userID/checkout
+router.put("/:userId/checkout", requireToken, async (req, res, next) => {
   try {
+    //console.log("REQ.BODY IN CHECKOUT", req.body);
     if (req.user.id === Number(req.params.userId)) {
-      const orderItemToDelete = await OrderItems.findOne({
+      const cart = await Order.findOne({
         where: {
-          galaxyId: req.params.galaxyId,
-          orderId: req.params.orderId,
+          userId: req.user.id,
+          orderStatus: "pending",
         },
       });
-      if (orderItemToDelete) {
-        await orderItemToDelete.destroy();
-        res.json(orderItemToDelete);
-      }
+      const order = await cart.update({
+        date: new Date(),
+        orderStatus: "complete",
+        paymentType: req.body.payment,
+      });
+      res.json(order);
     }
   } catch (error) {
     next(error);
   }
 });
 
-//CHECKOUT /api/users/:userID/checkout
-router.put('/:userId/checkout', requireToken, async (req, res, next) => {
+//PUT /api/users/:userId/:orderId/:galaxyId
+router.put("/:userId/:orderId/:galaxyId", async (req, res, next) => {
   try {
-    if (req.user.id === Number(req.params.userId)) {
-      const cart = await Order.findOne({
-        where: {
-          userId: req.user.id,
-          orderStatus: 'pending',
-        },
+    //if (req.user.id === Number(req.params.userId)) {
+    const [orderItemToUpdate, wasCreated] = await OrderItems.findOrCreate({
+      where: {
+        galaxyId: req.params.galaxyId,
+        orderId: req.params.orderId,
+      },
+    });
+
+    if (orderItemToUpdate) {
+      const updatedOrderItem = await orderItemToUpdate.update({
+        quantity: req.body.quantity,
       });
-      const order = await cart.update({
-        date: new Date(),
-        orderStatus: 'complete',
-        paymentType: req.body.payment,
-      });
-      res.json(order);
+      res.send(updatedOrderItem);
     }
+    //}
   } catch (error) {
     next(error);
   }
