@@ -84,27 +84,6 @@ router.put("/:userId/checkout", requireToken, async (req, res, next) => {
   }
 });
 
-//PUT /api/users/:userId/:orderId
-router.put("/:userId/:orderId", async (req, res, next) => {
-  try {
-    const orderToUpdate = await Order.findOne({
-      where: {
-        galaxyId: req.params.galaxyId,
-        orderId: req.params.orderId,
-      },
-    });
-
-    if (orderToUpdate) {
-      const updatedOrder = await orderToUpdate.update({
-        total: req.body.total,
-      });
-      res.send(updatedOrder);
-    }
-  } catch (error) {
-    next(error);
-  }
-});
-
 //PUT /api/users/:userId/:orderId/:galaxyId
 router.put("/:userId/:orderId/:galaxyId", async (req, res, next) => {
   try {
@@ -126,4 +105,26 @@ router.put("/:userId/:orderId/:galaxyId", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+//PUT /api/users/:userId/:orderId
+router.put("/:userId/:orderId", async (req, res, next) => {
+  //if (req.user.id === Number(req.params.userId)) {
+  try {
+    const orderToUpdate = await Order.findOne({
+      where: {
+        id: req.params.orderId,
+      },
+    });
+
+    if (orderToUpdate) {
+      const updatedOrder = await orderToUpdate.update({
+        total: req.body.total,
+      });
+      res.send(updatedOrder);
+    }
+  } catch (error) {
+    next(error);
+  }
+  //}
 });
