@@ -3,7 +3,8 @@ const { User, Order, Galaxy, OrderItems } = require('../db');
 module.exports = router;
 const { requireToken, isAdmin } = require('./gatekeepingMiddleware');
 
-router.get('/', requireToken, async (req, res, next) => {
+
+router.get("/", requireToken, isAdmin, async (req, res, next) => {
   try {
     //WILL NEED TO WRITE AN AXIOS CALL THAT PASSES A TOKEN WHEN WE CREATE THE ADMIN VIEW
 
@@ -20,8 +21,11 @@ router.get('/', requireToken, async (req, res, next) => {
 });
 
 //GET /api/users/:userId/cart
-router.get('/:userId/cart', requireToken, async (req, res, next) => {
+
+router.get("/:userId/cart", requireToken, async (req, res, next) => {
   try {
+    console.log("req user is: ", req.user);
+    console.log("req params userId is: ", req.params.userId)
     if (req.user.id === Number(req.params.userId)) {
       const [cart, wasCreated] = await Order.findOrCreate({
         where: {
@@ -38,16 +42,20 @@ router.get('/:userId/cart', requireToken, async (req, res, next) => {
 });
 
 //DELETE /api/users/:userId/cart/:galaxyId
-router.delete('/:userId/cart/:galaxyId', async (req, res, next) => {
+router.delete("/:userId/:orderId/:galaxyId", requireToken, async (req, res, next) => {
   try {
-    const orderItemToDelete = await OrderItems.findOne({
-      where: {
-        galaxyId: req.params.galaxyId,
-        orderId: req.body.orderId,
-      },
-    });
-    await orderItemToDelete.destroy();
-    res.json(orderItemToDelete);
+    if (req.user.id === Number(req.params.userId)) {
+      const orderItemToDelete = await OrderItems.findOne({
+        where: {
+          galaxyId: req.params.galaxyId,
+          orderId: req.params.orderId,
+        },
+      });
+      if (orderItemToDelete) {
+        await orderItemToDelete.destroy();
+        res.json(orderItemToDelete);
+      }
+    }
   } catch (error) {
     next(error);
   }
