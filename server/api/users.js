@@ -1,7 +1,8 @@
-const router = require("express").Router();
-const { User, Order, Galaxy, OrderItems } = require("../db");
+const router = require('express').Router();
+const { User, Order, Galaxy, OrderItems } = require('../db');
 module.exports = router;
-const { requireToken, isAdmin } = require("./gatekeepingMiddleware");
+const { requireToken, isAdmin } = require('./gatekeepingMiddleware');
+
 
 router.get("/", requireToken, isAdmin, async (req, res, next) => {
   try {
@@ -11,7 +12,7 @@ router.get("/", requireToken, isAdmin, async (req, res, next) => {
       // explicitly select only the id and username fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ["id", "username"],
+      attributes: ['id', 'username'],
     });
     res.json(users);
   } catch (err) {
@@ -20,6 +21,7 @@ router.get("/", requireToken, isAdmin, async (req, res, next) => {
 });
 
 //GET /api/users/:userId/cart
+
 router.get("/:userId/cart", requireToken, async (req, res, next) => {
   try {
     console.log("req user is: ", req.user);
@@ -28,7 +30,7 @@ router.get("/:userId/cart", requireToken, async (req, res, next) => {
       const [cart, wasCreated] = await Order.findOrCreate({
         where: {
           userId: req.user.id,
-          orderStatus: "pending",
+          orderStatus: 'pending',
         },
         include: [{ model: Galaxy }],
       });
@@ -53,6 +55,28 @@ router.delete("/:userId/:orderId/:galaxyId", requireToken, async (req, res, next
         await orderItemToDelete.destroy();
         res.json(orderItemToDelete);
       }
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+//CHECKOUT /api/users/:userID/checkout
+router.put('/:userId/checkout', requireToken, async (req, res, next) => {
+  try {
+    if (req.user.id === Number(req.params.userId)) {
+      const cart = await Order.findOne({
+        where: {
+          userId: req.user.id,
+          orderStatus: 'pending',
+        },
+      });
+      const order = await cart.update({
+        date: new Date(),
+        orderStatus: 'complete',
+        paymentType: req.body.payment,
+      });
+      res.json(order);
     }
   } catch (error) {
     next(error);

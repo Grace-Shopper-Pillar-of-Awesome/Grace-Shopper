@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { fetchCart } from "../store/singleOrder";
-import { connect } from "react-redux";
-import CartItem from "./CartItem";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { fetchCart } from '../store/singleOrder';
+import { connect } from 'react-redux';
+import CartItem from './CartItem';
 
 class Cart extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class Cart extends Component {
         </div>
         <div id="cart_total">
           <p>Cart Total: {total}</p>
-          <Link to="/CHECKOUT_ROUTE_HERE">
+          <Link to="/checkout">
             <button id="go_checkout">Go To Checkout</button>
           </Link>
         </div>

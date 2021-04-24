@@ -7,6 +7,8 @@ import { me } from './store';
 import SingleGalaxy from './components/SingleGalaxy';
 import AllGalaxies from './components/AllGalaxies';
 import Cart from './components/Cart';
+import Checkout from './components/Checkout';
+import OrderConfirmation from './components/OrderConfirmation';
 
 /**
  * COMPONENT
@@ -22,6 +24,7 @@ class Routes extends Component {
     return (
       <div>
         <Switch>
+          <Route exact path="/" component={Home} />
           <Route path="/home" component={Home} />
           <Route exact path="/galaxies" component={AllGalaxies} />
           <Route
@@ -34,7 +37,18 @@ class Routes extends Component {
               />
             )}
           />
+          <Route
+            path="/checkout"
+            render={(props) => (
+              <Checkout
+                {...props}
+                id={this.props.id}
+                isLoggedIn={this.props.isLoggedIn}
+              />
+            )}
+          />
           <Route path="/login" component={Login} />
+          <Route path="/orderConfirmation" component={OrderConfirmation} />
           <Route path="/signup" component={Signup} />
         </Switch>
         {/* {isLoggedIn ? (

@@ -1,7 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
 const SET_CART = "SET_CART";
-const DELETE_ITEM = "DELETE_ITEM"
+const DELETE_ITEM = "DELETE_ITEM;
+const CLEAR_CART = 'CLEAR_CART';
 
 export const setCart = (cart) => {
   return {
@@ -10,6 +11,7 @@ export const setCart = (cart) => {
   };
 };
 
+
 export const deleteItem = (galaxy) => {
   return {
     type: DELETE_ITEM,
@@ -17,10 +19,17 @@ export const deleteItem = (galaxy) => {
   }
 }
 
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART,
+  };
+};
+
+
 export const fetchCart = (id) => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem("token");
+      const token = window.localStorage.getItem('token');
       const { data } = await axios.get(`/api/users/${id}/cart`, {
         headers: {
           authorization: token,
@@ -32,6 +41,7 @@ export const fetchCart = (id) => {
     }
   };
 };
+
 
 export const destroyItem = (order, userId, galaxyId) => {
   return async (dispatch) => {
@@ -54,8 +64,28 @@ export const destroyItem = (order, userId, galaxyId) => {
   }
 }
 
+export const submitOrder = (id, payment, history) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem('token');
+      await axios.put(`/api/users/${id}/checkout`, payment, {
+        headers: {
+          authorization: token,
+        },
+      });
+      dispatch(clearCart());
+      history.push('/orderConfirmation');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+
 export default function singleOrderReducer(state = {}, action) {
   switch (action.type) {
+    case CLEAR_CART:
+      return {};
     case SET_CART:
       return action.cart;
     case DELETE_ITEM:

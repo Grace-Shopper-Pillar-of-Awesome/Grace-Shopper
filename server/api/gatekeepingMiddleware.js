@@ -1,6 +1,6 @@
 //will store our functions will act as middleware between req and res
 //we will use it as we see fit
-const { User } = require("../db");
+const { User } = require('../db');
 
 const requireToken = async (req, res, next) => {
   try {
@@ -14,12 +14,13 @@ const requireToken = async (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-  if (req.user.userType !== "admin") {
-    return res.status(403).send("You shall not pass!");
+  if (req.user.userType !== 'admin') {
+    return res.status(403).send('You shall not pass!');
   } else {
     next();
   }
 };
+
 module.exports = {
   requireToken,
   isAdmin,
