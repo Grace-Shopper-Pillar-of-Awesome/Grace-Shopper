@@ -187,7 +187,6 @@ async function seed() {
   await order3.addGalaxy(galaxy3, { through: { quantity: 1, price: 2500 } });
   await order4.addGalaxy(galaxy4, { through: { quantity: 1, price: 5000 } });
   await order5.addGalaxy(galaxy4, { through: { quantity: 1, price: 5000 } });
-  console.log('whats in order',order2)
 }
 
 /*
