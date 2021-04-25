@@ -120,7 +120,7 @@ router.put("/:userId/:orderId", async (req, res, next) => {
         id: req.params.orderId,
       },
     });
-
+    console.log("req.body in user put route", req.body)
     if (orderToUpdate) {
       const updatedOrder = await orderToUpdate.update({
         total: req.body.total,

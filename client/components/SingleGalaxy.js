@@ -25,6 +25,7 @@ class SingleGalaxy extends React.Component {
       this.props.orderId,
       this.props.galaxy.id,
       this.state.quantity
+      //{ quantity: evt.target.value }
     )
   }
 
