@@ -39,7 +39,9 @@ class EditGalaxy extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault();
     //run updateGalaxy, providing the current galaxy that is being edited, and the id of the current galaxy
-    this.props.updateGalaxy(this.props.galaxy, this.props.galaxy.id)
+    this.props.updateGalaxy(
+        { ...this.props.galaxy, ...this.state },
+        this.props.galaxy.id)
   }
 
   render() {
@@ -57,24 +59,24 @@ class EditGalaxy extends React.Component {
       <div className="single-galaxy-view">
         <form id="galaxy-form" onSubmit={this.handleSubmit}>
           <label htmlFor="name">Name:</label>
-          <input name="name" onChange={this.handleChange} value={this.name} />
+          <input name="name" onChange={this.handleChange} value={this.state.name} />
           <label htmlFor="price">Price:</label>
-          <input name="price" onChange={this.handleChange} value={this.price} type="number" />
+          <input name="price" onChange={this.handleChange} value={this.state.price} type="number" />
           <label htmlFor="distance">Distance:</label>
-          <input name="distance" onChange={this.handleChange} value={this.distance} type="number" />
+          <input name="distance" onChange={this.handleChange} value={this.state.distance} type="number" />
           <label htmlFor="inventory">Inventory:</label>
-          <input name="inventory" onChange={this.handleChange} value={this.inventory} type="number" />
+          <input name="inventory" onChange={this.handleChange} value={this.state.inventory} type="number" />
           <label htmlFor="description">Description</label>
-          <textarea name="description" onChange={this.handleChange} value={this.description} />
+          <textarea name="description" onChange={this.handleChange} value={this.state.description} />
           <label htmlFor="SKU">SKU:</label>
           <input name="SKU" onChange={this.handleChange} value={this.SKU} />
           <label htmlFor="imageUrl">imageURL:</label>
-          <input name="imageUrl" onChange={this.handleChange} value={this.imageUrl} />
+          <input name="imageUrl" onChange={this.handleChange} value={this.state.imageUrl} />
           <label htmlFor="category">Category:</label>
-          <select name="category" onChange={this.handleChange} value={this.category}>
-              <option name="spiral">Spiral</option>
-              <option name="elliptical">Elliptical</option>
-              <option name="irregular">Irregular</option>
+          <select name="category" onChange={this.handleChange} value={this.state.category}>
+              <option name="spiral">spiral</option>
+              <option name="elliptical">elliptical</option>
+              <option name="irregular">irregular</option>
           </select>
           <br/>
           <button type="submit">Submit changes</button>
