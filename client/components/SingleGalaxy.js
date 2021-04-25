@@ -1,17 +1,17 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { fetchSingleGalaxy } from "../store/singleGalaxy";
-import { addToCart } from '../store/cart'
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchSingleGalaxy } from '../store/singleGalaxy';
+import { addToCart } from '../store/cart';
 
 class SingleGalaxy extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 0
-    }
-    this.handleClick = this.handleClick.bind(this)
-    this.updateQuantity = this.updateQuantity.bind(this)
+      quantity: 0,
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.updateQuantity = this.updateQuantity.bind(this);
   }
 
   componentDidMount() {
@@ -19,20 +19,19 @@ class SingleGalaxy extends React.Component {
   }
 
   handleClick() {
-    console.log("handleClick", this.props)
+    // console.log("handleClick", this.props)
     this.props.addToCart(
       this.props.userId,
       this.props.orderId,
       this.props.galaxy.id,
-      this.state.quantity
-      //{ quantity: evt.target.value }
-    )
+      { quantity: this.state.quantity, price: this.props.galaxy.price }
+    );
   }
 
   updateQuantity(evt) {
     this.setState({
-      quantity: evt.target.value
-    })
+      quantity: evt.target.value,
+    });
   }
 
   render() {
@@ -45,7 +44,7 @@ class SingleGalaxy extends React.Component {
       imageUrl,
       category,
     } = this.props.galaxy;
-    console.log("what's in props", this.props)
+    console.log("what's in props", this.props);
     return (
       <div className="single-galaxy-view">
         <div className="single-galaxy-image">
@@ -57,13 +56,23 @@ class SingleGalaxy extends React.Component {
           <h3>{distance} billion light years away</h3>
           <h3>Type: {category} galaxy</h3>
           <p>{description}</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <br/>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <br />
           <div className="single-galaxy-buy">
-          <h4>Quantity:</h4>
-          <input type="number" min="0" value={this.state.quantity} onChange={this.updateQuantity}></input> 
-          <br/>
-          <button type="button" onClick={this.handleClick}>Add to cart</button>
+            <h4>Quantity:</h4>
+            <input
+              type="number"
+              min="0"
+              value={this.state.quantity}
+              onChange={this.updateQuantity}
+            ></input>
+            <br />
+            <button type="button" onClick={this.handleClick}>
+              Add to cart
+            </button>
           </div>
         </div>
       </div>
@@ -75,14 +84,15 @@ const mapStateToProps = (state) => {
   return {
     galaxy: state.singleGalaxy,
     userId: state.auth.id,
-    orderId: state.cart ? state.cart.id : null
-  }
+    orderId: state.cart ? state.cart.id : null,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getSingleGalaxy: (id) => dispatch(fetchSingleGalaxy(id)),
-    addToCart: (userId, orderId, galaxyId, quantity) => dispatch(addToCart(userId, orderId, galaxyId, quantity))
+    addToCart: (userId, orderId, galaxyId, info) =>
+      dispatch(addToCart(userId, orderId, galaxyId, info)),
   };
 };
 
