@@ -39,6 +39,7 @@ router.post("/", async (req, res, next) => {
 
 //DELETE /api/galaxies/:galaxyId
 router.delete("/:galaxyId", async (req, res, next) => {
+  //will definitely want to add requireToken and isAdmin
   try {
     const galaxyToDelete = await Galaxy.findByPk(req.params.galaxyId);
     await galaxyToDelete.destroy();
