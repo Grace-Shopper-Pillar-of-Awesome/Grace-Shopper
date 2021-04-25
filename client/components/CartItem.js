@@ -13,9 +13,10 @@ class CartItem extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      quantity: this.props.galaxy.orderItems.quantity,
-    });
+    if (this.props.isLoggedIn)
+      this.setState({
+        quantity: this.props.galaxy.orderItems.quantity,
+      });
   }
 
   handleChange(evt) {
@@ -39,8 +40,7 @@ class CartItem extends Component {
   }
 
   render() {
-    const { name, orderItems, imageUrl } = this.props.galaxy;
-    const { price } = orderItems;
+    const { name, imageUrl, price } = this.props.galaxy;
     return (
       <div>
         <div className="cart_item">
@@ -74,6 +74,7 @@ class CartItem extends Component {
 const mapStateToProps = (state) => ({
   userId: state.auth.id,
   cart: state.cart,
+  isLoggedIn: !!state.auth.id,
 });
 
 const mapDispatchToProps = (dispatch) => {
