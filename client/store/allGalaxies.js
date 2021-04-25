@@ -13,13 +13,12 @@ export const fetchGalaxies = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get("/api/galaxies");
-      console.log("this is data in thunk creator:", data);
       dispatch(setGalaxies(data));
     } catch (err) {
       console.log(err);
     }
   };
-}; 
+};
 
 export default function galaxiesReducer(state = [], action) {
   switch (action.type) {
