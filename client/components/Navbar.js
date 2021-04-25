@@ -7,18 +7,22 @@ import { clearCart } from '../store/cart';
 const Navbar = ({ handleClick, isLoggedIn, username }) => (
   <div>
     <nav>
+
       <h3>Welcome, {isLoggedIn ? username : 'Guest'}</h3>
+
       <Link to="/home">Home</Link>
       <Link to="/galaxies">Products</Link>
       <Link to="/aboutUs">About Us</Link>
       <div className="shoppingCartInNav">
+
         <Link to="/cart">
           <img
-            id="shopping-cart"
-            src="https://static.thenounproject.com/png/65006-200.png"
-          ></img>
+          id="shopping-cart-icon"
+          src="https://i.ibb.co/bRrVJVC/iconmonstr-basket-3-32.png"
+        ></img>
           <span className="quantityInCart">3</span>
         </Link>
+
       </div>
       {isLoggedIn ? (
         <div>
