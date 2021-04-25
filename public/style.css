@@ -303,3 +303,11 @@ table, th, td {
   margin-bottom: 50px;
 }
 
+.aboutUs {
+  background-color: white;
+}
+
+.us {
+  display: flex;
+  
+}
