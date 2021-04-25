@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 import { logout } from '../store';
 import { clearCart } from '../store/cart';
 
-const Navbar = ({ handleClick, isLoggedIn, username, userType, cart }) => {
-  console.log("quantity", cart)
+const Navbar = ({ handleClick, isLoggedIn, username, userType, quantity }) => {
+  console.log("quantity", quantity)
+  let qt=0;
+  if(quantity.length){
+    quantity.map((count)=>qt+=count)
+  }
   return (
   <div>
     <nav>
@@ -26,11 +30,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, userType, cart }) => {
             id="shopping-cart"
             src="https://static.thenounproject.com/png/65006-200.png"
           ></img>
-          <span className="quantityInCart">
-            {
-              cart.galaxies ? cart.galaxies.map((galaxy)=>{ let qt=0; return qt+=Number(galaxy.orderItems.quantity)}) : 0
-            }
-          </span>
+          <span className="quantityInCart">{qt}</span>
         </Link>
       </div>
       {isLoggedIn ? (
@@ -60,7 +60,7 @@ const mapState = (state) => {
     isLoggedIn: !!state.auth.id,
     username: state.auth.username,
     userType: state.auth.userType,
-    cart: state.cart
+    quantity: state.cart.galaxies ? state.cart.galaxies.map((galaxy)=>galaxy.orderItems.quantity):0
   };
 };
 
