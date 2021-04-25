@@ -49,7 +49,7 @@ export default function singleGalaxyReducer(state = {}, action) {
       //sets the galaxy returned by this reducer to the updated galaxy?? I think????
       return {
         ...state,
-        galaxy: updatedGalaxy
+        galaxy: action.updatedGalaxy
       };
     default:
       return state;

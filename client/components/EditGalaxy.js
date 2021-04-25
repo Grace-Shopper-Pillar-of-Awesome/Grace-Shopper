@@ -10,6 +10,7 @@ class EditGalaxy extends React.Component {
     //set default values to current values for easier editing.
     //EX: If you needed to change only one word in the description, 
     //you would want the original description to appear in the form box.
+    //They don't show up tho lol
       name: this.props.name,
       price: this.props.galaxy.price,
       distance: this.props.galaxy.distance,
@@ -23,8 +24,9 @@ class EditGalaxy extends React.Component {
 
   componentDidMount() {
       //gets the single galaxy that is to be edited
-      //How to get the galaxy's id though???
-    this.props.getSingleGalaxy(this.props.match.params.galaxyId);
+    this.props.getSingleGalaxy(this.props.match.params.id);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(evt) {

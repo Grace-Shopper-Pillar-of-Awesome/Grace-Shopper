@@ -48,8 +48,8 @@ router.delete("/:galaxyId", async (req, res, next) => {
   }
 });
 
-//PUT /api/galaxies/:galaxyId
-router.put("/:galaxyId", async (req, res, next) => {
+//PUT /api/galaxies/:galaxyId/edit
+router.put("/:galaxyId/edit", async (req, res, next) => {
   try {
     const galaxy = await Galaxy.findByPk(req.params.galaxyId);
     const updatedGalaxy = await galaxy.update(req.body);
