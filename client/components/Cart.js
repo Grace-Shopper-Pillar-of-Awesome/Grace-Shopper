@@ -36,7 +36,6 @@ class Cart extends Component {
       return accumulator + singleItemTotal;
     };
     const total = galaxies.reduce(reducer, 0);
-    console.log('TOTAL:', total);
     this.setState({ total });
   }
 
