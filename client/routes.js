@@ -12,7 +12,9 @@ import OrderConfirmation from "./components/OrderConfirmation";
 import UserDashboard from "./components/UserDashboard";
 import ProductDashboard from "./components/ProductDashboard";
 import EditGalaxy from "./components/EditGalaxy";
+import AboutUs from "./components/AboutUs"
 import CreateGalaxy from "./components/CreateGalaxy"
+
 
 /**
  * COMPONENT
@@ -33,6 +35,7 @@ class Routes extends Component {
           <Route exact path="/galaxies" component={AllGalaxies} />
           <Route exact path="/users" component={UserDashboard} />
           <Route exact path="/products" component={ProductDashboard} />
+          <Route exact path="/aboutus" component={AboutUs} />
           <Route exact path="/galaxies/:galaxyId/edit" component={EditGalaxy} />
           <Route exact path="/products/add" component={CreateGalaxy} />
           <Route

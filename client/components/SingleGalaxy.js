@@ -44,7 +44,6 @@ class SingleGalaxy extends React.Component {
       imageUrl,
       category,
     } = this.props.galaxy;
-    console.log("what's in props", this.props);
     return (
       <div className="single-galaxy-view">
         <div className="single-galaxy-image">
