@@ -115,17 +115,15 @@ export const submitOrder = (id, payment, history) => {
 export const updateQuantity = (userId, orderId, galaxyId, quantity) => {
   return async (dispatch) => {
     try {
-      // console.log("quantity in updateQuantity", quantity);
-      // const token = window.localStorage.getItem("token");
-
+      const token = window.localStorage.getItem('token');
       const { data } = await axios.put(
         `/api/users/${userId}/${orderId}/${galaxyId}`,
-        quantity
-        //   {
-        //     headers: {
-        //       authorization: token,
-        //     },
-        // }
+        quantity,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
       );
       dispatch(updateItemQuantity(data));
     } catch (error) {
