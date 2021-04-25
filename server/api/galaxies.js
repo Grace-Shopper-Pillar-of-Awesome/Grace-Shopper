@@ -28,7 +28,7 @@ router.get("/:galaxyId", async (req, res, next) => {
 });
 
 //POST /api/galaxies
-router.post("/", async (req, res, next) => {
+router.post("/", isAdmin, async (req, res, next) => {
   try {
     const newGalaxy = await Galaxy.create(req.body);
     res.json(newGalaxy);
@@ -38,7 +38,7 @@ router.post("/", async (req, res, next) => {
 });
 
 //DELETE /api/galaxies/:galaxyId
-router.delete("/:galaxyId", async (req, res, next) => {
+router.delete("/:galaxyId", isAdmin, async (req, res, next) => {
   //will definitely want to add requireToken and isAdmin
   try {
     const galaxyToDelete = await Galaxy.findByPk(req.params.galaxyId);
@@ -50,7 +50,7 @@ router.delete("/:galaxyId", async (req, res, next) => {
 });
 
 //PUT /api/galaxies/:galaxyId/edit
-router.put("/:galaxyId/edit", async (req, res, next) => {
+router.put("/:galaxyId/edit", isAdmin, async (req, res, next) => {
   try {
     const galaxy = await Galaxy.findByPk(req.params.galaxyId);
     const updatedGalaxy = await galaxy.update(req.body);
