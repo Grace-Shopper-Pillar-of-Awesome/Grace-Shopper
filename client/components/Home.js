@@ -9,9 +9,13 @@ export const Home = (props) => {
 
   return (
     <div className="content">
-      <h3 className="home">Welcome, {username}</h3>
-      <div className="fade"></div>
-      <section className="star-wars">
+      <header>
+        <div className = "title">
+          <h1 className = "far">Far, Far Away...</h1>
+          </div>
+      </header>
+      {/* <div className="fade"></div> */}
+      {/* <section className="star-wars">
         <div className="crawl">
           <div className="title">
             <p>There is enough space to go around</p>
@@ -22,7 +26,7 @@ export const Home = (props) => {
           <p>Introducing Galaxy X, a great way to explore the universe by acquiring a little piece of the infinite.</p>
           <p>Feel what it feels to own your own galaxy at the edge of the universe and enjoy the power of freedom.</p>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

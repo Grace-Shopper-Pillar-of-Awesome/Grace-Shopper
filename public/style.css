@@ -1,5 +1,14 @@
+
+
+/* OVERALL PAGE CSS */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: sans-serif;
+  background-color: black;
 }
 
 a {
@@ -16,10 +25,14 @@ label {
   display: block;
 }
 
+/* navbar component */
+
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 50px;
+  color: white;
 }
 
 nav a {
@@ -31,6 +44,116 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+
+/* homepage view */
+
+/* div.content {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+} */
+
+h3.home {
+  color: lightgrey;
+  margin-left: 10px;
+}
+
+/* .landing-img {
+  height: 1000px;
+  width: 1600px;
+  background-image: url('https://i.ibb.co/RDhbmpm/High-Definition-Wallpapers-Space-Galaxy-Desktop-Background.jpg');
+  z-index: 1;
+  position: relative;
+  margin: 20px;
+} */
+
+header {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url(https://i.ibb.co/RDhbmpm/High-Definition-Wallpapers-Space-Galaxy-Desktop-Background.jpg);
+  background-size: cover;
+  height: 100vh;
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+.far {
+  font-family: sans-serif;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 5rem;
+  white-space: nowrap;
+}
+
+
+
+/* .fade {
+  position: relative;
+  width: 800px;
+  height: 700px;
+  min-height: 120vh;
+  top: 15px;
+  background-image: url('https://i.ibb.co/RDhbmpm/High-Definition-Wallpapers-Space-Galaxy-Desktop-Background.jpg'); 
+  z-index: 1;
+} */
+
+.star-wars {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 800px;
+  color: #feda4a;
+  font-family: 'Pathway Gothic One', sans-serif;
+  font-size: 500%;
+  font-weight: 600;
+  letter-spacing: 6px;
+  line-height: 150%;
+  perspective: 400px;
+  text-align: justify;
+}
+
+.crawl {
+  position: relative;
+  top: 9999px;
+  transform-origin: 50% 100%;
+  animation: crawl 30s linear;
+  animation-iteration-count: infinite;
+}
+
+.crawl > .title {
+  font-size: 90%;
+  text-align: center;
+}
+
+.crawl > .title h1 {
+  margin: 0 0 100px;
+  text-transform: uppercase;
+}
+
+@keyframes crawl {
+  0% {
+    top: 0;
+    transform: rotateX(20deg) translateZ(0);
+  }
+  100% {
+    top: -6000px;
+    transform: rotateX(15deg) translateZ(-2500px);
+  }
+}
+
+
+/* shopping cart view  */
 
 #shopping-cart {
   height: 2em;
@@ -97,6 +220,8 @@ input {
   font-size: 20px;
 }
 
+/* single galaxy view */
+
 .single-galaxy-view {
   display: flex;
   flex-direction: row;
@@ -104,6 +229,7 @@ input {
 }
 
 .single-galaxy-info {
+  color: white;
   margin-right: 10%;
   margin-top: 5%;
   margin-bottom: 5%;
@@ -168,77 +294,13 @@ input {
   display: inline-block;
 }
 
-div.content {
-  width: 100%;
-  height: 100%;
-  background: #000;
-  overflow: hidden;
-}
-
-h3.home {
-  color: lightgrey;
-  margin-left: 10px;
-}
-
-.fade {
-  position: relative;
-  width: 100%;
-  min-height: 120vh;
-  top: 15px;
-  background-image: url('https://i.ytimg.com/vi/xi5-YrAEChc/maxresdefault.jpg');
-  z-index: 1;
-}
-
-.star-wars {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  height: 800px;
-  color: #feda4a;
-  font-family: 'Pathway Gothic One', sans-serif;
-  font-size: 500%;
-  font-weight: 600;
-  letter-spacing: 6px;
-  line-height: 150%;
-  perspective: 400px;
-  text-align: justify;
-}
-
-.crawl {
-  position: relative;
-  top: 9999px;
-  transform-origin: 50% 100%;
-  animation: crawl 30s linear;
-  animation-iteration-count: infinite;
-}
-
-.crawl > .title {
-  font-size: 90%;
-  text-align: center;
-}
-
-.crawl > .title h1 {
-  margin: 0 0 100px;
-  text-transform: uppercase;
-}
-
-@keyframes crawl {
-  0% {
-    top: 0;
-    transform: rotateX(20deg) translateZ(0);
-  }
-  100% {
-    top: -6000px;
-    transform: rotateX(15deg) translateZ(-2500px);
-  }
-}
 
 /* AllGalaxies component */
 
 #outer-galaxies-container {
   display: flex;
   justify-content: space-evenly;
-  background-color: gray;
+
 }
 
 .galaxy-name {
@@ -251,8 +313,9 @@ h3.home {
 }
 
 .galaxy-info {
-  border-style: solid;
-  border-color: #000;
+  /* border-style: solid; */
+  /* border-color: #000; */
   text-align: center;
   width: 250px;
+  /* color:blanchedalmond; */
 }
