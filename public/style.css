@@ -256,3 +256,20 @@ h3.home {
   text-align: center;
   width: 250px;
 }
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

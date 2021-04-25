@@ -3,6 +3,8 @@ const { User, Order, Galaxy, OrderItems } = require("../db");
 module.exports = router;
 const { requireToken, isAdmin } = require("./gatekeepingMiddleware");
 
+
+
 router.get("/", requireToken, isAdmin, async (req, res, next) => {
   try {
     //WILL NEED TO WRITE AN AXIOS CALL THAT PASSES A TOKEN WHEN WE CREATE THE ADMIN VIEW
@@ -11,7 +13,9 @@ router.get("/", requireToken, isAdmin, async (req, res, next) => {
       // explicitly select only the id and username fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ["id", "username"],
+
+      attributes: ['id', 'username', 'email', 'userType'],
+
     });
     res.json(users);
   } catch (err) {
