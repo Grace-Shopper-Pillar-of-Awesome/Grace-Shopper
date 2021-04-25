@@ -1,14 +1,17 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Signup } from './components/AuthForm';
-import Home from './components/Home';
-import { me } from './store';
-import SingleGalaxy from './components/SingleGalaxy';
-import AllGalaxies from './components/AllGalaxies';
-import Cart from './components/Cart';
-import Checkout from './components/Checkout';
-import OrderConfirmation from './components/OrderConfirmation';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Login, Signup } from "./components/AuthForm";
+import Home from "./components/Home";
+import { me } from "./store";
+import SingleGalaxy from "./components/SingleGalaxy";
+import AllGalaxies from "./components/AllGalaxies";
+import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
+import OrderConfirmation from "./components/OrderConfirmation";
+import UserDashboard from "./components/UserDashboard";
+import ProductDashboard from "./components/ProductDashboard";
+import EditGalaxy from "./components/EditGalaxy";
 
 /**
  * COMPONENT
@@ -27,6 +30,9 @@ class Routes extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/home" component={Home} />
           <Route exact path="/galaxies" component={AllGalaxies} />
+          <Route exact path="/users" component={UserDashboard} />
+          <Route exact path="/products" component={ProductDashboard} />
+          <Route exact path="/galaxies/:galaxyId/edit" component={EditGalaxy} />
           <Route
             path="/cart"
             render={(props) => (
@@ -68,7 +74,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
           </Switch>
         )} */}
-        <Route path="/galaxies/:galaxyId" component={SingleGalaxy} />
+        <Route exact path="/galaxies/:galaxyId" component={SingleGalaxy} />
       </div>
     );
   }

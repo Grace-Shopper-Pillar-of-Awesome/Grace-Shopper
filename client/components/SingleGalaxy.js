@@ -7,35 +7,33 @@ import { addToCart } from '../store/cart'
 class SingleGalaxy extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   cart: {},
-    //   quantity: 0
-    // }
+    this.state = {
+      quantity: 0
+    }
+    this.handleClick = this.handleClick.bind(this)
+    this.updateQuantity = this.updateQuantity.bind(this)
   }
 
   componentDidMount() {
     this.props.getSingleGalaxy(this.props.match.params.galaxyId);
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.orderItems.galaxyId !== this.props.orderItems.galaxyId) {
-  //     this.setState({
-  //       //how
-  //     })
-  //   }
-  // }
-
-  handleClick(evt) {
-    console.log("button was clicked")
-    // this.setState({
-    //   [evt.target.name]: evt.target.value
-    // })
+  handleClick() {
+    console.log("handleClick", this.props)
+    this.props.addToCart(
+      this.props.userId,
+      this.props.orderId,
+      this.props.galaxy.id,
+      this.state.quantity
+      //{ quantity: evt.target.value }
+    )
   }
 
-  // handleSubmit(evt) {
-  //   evt.preventDefault();
-  //   this.props.addToCart(this.state.orderItems.galaxyId)
-  // }
+  updateQuantity(evt) {
+    this.setState({
+      quantity: evt.target.value
+    })
+  }
 
   render() {
     const {
@@ -47,7 +45,7 @@ class SingleGalaxy extends React.Component {
       imageUrl,
       category,
     } = this.props.galaxy;
-
+    console.log("what's in props", this.props)
     return (
       <div className="single-galaxy-view">
         <div className="single-galaxy-image">
@@ -63,7 +61,7 @@ class SingleGalaxy extends React.Component {
           <br/>
           <div className="single-galaxy-buy">
           <h4>Quantity:</h4>
-          <input type="number" min="0"></input> 
+          <input type="number" min="0" value={this.state.quantity} onChange={this.updateQuantity}></input> 
           <br/>
           <button type="button" onClick={this.handleClick}>Add to cart</button>
           </div>
@@ -73,14 +71,18 @@ class SingleGalaxy extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  galaxy: state.singleGalaxy,
-});
+const mapStateToProps = (state) => {
+  return {
+    galaxy: state.singleGalaxy,
+    userId: state.auth.id,
+    orderId: state.cart ? state.cart.id : null
+  }
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getSingleGalaxy: (id) => dispatch(fetchSingleGalaxy(id)),
-//    addToCart: (id) => dispatch(addToCart(id))
+    addToCart: (userId, orderId, galaxyId, quantity) => dispatch(addToCart(userId, orderId, galaxyId, quantity))
   };
 };
 

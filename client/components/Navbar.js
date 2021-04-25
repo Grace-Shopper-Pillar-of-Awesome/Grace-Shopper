@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
+import { clearCart } from '../store/cart';
 
 const Navbar = ({ handleClick, isLoggedIn, username }) => (
   <div>
@@ -20,12 +21,15 @@ const Navbar = ({ handleClick, isLoggedIn, username }) => (
       <Link to="/home">Home</Link>
       <Link to="/galaxies">Products</Link>
       <Link to="/aboutUs">About Us</Link>
+      <div className="shoppingCartInNav">
       <Link to="/cart">
         <img
           id="shopping-cart-icon"
           src="https://i.ibb.co/bRrVJVC/iconmonstr-basket-3-32.png"
         ></img>
+        <span className="quantityInCart">3</span>
       </Link>
+      </div>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
@@ -59,6 +63,7 @@ const mapDispatch = (dispatch) => {
   return {
     handleClick() {
       dispatch(logout());
+      dispatch(clearCart());
     },
   };
 };

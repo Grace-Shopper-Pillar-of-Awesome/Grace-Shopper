@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchGalaxies } from "../store/allGalaxies";
 import { Link } from "react-router-dom";
+import { addToCart } from '../store/cart'
 
 class AllGalaxies extends React.Component {
   componentDidMount() {
