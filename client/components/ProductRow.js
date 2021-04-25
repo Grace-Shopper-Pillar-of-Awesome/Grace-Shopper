@@ -12,7 +12,7 @@ const ProductRow = (props) => {
             <td>{product.price/100}</td>
             <td>{product.inventory}</td>
             <td>
-                <Link to={`/galaxies/${product.id}`} key={product.SKU}>
+                <Link to={`/galaxies/${product.id}/edit`} key={product.SKU}>
                     Edit
                 </Link>
             </td>

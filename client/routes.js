@@ -11,6 +11,7 @@ import Checkout from './components/Checkout';
 import OrderConfirmation from './components/OrderConfirmation';
 import UserDashboard from './components/UserDashboard'
 import ProductDashboard from './components/ProductDashboard'
+import EditGalaxy from './components/EditGalaxy'
 
 /**
  * COMPONENT
@@ -31,6 +32,7 @@ class Routes extends Component {
           <Route exact path="/galaxies" component={AllGalaxies} />
           <Route exact path="/users" component={UserDashboard} />
           <Route exact path="/products" component={ProductDashboard} />
+          <Route exact path="/galaxies/:id/edit" component={EditGalaxy} />
           <Route
             path="/cart"
             render={(props) => (
@@ -72,7 +74,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
           </Switch>
         )} */}
-        <Route path="/galaxies/:galaxyId" component={SingleGalaxy} />
+        <Route exact path="/galaxies/:galaxyId" component={SingleGalaxy} />
       </div>
     );
   }
