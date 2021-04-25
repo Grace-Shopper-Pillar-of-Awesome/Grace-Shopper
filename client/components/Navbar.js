@@ -21,6 +21,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, userType, cart }) => {
       <Link to="/galaxies">Products</Link>
       <Link to="/aboutUs">About Us</Link>
       <div className="shoppingCartInNav">
+
         <Link to="/cart">
           <img
             id="shopping-cart"
@@ -32,6 +33,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, userType, cart }) => {
             }
           </span>
         </Link>
+
       </div>
       {isLoggedIn ? (
         <div>
