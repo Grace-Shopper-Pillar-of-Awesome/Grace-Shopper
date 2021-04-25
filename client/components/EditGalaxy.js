@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchSingleGalaxy, updateGalaxy } from "../store/singleGalaxy";
+import { destroyGalaxy } from "../store/allGalaxies";
 
 const initialState = {
   name: "",
@@ -18,16 +19,12 @@ class EditGalaxy extends React.Component {
   constructor(props) {
     super(props);
     this.state = initialState;
-    //set default values to current values for easier editing.
-    //EX: If you needed to change only one word in the description,
-    //you would want the original description to appear in the form box.
-    //They don't show up tho lol
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
-    //gets the single galaxy that is to be edited
     this.props.getSingleGalaxy(this.props.match.params.galaxyId);
   }
 
@@ -38,7 +35,6 @@ class EditGalaxy extends React.Component {
   }
 
   handleChange(evt) {
-    //updates the field in the state
     this.setState({
       [evt.target.name]: evt.target.value,
     });
@@ -46,8 +42,13 @@ class EditGalaxy extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    //run updateGalaxy, providing the current galaxy that is being edited, and the id of the current galaxy
     this.props.updateGalaxy({ ...this.props.galaxy, ...this.state });
+  }
+
+  handleDelete() {
+    if (confirm("Are you sure you want to delete this galaxy?")) {
+      this.props.destroyGalaxy(this.props.galaxy.id);
+    }
   }
 
   render() {
@@ -55,6 +56,7 @@ class EditGalaxy extends React.Component {
 
     const { SKU, category, name } = this.state;
 
+    //this makes sure that we are not feeding null to any value below
     const description = this.state.description || "";
     const distance = this.state.distance || 0;
     const inventory = this.state.inventory || 0;
@@ -111,10 +113,16 @@ class EditGalaxy extends React.Component {
             <option name="irregular">irregular</option>
           </select>
           <br />
+          <br />
           <button type="submit">Submit changes</button>
           <Link to={"/products"}>
             <button type="button">Cancel changes</button>
           </Link>
+          <br />
+          <br />
+          <button type="button" onClick={this.handleDelete}>
+            Delete This Galaxy
+          </button>
         </form>
       </div>
     );
@@ -130,6 +138,7 @@ const mapDispatchToProps = (dispatch, { history, match }) => {
     getSingleGalaxy: (id) => dispatch(fetchSingleGalaxy(id)),
     updateGalaxy: (galaxy) =>
       dispatch(updateGalaxy(galaxy, history, match.params.galaxyId)),
+    destroyGalaxy: (galaxyId) => dispatch(destroyGalaxy(galaxyId, history)),
   };
 };
 
