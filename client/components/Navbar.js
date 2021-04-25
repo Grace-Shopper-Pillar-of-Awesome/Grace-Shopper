@@ -21,12 +21,15 @@ const Navbar = ({ handleClick, isLoggedIn, username }) => (
       <Link to="/home">Home</Link>
       <Link to="/galaxies">Products</Link>
       <Link to="/aboutUs">About Us</Link>
+      <div className="shoppingCartInNav">
       <Link to="/cart">
         <img
           id="shopping-cart"
           src="https://static.thenounproject.com/png/65006-200.png"
         ></img>
+        <span className="quantityInCart">3</span>
       </Link>
+      </div>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
