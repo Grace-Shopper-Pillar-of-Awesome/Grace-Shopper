@@ -10,6 +10,7 @@ class CartItem extends Component {
     };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleGuestChange = this.handleGuestChange.bind(this);
   }
 
   componentDidMount() {
@@ -23,12 +24,25 @@ class CartItem extends Component {
     this.setState({
       quantity: evt.target.value,
     });
-    this.props.updateItemQuant(
-      this.props.userId,
-      this.props.cart.id,
-      this.props.galaxy.id,
-      { quantity: evt.target.value }
-    );
+    if (this.props.isLoggedIn) {
+      this.props.updateItemQuant(
+        this.props.userId,
+        this.props.cart.id,
+        this.props.galaxy.id,
+        { quantity: evt.target.value }
+      );
+    } else {
+      this.handleGuestChange(evt);
+    }
+  }
+
+  handleGuestChange(evt) {
+    const cartItems = JSON.parse(window.localStorage.getItem('orderItems'));
+    const cartItemIds = cartItems.map((elem) => elem.id);
+    const idx = cartItemIds.indexOf(this.props.galaxy.id);
+    const currentItem = cartItems[idx];
+    currentItem.quantity = evt.target.value;
+    window.localStorage.setItem('orderItems', JSON.stringify(cartItems));
   }
 
   handleDelete() {
