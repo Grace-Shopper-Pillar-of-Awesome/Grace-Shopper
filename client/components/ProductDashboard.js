@@ -2,6 +2,7 @@ import React from 'react';
 import ProductRow from './ProductRow';
 import { connect } from 'react-redux';
 import { fetchGalaxies } from '../store/allGalaxies';
+import { Link } from 'react-router-dom'
 
 class ProductDashboard extends React.Component {
   constructor() {
@@ -22,6 +23,9 @@ class ProductDashboard extends React.Component {
             <h1 className="dashboard-header">PRODUCTS</h1>
             <br />
             <br />
+            <Link to={`/products/add`}>
+            <button type="button">Add new product</button>
+            </Link>
             <table>
               <tbody>
                 <tr>

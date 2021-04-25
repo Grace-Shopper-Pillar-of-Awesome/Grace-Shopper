@@ -57,8 +57,9 @@ export const destroyGalaxy = (galaxyId, history) => {
 export const postGalaxy = (galaxy, history) => {
   return async (dispatch) => {
     try {
-      const { data: created } = await axios.post("/api/galaxies");
+      const { data: created } = await axios.post("/api/galaxies", galaxy);
       dispatch(createGalaxy(created));
+      history.push("/products");
     } catch (error) {
       console.error(err);
     }
