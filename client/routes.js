@@ -9,6 +9,8 @@ import AllGalaxies from './components/AllGalaxies';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import OrderConfirmation from './components/OrderConfirmation';
+import UserDashboard from './components/UserDashboard'
+import ProductDashboard from './components/ProductDashboard'
 
 /**
  * COMPONENT
@@ -27,6 +29,8 @@ class Routes extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/home" component={Home} />
           <Route exact path="/galaxies" component={AllGalaxies} />
+          <Route exact path="/users" component={UserDashboard} />
+          <Route exact path="/products" component={ProductDashboard} />
           <Route
             path="/cart"
             render={(props) => (

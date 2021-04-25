@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Galaxy } = require("../db");
+const { isAdmin } = require("./gatekeepingMiddleware");
 module.exports = router;
 
 //GET /api/galaxies
@@ -53,6 +54,20 @@ router.put("/:galaxyId", async (req, res, next) => {
     const galaxy = await Galaxy.findByPk(req.params.galaxyId);
     const updatedGalaxy = await galaxy.update(req.body);
     res.send(updatedGalaxy);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//GET /api/galaxies/:galaxyId/edit
+router.get("/:galaxyId/edit", isAdmin, async (req, res, next) => {
+  try {
+    const galaxy = await Galaxy.findByPk(req.params.galaxyId);
+    if (galaxy) {
+      res.json(galaxy);
+    } else {
+      res.sendStatus(404);
+    }
   } catch (error) {
     next(error);
   }
