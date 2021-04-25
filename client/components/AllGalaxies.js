@@ -17,10 +17,10 @@ class AllGalaxies extends React.Component {
         {galaxies.map((galaxy) => {
           return (
             <div className = 'galaxy-info' key={galaxy.id}>
+              <img className='galaxy-img' src={galaxy.imageUrl} />
               <Link to={`/galaxies/${galaxy.id}`}>
                 <h1 className = 'galaxy-name'>{galaxy.name}</h1>
               </Link>
-              <img className='galaxy-img' src={galaxy.imageUrl} />
               <h3 className = 'galaxy-price'>${galaxy.price / 100}</h3>
               <p className='galaxy-category'>Category: {galaxy.category}</p>
               <button className = "all-galaxy-addcart" type="button" onClick={this.handleClick}>Add to cart</button>
