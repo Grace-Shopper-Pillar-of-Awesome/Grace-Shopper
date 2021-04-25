@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { fetchCart } from '../store/cart';
 
 /**
  * COMPONENT
  */
 export const Home = (props) => {
-  const { username } = props;
-
+  const { username, isLoggedIn, fetchCart, id } = props;
+  if (isLoggedIn) fetchCart(id);
   return (
     <div className="content">
       <h3 className="home">Welcome, {username}</h3>
@@ -17,10 +18,23 @@ export const Home = (props) => {
             <p>There is enough space to go around</p>
             <h1>a galaxy far far away</h1>
           </div>
-          <p>The universe... that inmense open space, full of adventures and posibilities. </p>      
-          <p>During centuries, human have wondered about the sky and its limits, today, you not only can witness its greateness but also can OWN your own piece of it.</p>
-          <p>Introducing Galaxy X, a great way to explore the universe by acquiring a little piece of the infinite.</p>
-          <p>Feel what it feels to own your own galaxy at the edge of the universe and enjoy the power of freedom.</p>
+          <p>
+            The universe... that inmense open space, full of adventures and
+            posibilities.{' '}
+          </p>
+          <p>
+            During centuries, human have wondered about the sky and its limits,
+            today, you not only can witness its greateness but also can OWN your
+            own piece of it.
+          </p>
+          <p>
+            Introducing Galaxy X, a great way to explore the universe by
+            acquiring a little piece of the infinite.
+          </p>
+          <p>
+            Feel what it feels to own your own galaxy at the edge of the
+            universe and enjoy the power of freedom.
+          </p>
         </div>
       </section>
     </div>
@@ -30,10 +44,15 @@ export const Home = (props) => {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
-  return {
-    username: state.auth.username,
-  };
-};
 
-export default connect(mapState)(Home);
+const mapState = (state) => ({
+  username: state.auth.username,
+  isLoggedIn: !!state.auth.id,
+  id: state.auth.id,
+});
+
+const mapDispatch = (dispatch) => ({
+  fetchCart: (id) => dispatch(fetchCart(id)),
+});
+
+export default connect(mapState, mapDispatch)(Home);
