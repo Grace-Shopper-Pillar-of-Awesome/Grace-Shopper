@@ -7,7 +7,7 @@ const Navbar = ({ handleClick, isLoggedIn, username }) => (
   <div>
     <nav>
       <h3>
-        Welcome,{' '}
+        Welcome, {' '}
         {/* this is a placeholder, we'll need to create a route to go to the user profile */}
         {isLoggedIn ? (
           <Link id="user-profile-line" to="/userprofile">
@@ -22,8 +22,8 @@ const Navbar = ({ handleClick, isLoggedIn, username }) => (
       <Link to="/aboutUs">About Us</Link>
       <Link to="/cart">
         <img
-          id="shopping-cart"
-          src="https://static.thenounproject.com/png/65006-200.png"
+          id="shopping-cart-icon"
+          src="https://i.ibb.co/bRrVJVC/iconmonstr-basket-3-32.png"
         ></img>
       </Link>
       {isLoggedIn ? (

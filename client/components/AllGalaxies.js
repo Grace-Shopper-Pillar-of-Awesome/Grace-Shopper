@@ -10,7 +10,9 @@ class AllGalaxies extends React.Component {
   render() {
     const galaxies = this.props.galaxies;
     return (
-      <div id = "outer-galaxies-container">
+      <div>
+      <h1 className = "destinations">Destinations: </h1>
+      <div id="outer-galaxies-container">
         {galaxies.map((galaxy) => {
           return (
             <div className = 'galaxy-info' key={galaxy.id}>
@@ -19,11 +21,13 @@ class AllGalaxies extends React.Component {
               </Link>
               <img className='galaxy-img' src={galaxy.imageUrl} />
               <h3 className = 'galaxy-price'>${galaxy.price / 100}</h3>
-              <p className = 'galaxy-category'>Category: {galaxy.category}</p>
+              <p className='galaxy-category'>Category: {galaxy.category}</p>
+              <button className = "all-galaxy-addcart" type="button" onClick={this.handleClick}>Add to cart</button>
             </div>
           );
         } ) }
-      </div>
+        </div>
+        </div>
     );
   }
 } 

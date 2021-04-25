@@ -8,18 +8,19 @@
 
 body {
   font-family: sans-serif;
-  background-color: black;
+  background-color: #14181d;
 }
 
 a {
-  color: rgb(82, 73, 163);
+  color:#3d56b0;
   text-decoration: none;
 }
 
 a:hover {
-  color: #6c12a8;
+  color:#f8f6f7;
   text-decoration: underline;
 }
+
 
 label {
   display: block;
@@ -30,15 +31,28 @@ label {
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 50px;
+  justify-content: space-around;
+  height: 8vh;
   color: white;
+  position: fixed;
+  top: 0;
+  width: 99%;
+  z-index: 1;
+  background-color:#07080a;
+  border-radius: 0px 0px 3px 3px;
+  /* filter: drop-shadow(0 0 0.50rem rgb(26, 25, 25)); */
+  box-shadow: 0 8px 6px -6px rgb(17, 16, 16);
 }
 
-nav a {
+/* nav a {
   display: inline-block;
   margin: 1em;
+} */
+
+#shopping-cart-icon {
+  height: 1.5em;
 }
+
 
 form div {
   margin: 1em;
@@ -54,20 +68,16 @@ form div {
   background: #000;
   overflow: hidden;
 } */
+.content {
+  background-color: black;
+}
+
 
 h3.home {
   color: lightgrey;
   margin-left: 10px;
 }
 
-/* .landing-img {
-  height: 1000px;
-  width: 1600px;
-  background-image: url('https://i.ibb.co/RDhbmpm/High-Definition-Wallpapers-Space-Galaxy-Desktop-Background.jpg');
-  z-index: 1;
-  position: relative;
-  margin: 20px;
-} */
 
 header {
   background: 
@@ -155,13 +165,11 @@ header {
 
 /* shopping cart view  */
 
-#shopping-cart {
-  height: 2em;
-}
 
 #cart_container {
   display: flex;
   justify-content: center;
+  margin-top: 10vh;
 }
 
 #cart_list {
@@ -172,7 +180,15 @@ header {
 }
 
 .cart_item {
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -229,7 +245,6 @@ input {
 }
 
 .single-galaxy-info {
-  color: white;
   margin-right: 10%;
   margin-top: 5%;
   margin-bottom: 5%;
@@ -300,7 +315,22 @@ input {
 #outer-galaxies-container {
   display: flex;
   justify-content: space-evenly;
+  align-content: space-around;
+  margin-top: 10vh;
+  flex-wrap: wrap;
+  /* background-color: rgb(31, 22, 22); */
 
+}
+
+#outer-galaxies-container .galaxy-info {
+  flex: 1 0 20%;
+  margin: 5px;
+}
+
+.destinations {
+  text-align: center;
+  margin-top: 10vh;
+  color: white;
 }
 
 .galaxy-name {
@@ -317,5 +347,22 @@ input {
   /* border-color: #000; */
   text-align: center;
   width: 250px;
-  /* color:blanchedalmond; */
+  box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12)
+;
+background-color: #e2e2e2;
+border-radius: 3px;
+}
+
+.all-galaxy-addcart {
+  background-color: rgb(24, 15, 63);
+  color: white;
+  border-radius: 25px;
+  padding: 10px 15px;
+  margin-bottom: 5px;
 }
