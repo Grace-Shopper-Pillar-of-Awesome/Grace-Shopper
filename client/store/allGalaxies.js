@@ -5,6 +5,7 @@ const initialState = [];
 //action types
 const SET_GALAXIES = "SET_GALAXIES";
 const DELETE_GALAXY = "DELETE_GALAXY";
+const CREATE_GALAXY = "CREATE_GALAXY";
 
 //action creators
 export const setGalaxies = (galaxies) => {
@@ -17,6 +18,13 @@ export const setGalaxies = (galaxies) => {
 export const deleteGalaxy = (galaxy) => {
   return {
     type: DELETE_GALAXY,
+    galaxy,
+  };
+};
+
+export const createGalaxy = (galaxy) => {
+  return {
+    type: CREATE_GALAXY,
     galaxy,
   };
 };
@@ -46,12 +54,26 @@ export const destroyGalaxy = (galaxyId, history) => {
   };
 };
 
+export const postGalaxy = (galaxy, history) => {
+  return async (dispatch) => {
+    try {
+      const { data: created } = await axios.post("/api/galaxies");
+      dispatch(createGalaxy(created));
+    } catch (error) {
+      console.error(err);
+    }
+  };
+};
+
+//subreducer
 export default function galaxiesReducer(state = initialState, action) {
   switch (action.type) {
     case SET_GALAXIES:
       return action.galaxies;
     case DELETE_GALAXY:
       return state.filter((galaxy) => galaxy.id !== action.galaxy.id);
+    case CREATE_GALAXY:
+      return [...state, action.galaxy];
     default:
       return state;
   }
