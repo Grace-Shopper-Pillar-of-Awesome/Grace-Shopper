@@ -21,17 +21,25 @@ const Navbar = ({ handleClick, isLoggedIn, username, userType, quantity }) => {
         </div> :
         <h3>Welcome, {isLoggedIn ? username : 'Guest'}</h3>
       }
+
+
+    
+
+
       <Link to="/home">Home</Link>
       <Link to="/galaxies">Products</Link>
       <Link to="/aboutUs">About Us</Link>
       <div className="shoppingCartInNav">
+
         <Link to="/cart">
           <img
-            id="shopping-cart"
-            src="https://static.thenounproject.com/png/65006-200.png"
-          ></img>
-          <span className="quantityInCart">{qt}</span>
+          id="shopping-cart-icon"
+          src="https://i.ibb.co/bRrVJVC/iconmonstr-basket-3-32.png"
+        ></img>
+           <span className="quantityInCart">{qt}</span>
+
         </Link>
+
       </div>
       {isLoggedIn ? (
         <div>
