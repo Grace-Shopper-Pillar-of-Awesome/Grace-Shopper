@@ -154,26 +154,31 @@ async function seed() {
     name: 'milkyway',
     SKU: 'MW123456',
     category: 'elliptical',
+    price: 1200,
   });
   const galaxy2 = await Galaxy.create({
     name: 'fireworks',
     SKU: 'FW123456',
     category: 'spiral',
+    price: 500,
   });
   const galaxy3 = await Galaxy.create({
     name: 'tadpole',
     SKU: 'TP123456',
     category: 'irregular',
+    price: 2500,
   });
   const galaxy4 = await Galaxy.create({
     name: 'sunflower',
     SKU: 'SF123456',
     category: 'elliptical',
+    price: 5000,
   });
   const galaxy5 = await Galaxy.create({
     name: 'butterfly',
     SKU: 'BF123456',
     category: 'irregular',
+    price: 500,
   });
 
   await order1.setUser(user1);

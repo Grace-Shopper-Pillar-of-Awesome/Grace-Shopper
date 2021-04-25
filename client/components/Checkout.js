@@ -43,7 +43,7 @@ class Checkout extends Component {
           <h2>Checkout</h2>
           {total > 0 ? (
             <div>
-              <p>Total: ${total}</p>
+              <p>Total: ${total / 100}</p>
               <label htmlFor="payment">Pay with: </label>
               <select
                 name="payment"

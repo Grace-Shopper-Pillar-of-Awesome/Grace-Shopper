@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { destroyItem, updateQuantity } from "../store/cart";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { destroyItem, updateQuantity } from '../store/cart';
 
 class CartItem extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class CartItem extends Component {
           <img src={imageUrl} />
           <div>
             <p className="cart_name">{name}</p>
-            <p>${price}</p>
+            <p>${price / 100}</p>
             <label htmlFor="quantity">Quantity:</label>
             <input
               type="number"
