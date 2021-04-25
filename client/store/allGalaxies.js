@@ -44,7 +44,12 @@ export const fetchGalaxies = () => {
 export const destroyGalaxy = (galaxyId, history) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.delete(`/api/galaxies/${galaxyId}`);
+      const { data } = await axios.delete(`/api/galaxies/${galaxyId}`,
+      {
+        headers: {
+          authorization: token,
+        },
+      });
       dispatch(deleteGalaxy(data));
       //we will only be in the admin view when we delete a product, so we'll want to push them back to the products page
       history.push("/products");
@@ -57,7 +62,12 @@ export const destroyGalaxy = (galaxyId, history) => {
 export const postGalaxy = (galaxy, history) => {
   return async (dispatch) => {
     try {
-      const { data: created } = await axios.post("/api/galaxies", galaxy);
+      const { data: created } = await axios.post("/api/galaxies", galaxy, 
+      {
+        headers: {
+          authorization: token,
+        },
+      });
       dispatch(createGalaxy(created));
       history.push("/products");
     } catch (error) {

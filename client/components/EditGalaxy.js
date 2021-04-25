@@ -26,10 +26,15 @@ class EditGalaxy extends React.Component {
     
     return (
       <div>
+        {this.props.userType === 'admin' ? (
+          <div>
           <GalaxyForm galaxy={galaxy} submit={this.props.updateGalaxy}/>
           <button type="button" onClick={this.handleDelete}>
             Delete This Galaxy
           </button>
+          </div> ) : (
+            <p>You shall not pass!</p>
+          )}
       </div>
     );
   }

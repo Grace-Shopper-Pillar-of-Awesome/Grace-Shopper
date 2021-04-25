@@ -5,7 +5,11 @@ import { postGalaxy } from '../store/allGalaxies'
 
 const CreateGalaxy = (props) => {
     return (
-        <GalaxyForm submit={props.postGalaxy} />
+        <div>
+            {props.userType === 'admin' ? (<GalaxyForm submit={props.postGalaxy} />) : (
+            <p>You shall not pass!</p>
+             )}
+        </div>
     )
 } 
 
