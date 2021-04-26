@@ -6,6 +6,7 @@ import { addToCart, fetchCart } from '../store/cart';
  * COMPONENT
  */
 
+
 export class Home extends Component {
   componentDidMount() {
     if (this.props.isLoggedIn) this.props.fetchCart(this.props.id);
@@ -40,6 +41,7 @@ export class Home extends Component {
         </header>
         {/* <div className="fade"></div> */}
         {/* <section className="star-wars">
+
         <div className="crawl">
           <div className="title">
             <p>There is enough space to go around</p>
@@ -64,10 +66,12 @@ export class Home extends Component {
           </p>
         </div>
       </section> */}
+
       </div>
     );
   }
 }
+
 
 /**
  * CONTAINER

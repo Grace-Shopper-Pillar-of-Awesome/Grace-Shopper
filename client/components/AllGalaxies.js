@@ -36,6 +36,7 @@ class AllGalaxies extends React.Component {
               </div>
             );
           })}
+
         </div>
       </div>
     );
