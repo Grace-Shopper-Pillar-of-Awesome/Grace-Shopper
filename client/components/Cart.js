@@ -52,9 +52,13 @@ class Cart extends Component {
       <div id="cart_container">
         <div id="cart_list">
           <h2>My Cart</h2>
-          {galaxies.map((galaxy) => (
-            <CartItem key={galaxy.id} galaxy={galaxy} />
-          ))}
+          {galaxies.length >= 1 ? (
+            galaxies.map((galaxy) => (
+              <CartItem key={galaxy.id} galaxy={galaxy} />
+            ))
+          ) : (
+            <p>There are no items in your cart!</p>
+          )}
         </div>
         <div id="cart_total">
           {this.props.isLoggedIn ? (
