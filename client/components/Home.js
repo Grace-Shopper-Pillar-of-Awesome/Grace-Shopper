@@ -1,22 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCart } from '../store/cart';
+import { addToCart, fetchCart } from '../store/cart';
 
 /**
  * COMPONENT
  */
-export const Home = (props) => {
-  const { username, isLoggedIn, fetchCart, id } = props;
-  if (isLoggedIn) fetchCart(id);
-  return (
-    <div className="content">
-      <header className = 'wrapper'>
-        <div className = "title">
-          <h1 className = "far">Far, Far Away...</h1>
-        </div>
-      </header>
-      {/* <div className="fade"></div> */}
-      {/* <section className="star-wars">
+
+
+export class Home extends Component {
+  componentDidMount() {
+    if (this.props.isLoggedIn) this.props.fetchCart(this.props.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.isLoggedIn && this.props.isLoggedIn) {
+      this.props.fetchCart(this.props.id);
+    }
+    if (prevProps.cart !== this.props.cart) {
+      // This will add new galaxies to cart based on what was in local storage and/or replace galaxy quantity from cart with latest quantity in local storage
+      const cart = JSON.parse(window.localStorage.getItem('orderItems'));
+      if (cart) {
+        cart.forEach((item) => {
+          this.props.addToCart(this.props.id, this.props.cart.id, item.id, {
+            quantity: Number(item.quantity),
+            price: item.price,
+          });
+        });
+      }
+      window.localStorage.removeItem('orderItems');
+    }
+  }
+
+  render() {
+    return (
+      <div className="content">
+        <header>
+          <div className="title">
+            <h1 className="far">Far, Far Away...</h1>
+          </div>
+        </header>
+        {/* <div className="fade"></div> */}
+        {/* <section className="star-wars">
+
         <div className="crawl">
           <div className="title">
             <p>There is enough space to go around</p>
@@ -42,23 +67,26 @@ export const Home = (props) => {
         </div>
       </section> */}
 
+      </div>
+    );
+  }
+}
 
-    </div>
-  );
-};
 
 /**
  * CONTAINER
  */
 
 const mapState = (state) => ({
-  username: state.auth.username,
   isLoggedIn: !!state.auth.id,
   id: state.auth.id,
+  cart: state.cart,
 });
 
 const mapDispatch = (dispatch) => ({
   fetchCart: (id) => dispatch(fetchCart(id)),
+  addToCart: (userId, orderId, galaxyId, info) =>
+    dispatch(addToCart(userId, orderId, galaxyId, info)),
 });
 
 export default connect(mapState, mapDispatch)(Home);

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { fetchSingleGalaxy } from '../store/singleGalaxy';
 import { addToCart } from '../store/cart';
 
@@ -8,9 +7,10 @@ class SingleGalaxy extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 0,
+      quantity: 1,
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleGuestClick = this.handleGuestClick.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
   }
 
@@ -19,13 +19,35 @@ class SingleGalaxy extends React.Component {
   }
 
   handleClick() {
-    // console.log("handleClick", this.props)
-    this.props.addToCart(
-      this.props.userId,
-      this.props.orderId,
-      this.props.galaxy.id,
-      { quantity: this.state.quantity, price: this.props.galaxy.price }
-    );
+    if (!this.props.isLoggedIn) {
+      this.handleGuestClick();
+    } else {
+      this.props.addToCart(
+        this.props.userId,
+        this.props.orderId,
+        this.props.galaxy.id,
+        { quantity: this.state.quantity, price: this.props.galaxy.price }
+      );
+    }
+  }
+
+  handleGuestClick() {
+    const item = { ...this.props.galaxy, quantity: this.state.quantity };
+    const cartItems =
+      JSON.parse(window.localStorage.getItem('orderItems')) || [];
+    const cartItemIds = cartItems.map((elem) => elem.id);
+    const idx = cartItemIds.indexOf(item.id);
+    if (idx === -1) {
+      window.localStorage.setItem(
+        'orderItems',
+        JSON.stringify([...cartItems, item])
+      );
+    } else {
+      const currentItem = cartItems[idx];
+      currentItem.quantity =
+        Number(currentItem.quantity) + Number(this.state.quantity);
+      window.localStorage.setItem('orderItems', JSON.stringify(cartItems));
+    }
   }
 
   updateQuantity(evt) {
@@ -44,7 +66,6 @@ class SingleGalaxy extends React.Component {
       imageUrl,
       category,
     } = this.props.galaxy;
-    console.log("what's in props", this.props);
     return (
       <div className="single-galaxy-view">
         <div className="single-galaxy-image">
@@ -85,6 +106,7 @@ const mapStateToProps = (state) => {
     galaxy: state.singleGalaxy,
     userId: state.auth.id,
     orderId: state.cart ? state.cart.id : null,
+    isLoggedIn: !!state.auth.id,
   };
 };
 
