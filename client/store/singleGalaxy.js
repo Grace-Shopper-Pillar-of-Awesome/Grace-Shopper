@@ -33,9 +33,14 @@ export const fetchSingleGalaxy = (id) => {
 export const updateGalaxy = (galaxy, history, galaxyId) => {
   return async (dispatch) => {
     try {
+      const token = window.localStorage.getItem("token")
       const { data: updated } = await axios.put(
         `/api/galaxies/${galaxyId}/edit`,
-        galaxy
+        galaxy, {
+          headers: {
+            authorization: token
+          }
+        }
       );
       dispatch(editGalaxy(updated));
       history.push(`/products`);

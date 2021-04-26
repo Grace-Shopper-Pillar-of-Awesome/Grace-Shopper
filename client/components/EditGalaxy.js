@@ -42,6 +42,7 @@ class EditGalaxy extends React.Component {
 
 const mapStateToProps = (state) => ({
   galaxy: state.singleGalaxy,
+  userType: state.auth.userType
 });
 
 const mapDispatchToProps = (dispatch, { history, match }) => {

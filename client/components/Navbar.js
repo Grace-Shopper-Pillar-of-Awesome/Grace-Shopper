@@ -19,7 +19,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, userType, quantity }) => {
         <Link to="/users">Users</Link>
         <Link to="/products">Products</Link>
         </div> :
-        <h3>Welcome, {isLoggedIn ? username : 'Guest'}</h3>
+        ''
       }
 
 

@@ -16,22 +16,29 @@ class UserDashboard extends React.Component {
         const users = this.props.users
         return (
             <div>
-                <h1 className="dashboard-header">USERS</h1>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>ID</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>User type</th>
-                        </tr>
-                        {users.map((user) => {
-                            return (
-                                <UserRow key={user.id} user={user} />
-                            )
-                        })}
-                    </tbody>
-                </table>
+                {this.props.userType === 'admin' ? (
+                    <div>
+                        <h1 className="dashboard-header">USERS</h1>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>User type</th>
+                                    </tr>
+                                    {users.map((user) => {
+                                        return (
+                                            <UserRow key={user.id} user={user} />
+                                        )})
+                                    }
+                                </tbody>
+                            </table>
+                    </div>
+                    
+                ) : (
+                    <h1>You shall not pass!</h1>
+                )}
             </div>
         )
     }
@@ -40,6 +47,7 @@ class UserDashboard extends React.Component {
 const mapStateToProps = (state) => {
     return {
       users: state.userDashboard,
+      userType: state.auth.userType
     };
   };
 

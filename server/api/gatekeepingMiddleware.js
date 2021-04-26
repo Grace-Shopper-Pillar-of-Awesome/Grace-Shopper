@@ -6,7 +6,7 @@ const requireToken = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     //console.log("this is req.headers in middleware:", req.headers);
-    //console.log("this is token in middleware:", token);
+    console.log("this is token in middleware:", token);
     const user = await User.findByToken(token); //the findByToken instance methodis exists in our db model
     req.user = user;
     next();
