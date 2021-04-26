@@ -52,6 +52,9 @@ class Cart extends Component {
       <div id="cart_container">
         <div id="cart_list">
           <h2>My Cart</h2>
+          <Link to="/galaxies">
+            <button type="button">Continue Shopping</button>
+          </Link>
           {galaxies.length >= 1 ? (
             galaxies.map((galaxy) => (
               <CartItem key={galaxy.id} galaxy={galaxy} />

@@ -19,21 +19,11 @@ class AllGalaxies extends React.Component {
               <div className="galaxy-info" key={galaxy.id}>
                 <Link to={`/galaxies/${galaxy.id}`}>
                   <h1 className="galaxy-name">{galaxy.name}</h1>
-                </Link>
-                <img className="galaxy-img" src={galaxy.imageUrl} />
-                <h3 className="galaxy-price">
-                  ${(galaxy.price / 100).toFixed(2)}
-                </h3>
-                <p className="galaxy-category">Category: {galaxy.category}</p>
-                <Link to={`/galaxies/${galaxy.id}`}>
-                  <button
-                    className="all-galaxy-addcart"
-                    type="button"
-                    id={galaxy.id}
-                    onClick={this.handleClick}
-                  >
-                    Add to cart
-                  </button>
+                  <img className="galaxy-img" src={galaxy.imageUrl} />
+                  <h3 className="galaxy-price">
+                    ${(galaxy.price / 100).toFixed(2)}
+                  </h3>
+                  <p className="galaxy-category">Category: {galaxy.category}</p>
                 </Link>
               </div>
             );

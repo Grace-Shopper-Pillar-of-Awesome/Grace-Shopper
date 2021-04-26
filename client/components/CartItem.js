@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { destroyItem, updateQuantity } from '../store/cart';
+import { Link } from 'react-router-dom';
 
 class CartItem extends Component {
   constructor(props) {
@@ -94,7 +95,9 @@ class CartItem extends Component {
           <div className="cart_item">
             <img src={imageUrl} />
             <div>
-              <p className="cart_name">{name}</p>
+              <Link to={`/galaxies/${this.props.galaxy.id}`}>
+                <p className="cart_name">{name}</p>
+              </Link>
               <p>${(price / 100).toFixed(2)}</p>
               <label htmlFor="quantity">Quantity:</label>
               <input

@@ -2,7 +2,7 @@ import React from 'react';
 import ProductRow from './ProductRow';
 import { connect } from 'react-redux';
 import { fetchGalaxies } from '../store/allGalaxies';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 class ProductDashboard extends React.Component {
   constructor() {
@@ -24,7 +24,7 @@ class ProductDashboard extends React.Component {
             <br />
             <br />
             <Link to={`/products/add`}>
-            <button type="button">Add new product</button>
+              <button type="button">Add new product</button>
             </Link>
             <table>
               <tbody>
@@ -35,9 +35,16 @@ class ProductDashboard extends React.Component {
                   <th>Price</th>
                   <th>Inventory</th>
                   <th>Page link</th>
+                  <th>Delete</th>
                 </tr>
                 {galaxies.map((galaxy) => {
-                  return <ProductRow key={galaxy.id} product={galaxy} />;
+                  return (
+                    <ProductRow
+                      key={galaxy.id}
+                      product={galaxy}
+                      history={this.props.history}
+                    />
+                  );
                 })}
               </tbody>
             </table>
