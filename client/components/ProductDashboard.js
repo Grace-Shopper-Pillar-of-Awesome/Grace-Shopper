@@ -17,7 +17,7 @@ class ProductDashboard extends React.Component {
     const galaxies = this.props.galaxies;
 
     return (
-      <div>
+      <div className="bring-down">
         {this.props.userType === 'admin' ? (
           <div>
             <h1 className="dashboard-header">PRODUCTS</h1>
