@@ -32,7 +32,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, userType, quantity }) => {
               id="shopping-cart-icon"
               src="https://i.ibb.co/bRrVJVC/iconmonstr-basket-3-32.png"
             ></img>
-            <span className="quantityInCart">{qt}</span>
+            {isLoggedIn ? <span className="quantityInCart">{qt}</span> : ''}
           </Link>
         </div>
         <h3>Welcome, {isLoggedIn ? username : 'Guest'}</h3>
