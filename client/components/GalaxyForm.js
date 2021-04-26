@@ -59,7 +59,7 @@ const initialState = {
               <br/>
             <label htmlFor="name">Name:</label>
             <input name="name" onChange={this.handleChange} value={name} />
-            <label htmlFor="price">Price:</label>
+            <label htmlFor="price">Price (in cents):</label>
             <input
               name="price"
               onChange={this.handleChange}

@@ -105,14 +105,6 @@ class CartItem extends Component {
               X
             </button>
           </div>
-          <button
-            className="delete"
-            id="ORDER_ITEM_ID"
-            onClick={this.handleDelete}
-          >
-          X
-          </button>
-        </div>
         ) : (
           ''
         )}

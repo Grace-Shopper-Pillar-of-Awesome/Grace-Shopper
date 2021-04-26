@@ -44,6 +44,7 @@ export const fetchGalaxies = () => {
 export const destroyGalaxy = (galaxyId, history) => {
   return async (dispatch) => {
     try {
+      const token = window.localStorage.getItem("token")
       const { data } = await axios.delete(`/api/galaxies/${galaxyId}`,
       {
         headers: {
@@ -62,6 +63,7 @@ export const destroyGalaxy = (galaxyId, history) => {
 export const postGalaxy = (galaxy, history) => {
   return async (dispatch) => {
     try {
+      const token = window.localStorage.getItem("token")
       const { data: created } = await axios.post("/api/galaxies", galaxy, 
       {
         headers: {

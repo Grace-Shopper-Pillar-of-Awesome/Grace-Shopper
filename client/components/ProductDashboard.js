@@ -43,7 +43,7 @@ class ProductDashboard extends React.Component {
             </table>
           </div>
         ) : (
-          <p>You shall not pass!</p>
+          <h1>You shall not pass!</h1>
         )}
       </div>
     );

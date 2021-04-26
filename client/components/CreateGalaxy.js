@@ -13,10 +13,16 @@ const CreateGalaxy = (props) => {
     )
 } 
 
+const mapStateToProps = (state) => {
+    return {
+        userType: state.auth.userType
+    }
+}
+
  const mapDispatchToProps = (dispatch, { history }) => {
      return {
         postGalaxy: (galaxy) => dispatch(postGalaxy(galaxy, history))
      }
  }
 
-export default connect(null, mapDispatchToProps)(CreateGalaxy)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateGalaxy)
