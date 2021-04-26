@@ -63,7 +63,7 @@ class Cart extends Component {
         <div id="cart_total">
           {this.props.isLoggedIn ? (
             <div>
-              <p>Cart Total: ${this.state.total/100}</p>
+              <p>Cart Total: ${(this.state.total / 100).toFixed(2)}</p>
               <Link to="/checkout">
                 <button id="go_checkout">Go To Checkout</button>
               </Link>

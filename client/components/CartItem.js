@@ -95,7 +95,7 @@ class CartItem extends Component {
             <img src={imageUrl} />
             <div>
               <p className="cart_name">{name}</p>
-              <p>${price / 100}</p>
+              <p>${(price / 100).toFixed(2)}</p>
               <label htmlFor="quantity">Quantity:</label>
               <input
                 type="number"

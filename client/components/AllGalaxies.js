@@ -21,7 +21,9 @@ class AllGalaxies extends React.Component {
                   <h1 className="galaxy-name">{galaxy.name}</h1>
                 </Link>
                 <img className="galaxy-img" src={galaxy.imageUrl} />
-                <h3 className="galaxy-price">${galaxy.price / 100}</h3>
+                <h3 className="galaxy-price">
+                  ${(galaxy.price / 100).toFixed(2)}
+                </h3>
                 <p className="galaxy-category">Category: {galaxy.category}</p>
                 <Link to={`/galaxies/${galaxy.id}`}>
                   <button
@@ -36,7 +38,6 @@ class AllGalaxies extends React.Component {
               </div>
             );
           })}
-
         </div>
       </div>
     );
