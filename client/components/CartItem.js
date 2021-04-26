@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { destroyItem, updateQuantity } from '../store/cart';
+import { Link } from 'react-router-dom';
 
 class CartItem extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class CartItem extends Component {
   }
 
   componentDidMount() {
+    console.log('PROPS HERE:', this.props);
     if (this.props.isLoggedIn) {
       this.setState({
         quantity: this.props.galaxy.orderItems.quantity,
@@ -26,6 +28,14 @@ class CartItem extends Component {
       );
       this.setState({
         quantity: Number(currentItem.quantity),
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.galaxy.orderItems !== this.props.galaxy.orderItems) {
+      this.setState({
+        quantity: this.props.galaxy.orderItems.quantity,
       });
     }
   }
@@ -85,8 +95,10 @@ class CartItem extends Component {
           <div className="cart_item">
             <img src={imageUrl} />
             <div>
-              <p className="cart_name">{name}</p>
-              <p>${price / 100}</p>
+              <Link to={`/galaxies/${this.props.galaxy.id}`}>
+                <p className="cart_name">{name}</p>
+              </Link>
+              <p>${(price / 100).toFixed(2)}</p>
               <label htmlFor="quantity">Quantity:</label>
               <input
                 type="number"
@@ -108,7 +120,6 @@ class CartItem extends Component {
         ) : (
           ''
         )}
-
       </div>
     );
   }

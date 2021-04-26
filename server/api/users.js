@@ -85,6 +85,26 @@ router.put('/:userId/checkout', requireToken, async (req, res, next) => {
   }
 });
 
+router.put(
+  '/cart/:userId/:orderId/:galaxyId',
+  requireToken,
+  async (req, res, next) => {
+    try {
+      if (req.user.id === Number(req.params.userId)) {
+        const orderItemToUpdate = await OrderItems.findOne({
+          where: {
+            galaxyId: req.params.galaxyId,
+            orderId: req.params.orderId,
+          },
+        });
+        const updatedItem = await orderItemToUpdate.update(req.body);
+        res.json(updatedItem);
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 //PUT /api/users/:userId/:orderId/:galaxyId
 router.put(
   '/:userId/:orderId/:galaxyId',
@@ -99,9 +119,17 @@ router.put(
           },
         });
         const [orderItemToUpdate, wasCreated] = data;
-        const updatedOrderItem = await orderItemToUpdate.update(req.body);
+        if (orderItemToUpdate.quantity) {
+          const newQuantity =
+            Number(orderItemToUpdate.quantity) + Number(req.body.quantity);
+          await orderItemToUpdate.update({
+            quantity: newQuantity,
+          });
+        } else {
+          await orderItemToUpdate.update(req.body);
+        }
         if (!wasCreated) {
-          res.json(updatedOrderItem);
+          res.json(orderItemToUpdate);
         } else {
           const cart = await Order.findByPk(req.params.orderId, {
             include: [{ model: Galaxy }],
@@ -116,19 +144,20 @@ router.put(
 );
 
 //PUT /api/users/:userId/:orderId
-router.put('/:userId/:orderId', async (req, res, next) => {
-  //if (req.user.id === Number(req.params.userId)) {
+router.put('/:userId/:orderId', requireToken, async (req, res, next) => {
   try {
-    const orderToUpdate = await Order.findOne({
-      where: {
-        id: req.params.orderId,
-      },
-    });
-    if (orderToUpdate) {
-      const updatedOrder = await orderToUpdate.update({
-        total: req.body.total,
+    if (req.user.id === Number(req.params.userId)) {
+      const orderToUpdate = await Order.findOne({
+        where: {
+          id: req.params.orderId,
+        },
       });
-      res.send(updatedOrder);
+      if (orderToUpdate) {
+        const updatedOrder = await orderToUpdate.update({
+          total: req.body.total,
+        });
+        res.send(updatedOrder);
+      }
     }
   } catch (error) {
     next(error);

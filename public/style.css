@@ -1,4 +1,3 @@
-
 /* OVERALL PAGE CSS */
 
 * {
@@ -11,15 +10,14 @@ body {
 }
 
 a {
-  color:#3d56b0;
+  color: #3d56b0;
   text-decoration: none;
 }
 
 a:hover {
-  color:#f8f6f7;
+  color: #f8f6f7;
   text-decoration: underline;
 }
-
 
 label {
   display: block;
@@ -37,10 +35,13 @@ nav {
   top: 0;
   width: 99%;
   z-index: 1;
-  background-color:#07080a;
+  background-color: #07080a;
   border-radius: 0px 0px 3px 3px;
   box-shadow: 0 8px 6px -6px rgb(17, 16, 16);
-  margin-bottom: 200px;
+}
+
+.bring-down {
+  margin-top: 100px;
 }
 
 /* nav a {
@@ -52,12 +53,10 @@ nav {
   height: 1.5em;
 }
 
-
 form div {
   margin: 1em;
   display: inline-block;
 }
-
 
 /* homepage view */
 
@@ -71,19 +70,13 @@ form div {
   background-color: black;
 }
 
-
 h3.home {
   color: lightgrey;
   margin-left: 10px;
 }
 
-
 header {
-  background: 
-    linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(https://i.ibb.co/RDhbmpm/High-Definition-Wallpapers-Space-Galaxy-Desktop-Background.jpg);
   background-size: cover;
   height: 100vh;
@@ -106,15 +99,13 @@ header {
   position: center;
 }
 
-
-
 /* .fade {
   position: relative;
   width: 800px;
   height: 700px;
   min-height: 120vh;
   top: 15px;
-  background-image: url('https://i.ibb.co/RDhbmpm/High-Definition-Wallpapers-Space-Galaxy-Desktop-Background.jpg'); 
+  background-image: url('https://i.ibb.co/RDhbmpm/High-Definition-Wallpapers-Space-Galaxy-Desktop-Background.jpg');
   z-index: 1;
 } */
 
@@ -162,21 +153,20 @@ header {
   }
 }
 
-
 /* shopping cart view  */
 
 .shoppingCartInNav {
   position: relative;
-    padding: 0px 0.35rem;
-    display: flex;
-    flex-direction: column;
-    font-weight: 400;
-    color: white;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    height: 100%;
+  padding: 0px 0.35rem;
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  color: white;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  height: 100%;
 }
 
 #shopping-cart {
@@ -198,7 +188,6 @@ header {
   padding: 0.1rem 0.25rem;
 }
 
-
 #cart_container {
   display: flex;
   justify-content: center;
@@ -214,13 +203,10 @@ header {
 
 .cart_item {
   /* border: 1px solid black; */
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
   border-radius: 3px;
   display: flex;
   flex-direction: row;
@@ -276,6 +262,7 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 100px;
 }
 
 .single-galaxy-info {
@@ -343,7 +330,6 @@ input {
   display: inline-block;
 }
 
-
 /* AllGalaxies component */
 
 #outer-galaxies-container {
@@ -354,8 +340,6 @@ input {
   flex-wrap: wrap;
   /* background-color: rgb(31, 22, 22); */
 }
-
-
 
 #outer-galaxies-container .galaxy-info {
   flex: 1 0 20%;
@@ -374,24 +358,21 @@ input {
 }
 
 .galaxy-img {
- height: 28vh;
- max-width: 100%;
- border-radius: 3px 3px 0px 0px;
+  height: 28vh;
+  max-width: 100%;
+  border-radius: 3px 3px 0px 0px;
 }
 
 .galaxy-info {
   /* border-style: solid; */
   /* border-color: #000; */
   text-align: center;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12);
-background-color: rgb(180, 179, 179);
-border-radius: 3px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  background-color: rgb(180, 179, 179);
+  border-radius: 3px;
 }
 
 .all-galaxy-addcart {
@@ -403,7 +384,9 @@ border-radius: 3px;
 }
 
 /* dashboard  */
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black;
   border-collapse: collapse;
   padding: 5px;
@@ -420,14 +403,10 @@ table, th, td {
   margin-bottom: 50px;
 }
 
-
 .aboutUs {
   background-color: white;
 }
 
 .us {
   display: flex;
-  
 }
-
-
