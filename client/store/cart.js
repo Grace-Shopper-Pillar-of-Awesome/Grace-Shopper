@@ -117,7 +117,7 @@ export const updateQuantity = (userId, orderId, galaxyId, quantity) => {
     try {
       const token = window.localStorage.getItem('token');
       const { data } = await axios.put(
-        `/api/users/${userId}/${orderId}/${galaxyId}`,
+        `/api/users/cart/${userId}/${orderId}/${galaxyId}`,
         quantity,
         {
           headers: {
@@ -145,8 +145,9 @@ export const addToCart = (userId, orderId, galaxyId, info) => {
           },
         }
       );
+      console.log(data);
       if (!data.id) {
-        dispatch(updateQuantity(data));
+        dispatch(updateItemQuantity(data));
       } else {
         dispatch(setCart(data));
       }

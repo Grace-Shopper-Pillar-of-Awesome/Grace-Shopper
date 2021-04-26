@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchSingleGalaxy } from '../store/singleGalaxy';
 import { addToCart } from '../store/cart';
+import { Link } from 'react-router-dom';
 
 class SingleGalaxy extends React.Component {
   constructor(props) {
@@ -91,9 +92,11 @@ class SingleGalaxy extends React.Component {
               onChange={this.updateQuantity}
             ></input>
             <br />
-            <button type="button" onClick={this.handleClick}>
-              Add to cart
-            </button>
+            <Link to="/cart">
+              <button type="button" onClick={this.handleClick}>
+                Add to cart
+              </button>
+            </Link>
           </div>
         </div>
       </div>

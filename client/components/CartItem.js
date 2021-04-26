@@ -15,6 +15,7 @@ class CartItem extends Component {
   }
 
   componentDidMount() {
+    console.log('PROPS HERE:', this.props);
     if (this.props.isLoggedIn) {
       this.setState({
         quantity: this.props.galaxy.orderItems.quantity,
@@ -26,6 +27,14 @@ class CartItem extends Component {
       );
       this.setState({
         quantity: Number(currentItem.quantity),
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.galaxy.orderItems !== this.props.galaxy.orderItems) {
+      this.setState({
+        quantity: this.props.galaxy.orderItems.quantity,
       });
     }
   }
@@ -108,7 +117,6 @@ class CartItem extends Component {
         ) : (
           ''
         )}
-
       </div>
     );
   }

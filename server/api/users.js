@@ -85,6 +85,26 @@ router.put('/:userId/checkout', requireToken, async (req, res, next) => {
   }
 });
 
+router.put(
+  '/cart/:userId/:orderId/:galaxyId',
+  requireToken,
+  async (req, res, next) => {
+    try {
+      if (req.user.id === Number(req.params.userId)) {
+        const orderItemToUpdate = await OrderItems.findOne({
+          where: {
+            galaxyId: req.params.galaxyId,
+            orderId: req.params.orderId,
+          },
+        });
+        const updatedItem = await orderItemToUpdate.update(req.body);
+        res.json(updatedItem);
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 //PUT /api/users/:userId/:orderId/:galaxyId
 router.put(
   '/:userId/:orderId/:galaxyId',
@@ -99,9 +119,17 @@ router.put(
           },
         });
         const [orderItemToUpdate, wasCreated] = data;
-        const updatedOrderItem = await orderItemToUpdate.update(req.body);
+        if (orderItemToUpdate.quantity) {
+          const newQuantity =
+            Number(orderItemToUpdate.quantity) + Number(req.body.quantity);
+          await orderItemToUpdate.update({
+            quantity: newQuantity,
+          });
+        } else {
+          await orderItemToUpdate.update(req.body);
+        }
         if (!wasCreated) {
-          res.json(updatedOrderItem);
+          res.json(orderItemToUpdate);
         } else {
           const cart = await Order.findByPk(req.params.orderId, {
             include: [{ model: Galaxy }],
