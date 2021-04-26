@@ -144,19 +144,20 @@ router.put(
 );
 
 //PUT /api/users/:userId/:orderId
-router.put('/:userId/:orderId', async (req, res, next) => {
-  //if (req.user.id === Number(req.params.userId)) {
+router.put('/:userId/:orderId', requireToken, async (req, res, next) => {
   try {
-    const orderToUpdate = await Order.findOne({
-      where: {
-        id: req.params.orderId,
-      },
-    });
-    if (orderToUpdate) {
-      const updatedOrder = await orderToUpdate.update({
-        total: req.body.total,
+    if (req.user.id === Number(req.params.userId)) {
+      const orderToUpdate = await Order.findOne({
+        where: {
+          id: req.params.orderId,
+        },
       });
-      res.send(updatedOrder);
+      if (orderToUpdate) {
+        const updatedOrder = await orderToUpdate.update({
+          total: req.body.total,
+        });
+        res.send(updatedOrder);
+      }
     }
   } catch (error) {
     next(error);

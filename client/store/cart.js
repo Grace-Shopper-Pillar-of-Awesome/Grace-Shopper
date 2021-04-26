@@ -160,10 +160,15 @@ export const addToCart = (userId, orderId, galaxyId, info) => {
 export const changeCartTotal = (userId, orderId, total) => {
   return async (dispatch) => {
     try {
-      //const token = window.localStorage.getItem("token");
+      const token = window.localStorage.getItem('token');
       const { data } = await axios.put(
         `/api/users/${userId}/${orderId}`,
-        total
+        total,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
       );
       dispatch(updateCartTotal(data));
     } catch (error) {
