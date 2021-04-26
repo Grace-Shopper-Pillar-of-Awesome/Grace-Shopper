@@ -63,7 +63,7 @@ class CartItem extends Component {
             id="ORDER_ITEM_ID"
             onClick={this.handleDelete}
           >
-            X
+          X
           </button>
         </div>
       </div>

@@ -1,5 +1,4 @@
 
-
 /* OVERALL PAGE CSS */
 
 * {
@@ -40,7 +39,6 @@ nav {
   z-index: 1;
   background-color:#07080a;
   border-radius: 0px 0px 3px 3px;
-  /* filter: drop-shadow(0 0 0.50rem rgb(26, 25, 25)); */
   box-shadow: 0 8px 6px -6px rgb(17, 16, 16);
 }
 
@@ -58,7 +56,6 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-
 
 
 /* homepage view */
@@ -105,6 +102,7 @@ header {
   margin: 0;
   font-size: 5rem;
   white-space: nowrap;
+  position: center;
 }
 
 
@@ -250,6 +248,7 @@ input {
 .delete {
   align-self: flex-start;
   height: 30px;
+  border-radius: 20%;
 }
 
 #cart_total {
@@ -366,6 +365,7 @@ input {
   text-align: center;
   margin-top: 10vh;
   color: white;
+  font-size: 3em;
 }
 
 .galaxy-name {
@@ -373,16 +373,15 @@ input {
 }
 
 .galaxy-img {
-  height: 28vh;
-  width: 43vh;
-  border-radius: 3px;
+ height: 28vh;
+ max-width: 100%;
+ border-radius: 3px 3px 0px 0px;
 }
 
 .galaxy-info {
   /* border-style: solid; */
   /* border-color: #000; */
   text-align: center;
-  /* width: 49vh; */
   box-shadow:
   0 2.8px 2.2px rgba(0, 0, 0, 0.034),
   0 6.7px 5.3px rgba(0, 0, 0, 0.048),

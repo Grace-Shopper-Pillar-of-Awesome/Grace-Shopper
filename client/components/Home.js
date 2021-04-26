@@ -10,10 +10,10 @@ export const Home = (props) => {
   if (isLoggedIn) fetchCart(id);
   return (
     <div className="content">
-      <header>
+      <header className = 'wrapper'>
         <div className = "title">
           <h1 className = "far">Far, Far Away...</h1>
-          </div>
+        </div>
       </header>
       {/* <div className="fade"></div> */}
       {/* <section className="star-wars">
@@ -41,6 +41,8 @@ export const Home = (props) => {
           </p>
         </div>
       </section> */}
+
+
     </div>
   );
 };
