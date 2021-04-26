@@ -26,6 +26,7 @@ export class Home extends Component {
           });
         });
       }
+      window.localStorage.removeItem('orderItems');
     }
   }
 
