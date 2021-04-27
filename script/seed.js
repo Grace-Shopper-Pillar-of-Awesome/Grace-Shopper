@@ -64,41 +64,43 @@ async function seed() {
     orderStatus: 'complete',
   });
 
-  const galaxy1 = await Galaxy.create({
-    name: 'milkyway',
+  const karina = await Galaxy.create({
+    name: 'Karina',
     SKU: 'MW123456',
     category: 'elliptical',
-    description:
-      'The galaxy containing the Sun and its Solar System, and therefore Earth. The appearance from Earth of the galaxy is a band of light.',
+    description: 'The galaxy is named for the style wizard, Karina Zuniga.',
     price: 1200,
   });
-  const galaxy2 = await Galaxy.create({
-    name: 'fireworks',
+  const kelsey = await Galaxy.create({
+    name: 'Kelsey',
     SKU: 'FW123456',
     category: 'spiral',
-    description: 'Named due to its bright and spotty appearance.',
+    description:
+      'This galaxy is named for the git projects lover, Kelsey Siman.',
     price: 500,
   });
-  const galaxy3 = await Galaxy.create({
-    name: 'tadpole',
+  const marri = await Galaxy.create({
+    name: 'Marri',
     SKU: 'TP123456',
     category: 'irregular',
     description:
-      'This shape resulted from tidal interaction that drew out a long tidal tail. The name comes from the resemblance of the galaxy to a tadpole.',
+      'This galaxy is named for the queen of wireframes, Marri Kang.',
     price: 2500,
   });
-  const galaxy4 = await Galaxy.create({
-    name: 'sunflower',
+  const meredith = await Galaxy.create({
+    name: 'Meredith',
     SKU: 'SF123456',
     category: 'elliptical',
-    description: 'Named due to its similar appearance to the sunflower.',
+    description:
+      'This galaxy is named for the JWT token genius, Meredith Cornelius.',
     price: 5000,
   });
-  const galaxy5 = await Galaxy.create({
-    name: 'butterfly',
+  const shannon = await Galaxy.create({
+    name: 'Shannon',
     SKU: 'BF123456',
     category: 'irregular',
-    description: "Named due to it's similar look to a butterfly.",
+    description:
+      'This galaxy is named for the space data expert, Shannon Chang.',
     price: 500,
   });
 
@@ -122,12 +124,12 @@ async function seed() {
   await order3.setUser(user3);
   await order4.setUser(user4);
   await order5.setUser(user5);
-  await order1.addGalaxy(galaxy1, { through: { quantity: 1, price: 1200 } });
-  await order2.addGalaxy(galaxy2, { through: { quantity: 1, price: 500 } });
-  await order2.addGalaxy(galaxy5, { through: { quantity: 2, price: 500 } });
-  await order3.addGalaxy(galaxy3, { through: { quantity: 1, price: 2500 } });
-  await order4.addGalaxy(galaxy4, { through: { quantity: 1, price: 5000 } });
-  await order5.addGalaxy(galaxy4, { through: { quantity: 1, price: 5000 } });
+  await order1.addGalaxy(karina, { through: { quantity: 1, price: 1200 } });
+  await order2.addGalaxy(kelsey, { through: { quantity: 1, price: 500 } });
+  await order2.addGalaxy(shannon, { through: { quantity: 2, price: 500 } });
+  await order3.addGalaxy(marri, { through: { quantity: 1, price: 2500 } });
+  await order4.addGalaxy(meredith, { through: { quantity: 1, price: 5000 } });
+  await order5.addGalaxy(meredith, { through: { quantity: 1, price: 5000 } });
 }
 
 /*
