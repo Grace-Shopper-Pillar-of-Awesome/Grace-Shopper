@@ -430,6 +430,11 @@ nav {
   box-shadow: 0 8px 6px -6px rgb(17, 16, 16);
 }
 
+nav a {
+  color: rgb(114, 103, 155);
+  font-weight: bold;
+} 
+
 .navbar-title {
   font-family: 'Roboto';
 }
@@ -620,9 +625,9 @@ div.title {
 
 #cart_list {
   flex-basis: 67%;
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  align-items: center; */
+  align-items: center;
 }
 
 #cart-outer {
@@ -635,6 +640,7 @@ div.title {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 10px;
   margin-bottom: 20px;
   padding: 10px;
   width: 500px;
@@ -666,9 +672,10 @@ div.title {
 }
 
 .delete-btn {
-  align-self: flex-start;
+  justify-content: center;
   height: 30px;
   border-radius: 20%;
+  padding-top: 7px;
 }
 
 #cart_total {
@@ -676,6 +683,23 @@ div.title {
   flex-basis: 33%;
   text-align: center;
   margin-top: 30px;
+  color: lavender;
+}
+
+.cart-item-input {
+  margin-top: 5px;
+}
+
+#cart_list h2 {
+  color: lavender;
+}
+
+#cart_list label {
+  color: lavender;
+}
+
+#cart_list p {
+  color: lavender;
 }
 
 /* .cart-item-info {
@@ -710,9 +734,8 @@ div.title {
   background-color: rgba(76, 67, 109, 0.3);
   border-radius: 10px;
   width:170vh;
-  height: 70vh;
+  height: 80vh;
   margin-top: 10vh;
-
 }
 
 .single-galaxy-info {
@@ -724,6 +747,11 @@ padding: 2vh;
 font-family: 'Exo 2';
 color: rgb(114, 103, 155);
 font-size: 2.5em;
+}
+
+#single-galaxy-description {
+  height: 75px;
+  overflow: auto;
 }
 
 #single-price {
@@ -746,7 +774,7 @@ font-weight: lighter;
   height: 60vh;
 }
 
-.add-to-cart {
+button {
   background-color: rgb(24, 15, 63);
   color: white;
   border-radius: 25px;
@@ -831,6 +859,12 @@ background-color: rgba(76, 67, 109, 0.3);
 border-radius: 3px;
 }
 
+.galaxy-inputs {
+  display: flex;
+  color: white;
+  justify-content: space-around;
+  
+}
 
 /* dashboard  */
 table, th, td {
@@ -848,6 +882,7 @@ table, th, td {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
+  color: lavender;
 }
 /*about us*/
 .row {
@@ -885,4 +920,8 @@ section.title {
   color: white;
   border-radius: 25px;
   padding: 10px 15px;
+}
+
+.table {
+  background-color: lavender;
 }

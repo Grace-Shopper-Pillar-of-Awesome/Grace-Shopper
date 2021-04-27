@@ -24,9 +24,11 @@ class ProductDashboard extends React.Component {
             <br />
             <br />
             <Link to={`/products/add`}>
+              <div id="add-product-button">
               <button type="button">Add new product</button>
+              </div>
             </Link>
-            <table>
+            <table className="table">
               <tbody>
                 <tr>
                   <th>ID</th>

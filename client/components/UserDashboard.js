@@ -19,7 +19,7 @@ class UserDashboard extends React.Component {
         {this.props.userType === 'admin' ? (
           <div>
             <h1 className="dashboard-header">USERS</h1>
-            <table>
+            <table className="table">
               <tbody>
                 <tr>
                   <th>ID</th>
