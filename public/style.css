@@ -396,7 +396,8 @@
 body {
   font-family: 'Roboto';
   font-weight: bold;
-  background-color: rgb(221, 219, 219);
+  /* background-color: rgb(221, 219, 219); */
+  background-color: #202020;
 }
 
 a {
@@ -444,20 +445,34 @@ nav {
 }
 
 
-form div {
-  margin: 1em;
-  display: inline-block;
+/* login-signup pages */
+
+#outer-signin {
+  display: flex; 
+  justify-content: center; 
+  text-align: center;
 }
+
+.sign-in {
+  margin-top: 10vh;
+  background-color: grey;
+  width: 60vh;
+  height: 42vh;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.field-text {
+  font-family: 'Roboto';
+}
+
 
 
 /* homepage view */
 
-/* div.content {
-  width: 100%;
-  height: 100%;
-  background: #000;
-  overflow: hidden;
-} */
+
 .content {
   background-color: black;
 }
@@ -662,40 +677,49 @@ input {
 }
 
 /* single galaxy view */
-
-.single-galaxy-view {
+#outer-single {
   display: flex;
-  flex-direction: row;
   justify-content: center;
 }
 
+.single-galaxy-view {
+  display: flex;
+  flex-direction: row; 
+  justify-content: center;
+  background-color: rgb(110, 108, 108);
+  border-radius: 10px;
+  width:170vh;
+  height: 70vh;
+  margin-top: 10vh;
+
+}
+
 .single-galaxy-info {
-  margin-right: 10%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  margin-left: 3%;
+/* flex: 1 0 1; */
+padding: 2vh;
 }
 
 .single-galaxy-image {
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  margin-left: 20%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  margin-right: 3%;
+  margin: 2vh;
+  border-radius: 10px;
+  width: 75vh;
+  height: 60vh;
 }
 
-.single-galaxy-image > img {
+
+
+/* .single-galaxy-image > img {
   width: 40vw;
   height: 30vw;
   position: relative;
   max-width: 100%;
   max-height: 100%;
   flex-shrink: 3;
-}
+} */
 
-.single-galaxy-info > h1 {
+/* .single-galaxy-info > h1 {
   font-weight: lighter;
   margin-top: 0;
 }
@@ -732,7 +756,7 @@ input {
   margin-left: 5px;
   width: 60px;
   display: inline-block;
-}
+} */
 
 
 /* AllGalaxies component */
@@ -801,15 +825,23 @@ input {
   /* border-style: solid; */
   /* border-color: #000; */
   text-align: center;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  /* box-shadow:
+  0 2.8px 2.2px rgba(138, 137, 137, 0.034),
+  0 6.7px 5.3px rgba(124, 123, 123, 0.048),
+  0 12.5px 10px rgba(122, 121, 121, 0.06),
+  0 22.3px 17.9px rgba(109, 109, 109, 0.072),
+  0 41.8px 33.4px rgba(68, 68, 68, 0.086),
+  0 100px 80px rgba(117, 117, 117, 0.034); */
+  /* 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
   0 6.7px 5.3px rgba(0, 0, 0, 0.048),
   0 12.5px 10px rgba(0, 0, 0, 0.06),
   0 22.3px 17.9px rgba(0, 0, 0, 0.072),
   0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12);
-background-color: rgb(218, 216, 216);
+  0 100px 80px rgba(0, 0, 0, 0.12); */
+/* background-color: rgb(218, 216, 216); */
+background-color: #b6b2b2;
 border-radius: 3px;
+
 }
 
 .all-galaxy-addcart {

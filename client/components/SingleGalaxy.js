@@ -68,10 +68,9 @@ class SingleGalaxy extends React.Component {
       category,
     } = this.props.galaxy;
     return (
+      <div id ="outer-single">
       <div className="single-galaxy-view">
-        <div className="single-galaxy-image">
-          <img src={imageUrl} />
-        </div>
+          <img className="single-galaxy-image" src={imageUrl} />
         <div className="single-galaxy-info">
           <h1 id="single-galaxy-name">{name} galaxy</h1>
           <h2>${(price / 100).toFixed(2)}</h2>
@@ -99,7 +98,8 @@ class SingleGalaxy extends React.Component {
             </Link>
           </div>
         </div>
-      </div>
+        </div>
+        </div>
     );
   }
 }
