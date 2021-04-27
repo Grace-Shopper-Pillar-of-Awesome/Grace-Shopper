@@ -10,18 +10,19 @@ const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
-    <div className="bring-down">
+    <div id="outer-signin">
+      <div className="sign-in">
       <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
+          <div>
+            <label htmlFor="username">
+            <p className = "field-text">Username:</p>
           </label>
           <input name="username" type="text" />
         </div>
         {props.name === 'signup' ? (
-          <div>
+            <div>
             <label htmlFor="email">
-              <small>Email</small>
+              <p className = "field-text">Email:</p>
             </label>
             <input name="email" type="text" />
           </div>
@@ -29,8 +30,8 @@ const AuthForm = (props) => {
           ''
         )}
         <div>
-          <label htmlFor="password">
-            <small>Password</small>
+            <label htmlFor="password">
+            <p className = "field-text">Password:</p>
           </label>
           <input name="password" type="password" />
         </div>
@@ -39,7 +40,8 @@ const AuthForm = (props) => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-    </div>
+      </div>
+      </div>
   );
 };
 

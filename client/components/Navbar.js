@@ -21,7 +21,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, userType, quantity }) => {
           ''
         )}
 
-        <h2>Far, Far Away...</h2>
+        <h2 className = "navbar-title">Far, Far Away...</h2>
 
         <Link to="/home">Home</Link>
         <Link to="/galaxies">Destinations</Link>
