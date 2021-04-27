@@ -1,6 +1,6 @@
 /* global describe beforeEach it */
 
-const {expect} = require('chai')
+/*const {expect} = require('chai')
 const { db, models: { User } } = require('../index')
 const jwt = require('jsonwebtoken');
 const seed = require('../../../script/seed');
@@ -52,4 +52,4 @@ describe('User model', () => {
       });
     }) // end describe('authenticate')
   }) // end describe('instanceMethods')
-}) // end describe('User model')
+}) // end describe('User model') */
