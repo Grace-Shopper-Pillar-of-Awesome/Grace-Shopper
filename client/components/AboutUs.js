@@ -34,28 +34,24 @@ export const AboutUs = (props) => {
         </section>
 
         <section id="title">
-          <h3 className="us">Girls who code!</h3>
           <div className="aboutus">
             <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="kelsey-siman" data-version="v1"><a className="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/kelsey-siman?trk=profile-badge">LinkedIn Profile: Kelsey Siman</a></div>
           </div>
         </section>
 
         <section id="title">
-          <h3 className="us">Girls who code!</h3>
           <div className="aboutus">
             <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="marri-kang" data-version="v1"><a className="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/marri-kang?trk=profile-badge">LinkedIn Profile: Marri Kang</a></div>
           </div>
         </section>
 
         <section id="title">
-          <h3 className="us">Girls who code!</h3>
           <div className="aboutus">
             <div className='badge-base LI-profile-badge' data-locale='en_US' data-size='medium' data-theme='dark' data-type='HORIZONTAL' data-vanity='meredith-cornelius' data-version='v1'><a className='badge-base__link LI-simple-link' href='https://www.linkedin.com/in/meredith-cornelius?trk=profile-badge'>LinkedIn Profile: Meredith Cornelius</a></div>
           </div>
         </section>
 
         <section id="title">
-          <h3 className="us">Girls who code!</h3>
           <div className="aboutus">
             <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="shannon-chang" data-version="v1"><a className="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/shannon-chang?trk=profile-badge">LinkedIn Profile: Shannon Chang</a></div>
           </div>
