@@ -30,6 +30,7 @@ export class AllGalaxies extends React.Component {
     return (
       <div>
         <h1 className="destinations">Where Do You Wanna Go? </h1>
+        <div className="galaxy-inputs">
         <label htmlFor="elliptical">
           Elliptical:
           <input
@@ -57,6 +58,7 @@ export class AllGalaxies extends React.Component {
             checked={this.state.spiral}
           />
         </label>
+        </div>
         <div id="outer-galaxies-container">
           {galaxies
             .filter((galaxy) => this.state[galaxy.category])

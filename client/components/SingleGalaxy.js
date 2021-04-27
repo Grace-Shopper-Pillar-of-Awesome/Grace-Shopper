@@ -76,8 +76,7 @@ class SingleGalaxy extends React.Component {
           <h2 id = "single-price">${(price / 100).toFixed(2)}</h2>
           <h3 className = "dis-type">{distance} billion light years away</h3>
           <h3 className = "dis-type">Type: {category} galaxy</h3>
-          <h3 className = "dis-type">{description}</h3>
-          <br />
+          <h4 className = "dis-type" id="single-galaxy-description">{description}</h4>
           <div className="single-galaxy-buy">
             <h3 className ="dis-type">Quantity:</h3>
               <input

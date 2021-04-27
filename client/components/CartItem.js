@@ -108,6 +108,7 @@ class CartItem extends Component {
                 min={1}
                 max={100}
                 name="quantity"
+                className="cart-item-input"
                 value={this.state.quantity}
                 onChange={this.handleChange}
               />
