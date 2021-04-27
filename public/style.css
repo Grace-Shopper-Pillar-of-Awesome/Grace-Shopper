@@ -861,3 +861,13 @@ table, th, td {
 }
 
 
+.thank-you {
+  margin-top: 20vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgba(76, 67, 109, 0.3);
+}
