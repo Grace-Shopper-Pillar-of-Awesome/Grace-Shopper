@@ -16,7 +16,6 @@ class CartItem extends Component {
   }
 
   componentDidMount() {
-    console.log('PROPS HERE:', this.props);
     if (this.props.isLoggedIn) {
       this.setState({
         quantity: this.props.galaxy.orderItems.quantity,
@@ -90,16 +89,16 @@ class CartItem extends Component {
   render() {
     const { name, imageUrl, price } = this.props.galaxy;
     return (
-      <div>
+      <div id ="cart-item-outer">
         {this.state.quantity > 0 ? (
           <div className="cart_item">
-            <img src={imageUrl} />
-            <div>
+            <img className = "cart-item-img" src={imageUrl} />
+            <div className ="cart-item-info">
               <Link to={`/galaxies/${this.props.galaxy.id}`}>
                 <p className="cart_name">{name}</p>
               </Link>
-              <p>${(price / 100).toFixed(2)}</p>
-              <label htmlFor="quantity">Quantity:</label>
+              <p className = "dis-type">${(price / 100).toFixed(2)}</p>
+              <label className ="dis-type" htmlFor="quantity">Quantity:</label>
               <input
                 type="number"
                 min={1}
@@ -110,7 +109,7 @@ class CartItem extends Component {
               />
             </div>
             <button
-              className="delete"
+              className="delete-btn"
               id="ORDER_ITEM_ID"
               onClick={this.handleDelete}
             >

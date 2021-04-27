@@ -49,12 +49,14 @@ class Cart extends Component {
       JSON.parse(window.localStorage.getItem('orderItems')) ||
       [];
     return (
+      <div id ="cart-outer">
       <div id="cart_container">
         <div id="cart_list">
-          <h2>My Cart</h2>
+            <h2 className="my-cart">My Cart</h2>
           <Link to="/galaxies">
-            <button type="button">Continue Shopping</button>
-          </Link>
+            <button className ="continue-btn" type="button">Continue Shopping</button>
+              </Link>
+         
           {galaxies.length >= 1 ? (
             galaxies.map((galaxy) => (
               <CartItem key={galaxy.id} galaxy={galaxy} />
@@ -66,16 +68,17 @@ class Cart extends Component {
         <div id="cart_total">
           {this.props.isLoggedIn ? (
             <div>
-              <p>Cart Total: ${(this.state.total / 100).toFixed(2)}</p>
+              <p className ="cart-total">Cart Total: ${(this.state.total / 100).toFixed(2)}</p>
               <Link to="/checkout">
                 <button id="go_checkout">Go To Checkout</button>
               </Link>
             </div>
           ) : (
-            <p>Please log in or sign up to check out.</p>
+            <p className="dis-type">Please log in or sign up to check out.</p>
           )}
         </div>
-      </div>
+        </div>
+        </div>
     );
   }
 }
