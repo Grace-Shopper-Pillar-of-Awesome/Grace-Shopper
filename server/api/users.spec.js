@@ -1,6 +1,6 @@
 /* global describe beforeEach it */
 
-const { expect } = require("chai");
+/*const { expect } = require("chai");
 const request = require("supertest");
 const { db, User } = require("../db");
 const seed = require("../../script/seed");
@@ -30,4 +30,4 @@ describe("User routes", () => {
   //     expect(res.body.galaxies.length).to.equal(2);
   //   });
   // });
-}); // end describe('User routes')
+}); // end describe('User routes') */
