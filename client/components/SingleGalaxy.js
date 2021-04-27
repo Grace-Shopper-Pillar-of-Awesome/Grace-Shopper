@@ -68,38 +68,36 @@ class SingleGalaxy extends React.Component {
       category,
     } = this.props.galaxy;
     return (
+      <div id ="outer-single">
       <div className="single-galaxy-view">
-        <div className="single-galaxy-image">
-          <img src={imageUrl} />
-        </div>
+          <img className="single-galaxy-image" src={imageUrl} />
         <div className="single-galaxy-info">
-          <h1 id="single-galaxy-name">{name}</h1>
-          <h2>${(price / 100).toFixed(2)}</h2>
-          <h3>{distance} billion light years away</h3>
-          <h3>Type: {category} galaxy</h3>
-          <p>{description}</p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          <h1 id="single-galaxy-name">{name} galaxy</h1>
+          <h2 id = "single-price">${(price / 100).toFixed(2)}</h2>
+          <h3 className = "dis-type">{distance} billion light years away</h3>
+          <h3 className = "dis-type">Type: {category} galaxy</h3>
+          <h3 className = "dis-type">{description}</h3>
           <br />
           <div className="single-galaxy-buy">
-            <h4>Quantity:</h4>
-            <input
+            <h3 className ="dis-type">Quantity:</h3>
+              <input
+              className = "quant-field"
               type="number"
               min="0"
               value={this.state.quantity}
               onChange={this.updateQuantity}
             ></input>
-            <br />
+          <div>
             <Link to="/cart">
-              <button type="button" onClick={this.handleClick}>
-                Add to cart
+              <button className = "add-to-cart" type="button" onClick={this.handleClick}>
+                Add to Cart
               </button>
-            </Link>
+                </Link>
+                </div>
           </div>
         </div>
-      </div>
+        </div>
+        </div>
     );
   }
 }
