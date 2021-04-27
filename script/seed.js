@@ -1,185 +1,114 @@
-'use strict';
+"use strict";
 
-const { db, User, Order, Galaxy } = require('../server/db');
+const { db, User, Order, Galaxy } = require("../server/db");
+const galaxiesData = require("./galaxydata");
 
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
-// const users = [
-//   {
-//     username: 'user1',
-//     password: '1234',
-//     email: 'user1@gmail.com',
-//     userType: 'admin',
-//   },
-//   {
-//     username: 'user2',
-//     password: '1234',
-//     email: 'user2@gmail.com',
-//   },
-//   {
-//     username: 'user3',
-//     password: '1234',
-//     email: 'user3@gmail.com',
-//   },
-//   {
-//     username: 'user4',
-//     password: '1234',
-//     email: 'user4@gmail.com',
-//   },
-//   {
-//     username: 'user5',
-//     password: '1234',
-//     email: 'user5@gmail.com',
-//   },
-// ];
-
-// const orders = [
-//   {
-//     date: new Date(),
-//     paymentType: 'card',
-//     total: 1200,
-//     orderStatus: 'complete',
-//   },
-//   {
-//     date: new Date(),
-//     paymentType: 'paypal',
-//     total: 1500,
-//   },
-//   {
-//     date: new Date(),
-//     paymentType: 'card',
-//     total: 2500,
-//     orderStatus: 'complete',
-//   },
-//   {
-//     date: new Date(),
-//     paymentType: 'paypal',
-//     total: 5000,
-//   },
-//   {
-//     date: new Date(),
-//     paymentType: 'card',
-//     total: 5000,
-//     orderStatus: 'complete',
-//   },
-// ];
-
-// const galaxys = [
-//   {
-//     name: 'milkyway',
-//     SKU: 'MW123456',
-//     category: 'elliptical',
-//   },
-//   {
-//     name: 'fireworks',
-//     SKU: 'FW123456',
-//     category: 'spiral',
-//   },
-//   {
-//     name: 'tadpole',
-//     SKU: 'TP123456',
-//     category: 'irregular',
-//   },
-//   {
-//     name: 'sunflower',
-//     SKU: 'SF123456',
-//     category: 'elliptical',
-//   },
-//   {
-//     name: 'butterfly',
-//     SKU: 'BF123456',
-//     category: 'irregular',
-//   },
-// ];
 
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
-  console.log('db synced!');
+  console.log("db synced!");
 
   const user1 = await User.create({
-    username: 'user1',
-    password: '1234',
-    email: 'user1@gmail.com',
-    userType: 'admin',
+    username: "user1",
+    password: "1234",
+    email: "user1@gmail.com",
+    userType: "admin",
   });
   const user2 = await User.create({
-    username: 'user2',
-    password: '1234',
-    email: 'user2@gmail.com',
+    username: "user2",
+    password: "1234",
+    email: "user2@gmail.com",
   });
   const user3 = await User.create({
-    username: 'user3',
-    password: '1234',
-    email: 'user3@gmail.com',
+    username: "user3",
+    password: "1234",
+    email: "user3@gmail.com",
   });
   const user4 = await User.create({
-    username: 'user4',
-    password: '1234',
-    email: 'user4@gmail.com',
+    username: "user4",
+    password: "1234",
+    email: "user4@gmail.com",
   });
   const user5 = await User.create({
-    username: 'user5',
-    password: '1234',
-    email: 'user5@gmail.com',
+    username: "user5",
+    password: "1234",
+    email: "user5@gmail.com",
   });
 
   const order1 = await Order.create({
     date: new Date(),
-    paymentType: 'card',
+    paymentType: "card",
     total: 1200,
-    orderStatus: 'complete',
+    orderStatus: "complete",
   });
   const order2 = await Order.create({
     total: 1500,
   });
   const order3 = await Order.create({
     date: new Date(),
-    paymentType: 'card',
+    paymentType: "card",
     total: 2500,
-    orderStatus: 'complete',
+    orderStatus: "complete",
   });
   const order4 = await Order.create({
     total: 5000,
   });
   const order5 = await Order.create({
     date: new Date(),
-    paymentType: 'card',
+    paymentType: "card",
     total: 5000,
-    orderStatus: 'complete',
+    orderStatus: "complete",
   });
 
   const galaxy1 = await Galaxy.create({
-    name: 'milkyway',
-    SKU: 'MW123456',
-    category: 'elliptical',
+    name: "milkyway",
+    SKU: "MW123456",
+    category: "elliptical",
     price: 1200,
   });
   const galaxy2 = await Galaxy.create({
-    name: 'fireworks',
-    SKU: 'FW123456',
-    category: 'spiral',
+    name: "fireworks",
+    SKU: "FW123456",
+    category: "spiral",
     price: 500,
   });
   const galaxy3 = await Galaxy.create({
-    name: 'tadpole',
-    SKU: 'TP123456',
-    category: 'irregular',
+    name: "tadpole",
+    SKU: "TP123456",
+    category: "irregular",
     price: 2500,
   });
   const galaxy4 = await Galaxy.create({
-    name: 'sunflower',
-    SKU: 'SF123456',
-    category: 'elliptical',
+    name: "sunflower",
+    SKU: "SF123456",
+    category: "elliptical",
     price: 5000,
   });
   const galaxy5 = await Galaxy.create({
-    name: 'butterfly',
-    SKU: 'BF123456',
-    category: 'irregular',
+    name: "butterfly",
+    SKU: "BF123456",
+    category: "irregular",
     price: 500,
   });
+
+  await Promise.all(
+    galaxiesData.map((galaxy) =>
+      Galaxy.create({
+        name: galaxy.name,
+        SKU: galaxy.SKU,
+        description: galaxy.description,
+        distance: galaxy.distance,
+        price: galaxy.price,
+        imageUrl: galaxy.imageUrl,
+        inventory: galaxy.inventory,
+        category: galaxy.category,
+      })
+    )
+  );
 
   await order1.setUser(user1);
   await order2.setUser(user2);
@@ -200,16 +129,16 @@ async function seed() {
  The `seed` function is concerned only with modifying the database.
 */
 async function runSeed() {
-  console.log('seeding...');
+  console.log("seeding...");
   try {
     await seed();
   } catch (err) {
     console.error(err);
     process.exitCode = 1;
   } finally {
-    console.log('closing db connection');
+    console.log("closing db connection");
     await db.close();
-    console.log('db connection closed');
+    console.log("db connection closed");
   }
 }
 
