@@ -395,20 +395,18 @@
 
 body {
   font-family: 'Roboto';
-  font-weight: bold;
-  /* background-color: rgb(221, 219, 219); */
-  background-color: #202020;
+  background-color: #13101a;
 }
 
 a {
-  color:#3d56b0;
+  color:rgb(114, 103, 155);
   text-decoration: none;
 }
 
-/* a:hover {
-  color:#f8f6f7;
-  text-decoration: underline;
-} */
+a:hover {
+  color: white;
+  cursor: pointer;
+}
 
 
 label {
@@ -432,14 +430,10 @@ nav {
   box-shadow: 0 8px 6px -6px rgb(17, 16, 16);
 }
 
-/* nav a {
-  display: inline-block;
-  margin: 1em;
-} */
-
 .navbar-title {
   font-family: 'Roboto';
 }
+
 #shopping-cart-icon {
   height: 1.5em;
 }
@@ -455,20 +449,19 @@ nav {
 
 .sign-in {
   margin-top: 10vh;
-  background-color: grey;
+  background-color: rgba(76, 67, 109, 0.3);
   width: 60vh;
-  height: 42vh;
+  height: 50vh;
   border-radius: 10px;
   display: flex;
   justify-content: center;
-  padding-top: 5px;
+  padding-top: 2px;
 }
 
 .field-text {
-  font-family: 'Roboto';
+  font-family: 'Exo 2';
+  font-size: 1.5em;
 }
-
-
 
 /* homepage view */
 
@@ -605,45 +598,65 @@ header {
 }
 
 
+
 #cart_container {
   display: flex;
-  justify-content: center;
-  margin-top: 10vh;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-around;
+  margin-top: 8vh;
+  background-color: rgba(76, 67, 109, 0.3);
+  width: 160vh; 
+  border-radius: 10px;
+}
+
+.my-cart {
+  font-family: 'Roboto';
+  font-weight: bold;
+  font-size: 2.3em;
+  color: rgb(114, 103, 155);
+
 }
 
 #cart_list {
   flex-basis: 67%;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
+}
+
+#cart-outer {
+  display: flex;
+  justify-content: center;
 }
 
 .cart_item {
-  /* border: 1px solid black; */
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12);
-  border-radius: 3px;
+  border-radius: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 20px;
   padding: 10px;
   width: 500px;
+  background-color: #13101a;
+
+}
+.cart-total {
+  font-family: 'Roboto';
+  font-weight: bold;
+  font-size: 1.8em;
+  color: rgb(114, 103, 155);
 }
 
-.cart_item p,
-label,
-input {
-  margin: 5px;
-}
+/* .continue-btn {
+  font-size: 4em;
+  display: flex;
+  justify-content: center;
+} */
 
 .cart_item img {
-  height: 100px;
+  height: 15vh;
+  width: 25vh;
 }
 
 .cart_name {
@@ -652,7 +665,7 @@ input {
   text-decoration: bold;
 }
 
-.delete {
+.delete-btn {
   align-self: flex-start;
   height: 30px;
   border-radius: 20%;
@@ -665,16 +678,24 @@ input {
   margin-top: 30px;
 }
 
-#go_checkout {
-  margin-top: 30px;
-}
+/* .cart-item-info {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+} */
 
-#cart_list button {
+
+
+/* #go_checkout {
+  margin-top: 30px;
+} */
+
+/* #cart_list button {
   display: block;
   text-align: center;
   margin-top: 30px;
   font-size: 20px;
-}
+} */
 
 /* single galaxy view */
 #outer-single {
@@ -686,7 +707,7 @@ input {
   display: flex;
   flex-direction: row; 
   justify-content: center;
-  background-color: rgb(110, 108, 108);
+  background-color: rgba(76, 67, 109, 0.3);
   border-radius: 10px;
   width:170vh;
   height: 70vh;
@@ -695,8 +716,25 @@ input {
 }
 
 .single-galaxy-info {
-/* flex: 1 0 1; */
 padding: 2vh;
+
+}
+
+#single-galaxy-name {
+font-family: 'Exo 2';
+color: rgb(114, 103, 155);
+font-size: 2.5em;
+}
+
+#single-price {
+font-family: 'Roboto';
+color: rgb(114, 103, 155);
+}
+
+.dis-type {
+font-family: 'Roboto';
+color: rgb(114, 103, 155);
+font-weight: lighter;
 }
 
 .single-galaxy-image {
@@ -708,66 +746,33 @@ padding: 2vh;
   height: 60vh;
 }
 
-
-
-/* .single-galaxy-image > img {
-  width: 40vw;
-  height: 30vw;
-  position: relative;
-  max-width: 100%;
-  max-height: 100%;
-  flex-shrink: 3;
-} */
-
-/* .single-galaxy-info > h1 {
-  font-weight: lighter;
-  margin-top: 0;
-}
-
-.single-galaxy-info > h2 {
-  font-size: 20px;
-}
-
-.single-galaxy-info > h3 {
-  font-weight: lighter;
-}
-
-.single-galaxy-info > p {
-  font-size: 12px;
-  font-weight: lighter;
-}
-
-.single-galaxy-buy > h4 {
-  font-weight: lighter;
-  margin-bottom: 1px;
-  margin-left: 5px;
-}
-
-.single-galaxy-buy > button {
-  border: none;
+.add-to-cart {
   background-color: rgb(24, 15, 63);
   color: white;
   border-radius: 25px;
   padding: 10px 15px;
+  margin-top: 3px;
 }
 
-.single-galaxy-buy > input {
-  padding-left: 0;
-  margin-left: 5px;
-  width: 60px;
-  display: inline-block;
-} */
+.add-to-cart:hover {
+  background-color: rgb(64, 14, 90);
+  color: white;
+  cursor: pointer;
+}
 
-
+.quant-field {
+  width: 9vh;
+  height: 4vh;
+  font-size: 1em;
+}
 /* AllGalaxies component */
 
 #outer-galaxies-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-content: space-around;
   margin-top: 8vh;
-  flex-wrap: wrap;
-  /* background-color: rgb(31, 22, 22); */
 }
 
 
@@ -783,7 +788,6 @@ padding: 2vh;
   font-family: 'Exo 2';
   text-align: center;
   margin-top: 10vh;
-  /* color: rgb(168, 167, 167); */
   color: rgb(211, 207, 207);
   font-size: 5em;
   text-shadow: 2px 2px 4px #000000;
@@ -822,35 +826,11 @@ padding: 2vh;
 }
 
 .galaxy-info {
-  /* border-style: solid; */
-  /* border-color: #000; */
-  text-align: center;
-  /* box-shadow:
-  0 2.8px 2.2px rgba(138, 137, 137, 0.034),
-  0 6.7px 5.3px rgba(124, 123, 123, 0.048),
-  0 12.5px 10px rgba(122, 121, 121, 0.06),
-  0 22.3px 17.9px rgba(109, 109, 109, 0.072),
-  0 41.8px 33.4px rgba(68, 68, 68, 0.086),
-  0 100px 80px rgba(117, 117, 117, 0.034); */
-  /* 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12); */
-/* background-color: rgb(218, 216, 216); */
-background-color: #b6b2b2;
+text-align: center;
+background-color: rgba(76, 67, 109, 0.3);
 border-radius: 3px;
-
 }
 
-.all-galaxy-addcart {
-  background-color: rgb(24, 15, 63);
-  color: white;
-  border-radius: 25px;
-  padding: 10px 15px;
-  margin-bottom: 5px;
-}
 
 /* dashboard  */
 table, th, td {
