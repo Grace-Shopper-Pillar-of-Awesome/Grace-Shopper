@@ -82,7 +82,7 @@ header {
   height: 100vh;
 }
 
-.title {
+div.title {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -402,11 +402,40 @@ td {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+/*about us*/
+.row {
+  text-align: center;
+  margin-top: 8vh;
+  color: white;
+  font-size: 3em;
+}
 
-.aboutUs {
-  background-color: white;
+.aboutus {
+  position: relative;
+  background-color: rgb(180, 179, 179);
+  border-radius: 3px;
+  width: 300px;
+  height: 100%;
+  margin: 10px;
+  margin-bottom: 10px;
 }
 
 .us {
-  display: flex;
+  color: white;
+  margin-left: 10px
+}
+
+section.title {
+  display: none;
+  position: relative;
+  width: 100%;
+  float: left
+}
+
+.AboutUs > button {
+  border: none;
+  background-color: rgb(24, 15, 63);
+  color: white;
+  border-radius: 25px;
+  padding: 10px 15px;
 }
