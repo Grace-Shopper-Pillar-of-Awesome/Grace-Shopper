@@ -81,7 +81,6 @@ export const AboutUs = (props) => {
       </section>
 
       <section id="title">
-        <h3 className="us">Girls who code!</h3>
         <div className="aboutus">
           <a
             className="badge-base__link LI-simple-link"
