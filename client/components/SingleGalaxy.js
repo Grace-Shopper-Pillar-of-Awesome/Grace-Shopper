@@ -77,10 +77,6 @@ class SingleGalaxy extends React.Component {
           <h3 className = "dis-type">{distance} billion light years away</h3>
           <h3 className = "dis-type">Type: {category} galaxy</h3>
           <h3 className = "dis-type">{description}</h3>
-          <h3 className = "dis-type">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </h3>
           <br />
           <div className="single-galaxy-buy">
             <h3 className ="dis-type">Quantity:</h3>
