@@ -25,7 +25,7 @@ class ProductDashboard extends React.Component {
             <br />
             <Link to={`/products/add`}>
               <div id="add-product-button">
-              <button type="button">Add new product</button>
+                <button type="button">Add new product</button>
               </div>
             </Link>
             <table className="table">
@@ -52,7 +52,7 @@ class ProductDashboard extends React.Component {
             </table>
           </div>
         ) : (
-          <h1>You shall not pass!</h1>
+          <h1 id="error-message">You shall not pass!</h1>
         )}
       </div>
     );
