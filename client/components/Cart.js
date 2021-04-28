@@ -62,7 +62,7 @@ class Cart extends Component {
               <CartItem key={galaxy.id} galaxy={galaxy} />
             ))
           ) : (
-            <p>There are no items in your cart!</p>
+            <p className ="no-items">There are no items in your cart!</p>
           )}
         </div>
         <div id="cart_total">

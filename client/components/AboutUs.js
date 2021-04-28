@@ -10,9 +10,11 @@ export const AboutUs = (props) => {
   if (isLoggedIn) fetchCart(id);
   return (
     <div className="content">
-      <h1 className="row">The engineering team</h1>
+  
+      <h1 className="row">the engineering team</h1>
+
       <section id="title">
-        <h3 className="us">The Instructor</h3>
+        <h3 className="us">Our Instructor</h3>
         <div className="aboutus">
           <a
             className="badge-base__link LI-simple-link"
@@ -36,7 +38,7 @@ export const AboutUs = (props) => {
       </section>
 
       <section id="title">
-        <h3 className="us">Girls who code!</h3>
+        <h3 className="us">Girls Who Code!</h3>
         <div className="aboutus">
           <a
             className="badge-base__link LI-simple-link"
@@ -81,7 +83,6 @@ export const AboutUs = (props) => {
       </section>
 
       <section id="title">
-        <h3 className="us">Girls who code!</h3>
         <div className="aboutus">
           <a
             className="badge-base__link LI-simple-link"
@@ -99,8 +100,8 @@ export const AboutUs = (props) => {
             Click me!
           </a>
         </div>
-      </section>
-    </div>
+        </section>
+        </div>
   );
 };
 

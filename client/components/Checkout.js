@@ -40,25 +40,30 @@ class Checkout extends Component {
     return (
       <div id="cart_container">
         <div id="cart_list">
-          <h2>Checkout</h2>
+          <h1 className ="checkout-title">Checkout</h1>
           {total > 0 ? (
             <div>
-              <p>Total: ${total / 100}</p>
-              <label htmlFor="payment">Pay with: </label>
-              <select
+              <h3 className ="checkout-total">Your Total: ${total / 100}</h3>
+              <label className ="checkout-txt" htmlFor="payment">Pay with: </label>
+              <div>
+                <select
+                  className ="payment-type"
                 name="payment"
                 value={this.state.payment}
                 onChange={this.handleChange}
               >
                 <option value="card">card</option>
-                <option value="paypal">paypal</option>
-              </select>
+                  <option value="paypal">paypal</option>
+                </select>
+                </div>
+              <div className = "place-order"> 
               <button type="button" onClick={this.handleSubmit}>
-                Place Order
+                  Place Order
               </button>
+                </div>
             </div>
           ) : (
-            <p>There aren't any items in your cart!</p>
+            <h2>There aren't any items in your cart!</h2>
           )}
         </div>
         <div id="cart_total">
@@ -71,7 +76,9 @@ class Checkout extends Component {
             </div>
           ))}
           <Link to="/cart">
-            <button>Edit Cart</button>
+       
+              <button>Edit Cart</button>
+
           </Link>
         </div>
       </div>

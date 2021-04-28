@@ -33,41 +33,40 @@ export class Home extends Component {
 
   render() {
     return (
-      <div className="content">
+      <div>
+        <div>
         <header>
           <div className="title">
             <h1 className="far">Far, Far Away...</h1>
           </div>
         </header>
-        {/* <div className="fade"></div> */}
-        {/* <section className="star-wars">
+        </div>
 
-        <div className="crawl">
-          <div className="title">
-            <p>There is enough space to go around</p>
-            <h1>a galaxy far far away</h1>
+
+        <div>
+        <div className="welcome">
+          <div>
+            <h1 className ="enough-space">There's enough space to go around...</h1>
           </div>
-          <p>
-            The universe... that inmense open space, full of adventures and
-            posibilities.{' '}
+          <p className ="paragraph">
+            The universe... that immense open space, full of adventures and
+            posibilities.
           </p>
-          <p>
-            During centuries, human have wondered about the sky and its limits,
-            today, you not only can witness its greateness but also can OWN your
-            own piece of it.
+          <p className ="paragraph">
+              <p>For centuries, humans have wondered about the sky and its limits...</p>
+            <span className = "bold-words">TODAY</span> you can not only can witness its greateness but can also <span className = "bold-words">OWN</span> your own piece of it.
           </p>
-          <p>
-            Introducing Galaxy X, a great way to explore the universe by
+          <p className ="paragraph">
+           We are <span className = "bold-words">Far Far Away...</span>, a great way to explore the universe by
             acquiring a little piece of the infinite.
           </p>
-          <p>
-            Feel what it feels to own your own galaxy at the edge of the
-            universe and enjoy the power of freedom.
+          <p className ="paragraph">
+            Feel what it feels like to own your own galaxy at the edge of the
+            universe and enjoy the power of <span className = "bold-words">freedom</span>.
           </p>
-        </div>
-      </section> */}
-
-      </div>
+          </div>
+          </div>
+</div>
     );
   }
 }
