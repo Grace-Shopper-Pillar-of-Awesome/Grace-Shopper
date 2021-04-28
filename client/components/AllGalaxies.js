@@ -31,8 +31,8 @@ export class AllGalaxies extends React.Component {
       <div>
         <h1 className="destinations">Where Do You Wanna Go? </h1>
         <div className="galaxy-inputs">
-        <label htmlFor="elliptical">
-          Elliptical:
+        <label className="box-check" htmlFor="elliptical">
+            Elliptical:
           <input
             type="checkbox"
             name="elliptical"
@@ -40,7 +40,7 @@ export class AllGalaxies extends React.Component {
             checked={this.state.elliptical}
           />
         </label>
-        <label htmlFor="irregular">
+        <label className="box-check" htmlFor="irregular">
           Irregular:
           <input
             type="checkbox"
@@ -49,7 +49,7 @@ export class AllGalaxies extends React.Component {
             checked={this.state.irregular}
           />
         </label>
-        <label htmlFor="spiral">
+        <label className="box-check" htmlFor="spiral">
           Spiral:
           <input
             type="checkbox"

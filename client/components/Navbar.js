@@ -30,7 +30,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, userType, quantity }) => {
           <Link to="/cart">
             <img
               id="shopping-cart-icon"
-              src="https://i.ibb.co/bRrVJVC/iconmonstr-basket-3-32.png"
+              src="https://i.ibb.co/0QMvMNn/iconmonstr-basket-3-32.png"
             ></img>
             {isLoggedIn ? <span className="quantityInCart">{qt}</span> : ''}
           </Link>

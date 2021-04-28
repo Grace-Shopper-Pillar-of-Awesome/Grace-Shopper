@@ -9,6 +9,7 @@ const OrderConfirmation = (props) => {
     <div className="thank-you">
       <p>Thank You For Your Order!</p>
       <p>Pack Your Bags, You're Going On A Trip!</p>
+      <p className ="disclaimer">*DISCLAIMER: Travel is not included in price.</p>
     </div>
   );
 };

@@ -70,6 +70,7 @@ async function seed() {
     category: 'elliptical',
     description: 'The galaxy is named for the style wizard, Karina Zuniga.',
     price: 1200,
+    imageUrl: 'https://i.ibb.co/Mhjg17F/galaxy8.webp'
   });
   const kelsey = await Galaxy.create({
     name: 'Kelsey',
@@ -78,6 +79,7 @@ async function seed() {
     description:
       'This galaxy is named for the git projects lover, Kelsey Siman.',
     price: 500,
+    imageUrl: 'https://i.ibb.co/SKLLB9z/galaxy9.jpg'
   });
   const marri = await Galaxy.create({
     name: 'Marri',
@@ -86,6 +88,7 @@ async function seed() {
     description:
       'This galaxy is named for the queen of wireframes, Marri Kang.',
     price: 2500,
+    imageUrl: 'https://i.ibb.co/1KXbD85/galaxy11.jpg'
   });
   const meredith = await Galaxy.create({
     name: 'Meredith',
@@ -94,6 +97,7 @@ async function seed() {
     description:
       'This galaxy is named for the JWT token genius, Meredith Cornelius.',
     price: 5000,
+    imageUrl: 'https://i.ibb.co/Fm94QvS/pexels-alex-andrews-816608.jpg'
   });
   const shannon = await Galaxy.create({
     name: 'Shannon',
@@ -102,6 +106,7 @@ async function seed() {
     description:
       'This galaxy is named for the space data expert, Shannon Chang.',
     price: 500,
+    imageUrl: 'https://i.ibb.co/4ZV0MzN/galaxy12.jpg'
   });
 
   await Promise.all(
