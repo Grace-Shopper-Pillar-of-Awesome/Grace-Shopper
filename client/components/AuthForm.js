@@ -12,36 +12,38 @@ const AuthForm = (props) => {
   return (
     <div id="outer-signin">
       <div className="sign-in">
-      <form onSubmit={handleSubmit} name={name}>
+        <form onSubmit={handleSubmit} name={name}>
           <div>
             <label htmlFor="username">
-            <p className = "field-text">Username:</p>
-          </label>
-          <input name="username" type="text" />
-        </div>
-        {props.name === 'signup' ? (
-            <div>
-            <label htmlFor="email">
-              <p className = "field-text">Email:</p>
+              <p className="field-text">Username:</p>
             </label>
-            <input name="email" type="text" />
+            <input name="username" type="text" />
           </div>
-        ) : (
-          ''
-        )}
-        <div>
+          {props.name === 'signup' ? (
+            <div>
+              <label htmlFor="email">
+                <p className="field-text">Email:</p>
+              </label>
+              <input name="email" type="text" />
+            </div>
+          ) : (
+            ''
+          )}
+          <div>
             <label htmlFor="password">
-            <p className = "field-text">Password:</p>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
+              <p className="field-text">Password:</p>
+            </label>
+            <input name="password" type="password" />
+          </div>
+          <div>
+            <button type="submit">{displayName}</button>
+          </div>
+          {error && error.response && (
+            <div id="error-message"> {error.response.data} </div>
+          )}
+        </form>
       </div>
-      </div>
+    </div>
   );
 };
 

@@ -34,7 +34,7 @@ class UserDashboard extends React.Component {
             </table>
           </div>
         ) : (
-          <h1>You shall not pass!</h1>
+          <h1 id="error-message">You shall not pass!</h1>
         )}
       </div>
     );
